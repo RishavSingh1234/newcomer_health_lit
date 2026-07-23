@@ -1,0 +1,85 @@
+<header class="site-header">
+  <div class="nav-container">
+    <a class="brand" href="/">
+      <span class="brand-icon">🌍</span>
+      <span>Newcomer Health</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="/resources">Resources</a>
+      <a href="/workshops">Workshops</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #dce8e6;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-container {
+    display: flex;
+    width: min(1120px, 90%);
+    min-height: 72px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 800;
+    color: #16302f;
+    text-decoration: none;
+  }
+
+  .brand-icon {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  nav a {
+    font-weight: 600;
+    color: #405653;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: #14766f;
+  }
+
+  @media (max-width: 700px) {
+    .nav-container {
+      padding: 1rem 0;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    nav {
+      width: 100%;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    nav a {
+      white-space: nowrap;
+    }
+  }
+</style>

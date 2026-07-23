@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact | Newcomer Health Literacy Initiative">
+  <main class="page">
+    <section>
+      <p class="eyebrow">Get in touch</p>
+      <h1>Contact us</h1>
+
+      <p>
+        Contact the Newcomer Health Literacy Initiative to ask a question,
+        discuss a partnership, volunteer, or learn more about future workshops.
+      </p>
+
+      <div class="contact-card">
+        <h2>Email</h2>
+        <p>
+          Add your project email address here when it is ready.
+        </p>
+
+        <h2>Community partnerships</h2>
+        <p>
+          We welcome collaboration with community organizations, healthcare
+          professionals, educators, and settlement services.
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    width: min(900px, 90%);
+    min-height: 70vh;
+    margin: 0 auto;
+    padding: 6rem 0;
+  }
+
+  .eyebrow {
+    font-weight: 700;
+    color: #14766f;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    margin: 0.75rem 0 1.25rem;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    color: #16302f;
+  }
+
+  p {
+    max-width: 760px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #586b68;
+  }
+
+  .contact-card {
+    margin-top: 3rem;
+    padding: 2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 18px;
+    background: #f8fbfa;
+  }
+
+  h2 {
+    margin-top: 1.5rem;
+    color: #16302f;
+  }
+
+  h2:first-child {
+    margin-top: 0;
+  }
+</style>

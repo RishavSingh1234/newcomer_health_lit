@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About | Newcomer Health Literacy Initiative">
+  <main class="page">
+    <section>
+      <p class="eyebrow">Our mission</p>
+      <h1>Making healthcare easier to understand</h1>
+
+      <p>
+        The Newcomer Health Literacy Initiative helps newcomers develop the
+        knowledge and confidence needed to navigate the Canadian healthcare
+        system.
+      </p>
+
+      <p>
+        Through accessible educational resources and community workshops, we aim
+        to reduce confusion, improve communication, and support informed health
+        decisions.
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    width: min(900px, 90%);
+    min-height: 70vh;
+    margin: 0 auto;
+    padding: 6rem 0;
+  }
+
+  .eyebrow {
+    font-weight: 700;
+    color: #14766f;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    max-width: 780px;
+    margin: 0.75rem 0 1.5rem;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.1;
+    color: #16302f;
+  }
+
+  p {
+    max-width: 760px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #586b68;
+  }
+</style>

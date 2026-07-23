@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Workshops | Newcomer Health Literacy Initiative">
+  <main class="page">
+    <section>
+      <p class="eyebrow">Learn together</p>
+      <h1>Health literacy workshops</h1>
+      <p>
+        Our workshops help newcomers understand healthcare services, communicate
+        with healthcare professionals, and make informed health decisions.
+      </p>
+
+      <div class="notice">
+        <h2>Upcoming workshops</h2>
+        <p>
+          Workshop dates and registration information will be posted here soon.
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    width: min(900px, 90%);
+    min-height: 70vh;
+    margin: 0 auto;
+    padding: 6rem 0;
+  }
+
+  .eyebrow {
+    font-weight: 700;
+    color: #14766f;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    margin: 0.75rem 0 1.25rem;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    color: #16302f;
+  }
+
+  p {
+    max-width: 720px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #586b68;
+  }
+
+  .notice {
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 18px;
+    background: #f0f8f7;
+  }
+
+  h2 {
+    color: #16302f;
+  }
+</style>

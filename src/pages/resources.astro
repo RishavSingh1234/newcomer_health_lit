@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const resources = [
+  {
+    icon: '🏥',
+    title: 'Understanding Canadian Healthcare',
+    description: 'Learn how healthcare services are organized and where to seek help.',
+  },
+  {
+    icon: '👨‍⚕️',
+    title: 'Finding a Family Doctor',
+    description: 'Understand family doctors, walk-in clinics, and how to find primary care.',
+  },
+  {
+    icon: '🚑',
+    title: 'Emergency or Not?',
+    description: 'Learn when to call 911, visit an emergency department, or use another service.',
+  },
+  {
+    icon: '💊',
+    title: 'Medications and Pharmacies',
+    description: 'Learn how prescriptions, refills, pharmacists, and medication costs work.',
+  },
+  {
+    icon: '🧠',
+    title: 'Mental Health Support',
+    description: 'Find information about counselling, crisis support, and community resources.',
+  },
+  {
+    icon: '💉',
+    title: 'Vaccines and Preventive Care',
+    description: 'Learn about routine vaccines, screening, and preventive health services.',
+  },
+  {
+    icon: '👶',
+    title: "Children's Health",
+    description: 'Find information about pediatric care, immunizations, and common health concerns.',
+  },
+  {
+    icon: '🦷',
+    title: 'Dental and Vision Care',
+    description: 'Understand which services are covered and where to find affordable care.',
+  },
+  {
+    icon: '📞',
+    title: 'Health Advice by Phone',
+    description: 'Learn how services such as 811 can help you decide what care you need.',
+  },
+];
+---
+
+<Layout title="Health Resources | Newcomer Health Literacy Initiative">
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Health information made clearer</p>
+        <h1>Healthcare resources for newcomers</h1>
+        <p class="intro">
+          Explore simple, practical guides to understanding and accessing
+          healthcare services in Canada.
+        </p>
+      </div>
+    </section>
+
+    <section class="resources-section">
+      <div class="container">
+        <div class="resource-grid">
+          {resources.map((resource) => (
+            <article class="resource-card">
+              <div class="icon">{resource.icon}</div>
+              <h2>{resource.title}</h2>
+              <p>{resource.description}</p>
+              <a href="#" aria-label={`Learn more about ${resource.title}`}>
+                Learn more →
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    width: min(1120px, 90%);
+    margin: 0 auto;
+  }
+
+  .page-hero {
+    padding: 6rem 0 4rem;
+    background: #f0f8f7;
+    text-align: center;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    color: #14766f;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    max-width: 800px;
+    margin: 0 auto 1.25rem;
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    line-height: 1.05;
+    color: #16302f;
+  }
+
+  .intro {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #536563;
+  }
+
+  .resources-section {
+    padding: 5rem 0;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .resource-card {
+    padding: 2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(22, 48, 47, 0.06);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 38px rgba(22, 48, 47, 0.1);
+  }
+
+  .icon {
+    margin-bottom: 1.25rem;
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+    color: #16302f;
+  }
+
+  .resource-card p {
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+    color: #60716f;
+  }
+
+  .resource-card a {
+    font-weight: 700;
+    color: #14766f;
+    text-decoration: none;
+  }
+
+  @media (max-width: 850px) {
+    .resource-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 580px) {
+    .page-hero {
+      padding: 4rem 0 3rem;
+    }
+
+    .resource-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

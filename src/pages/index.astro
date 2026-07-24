@@ -7,36 +7,42 @@ const resources = [
     title: 'Finding Healthcare',
     description:
       'Learn how to find a family doctor, use a walk-in clinic, and access virtual care.',
+    href: '/resources/finding-healthcare',
   },
   {
     icon: '🚑',
     title: 'Emergency Care',
     description:
       'Understand when to call 911, visit an emergency department, or seek less urgent care.',
+    href: '/resources/emergency-care',
   },
   {
     icon: '💊',
     title: 'Medications',
     description:
       'Learn about prescriptions, pharmacies, refills, and how to take medicines safely.',
+    href: '/resources/medications',
   },
   {
     icon: '🧠',
     title: 'Mental Health',
     description:
       'Find plain-language information about mental health support and community services.',
+    href: '/resources/mental-health',
   },
   {
     icon: '👶',
     title: 'Family Health',
     description:
       'Explore information about pregnancy, children’s health, vaccinations, and screening.',
+    href: '/resources/family-health',
   },
   {
     icon: '💳',
     title: 'Health Coverage',
     description:
       'Learn how provincial health insurance works and which services may be covered.',
+    href: '/resources/health-coverage',
   },
 ];
 ---
@@ -94,7 +100,9 @@ const resources = [
               <span class="resource-icon">{resource.icon}</span>
               <h3>{resource.title}</h3>
               <p>{resource.description}</p>
-              <a href="#">Learn more <span aria-hidden="true">→</span></a>
+              <a href={resource.href}>
+  Learn more <span aria-hidden="true">→</span>
+</a>
             </article>
           ))
         }

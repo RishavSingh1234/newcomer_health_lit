@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Props {
+  icon: string;
+  eyebrow: string;
+  title: string;
+  introduction: string;
+}
+
+const { icon, eyebrow, title, introduction } = Astro.props;
+---
+
+<Layout title={title}>
+  <section class="resource-page">
+    <a class="back-link" href="/resources">← Back to resources</a>
+
+    <header class="resource-header">
+      <span class="icon">{icon}</span>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="introduction">{introduction}</p>
+    </header>
+
+    <div class="content">
+      <slot />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .resource-page {
+    max-width: 900px;
+    margin: auto;
+    padding: 64px 24px 100px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 42px;
+    color: #087f8c;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .resource-header {
+    margin-bottom: 56px;
+  }
+
+  .icon {
+    display: block;
+    margin-bottom: 18px;
+    font-size: 3rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    color: #087f8c;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0 0 24px;
+    color: #123b4a;
+    font-size: clamp(2.7rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+  }
+
+  .introduction {
+    max-width: 760px;
+    margin: 0;
+    color: #52707b;
+    font-size: 1.2rem;
+    line-height: 1.75;
+  }
+
+  .content {
+    display: grid;
+    gap: 38px;
+  }
+
+  :global(.content section) {
+    padding-bottom: 34px;
+    border-bottom: 1px solid #dce7ea;
+  }
+
+  :global(.content h2) {
+    margin: 0 0 14px;
+    color: #123b4a;
+    font-size: 1.7rem;
+  }
+
+  :global(.content p) {
+    margin: 0;
+    color: #58747e;
+    line-height: 1.75;
+  }
+
+  :global(.content .notice) {
+    padding: 26px;
+    border-left: 5px solid #087f8c;
+    border-radius: 10px;
+    background: #eaf7f6;
+  }
+
+  :global(.content .notice strong) {
+    display: block;
+    margin-bottom: 8px;
+    color: #123b4a;
+  }
+</style>

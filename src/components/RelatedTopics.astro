@@ -1,0 +1,81 @@
+---
+interface Topic {
+  title: string;
+  href: string;
+  icon: string;
+}
+
+interface Props {
+  topics: Topic[];
+}
+
+const { topics } = Astro.props;
+---
+
+<section class="related-topics">
+  <h2>Related Topics</h2>
+  <p class="intro">
+    Continue learning with these resources.
+  </p>
+
+  <div class="grid">
+    {
+      topics.map(topic => (
+        <a class="card" href={topic.href}>
+          <span class="icon">{topic.icon}</span>
+
+          <div>
+            <h3>{topic.title}</h3>
+            <p>Read article →</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+.related-topics{
+  margin-top:70px;
+}
+
+.intro{
+  color:#607983;
+  margin-bottom:28px;
+}
+
+.grid{
+  display:grid;
+  gap:18px;
+}
+
+.card{
+  display:flex;
+  gap:18px;
+  padding:20px;
+  border:1px solid #dde8eb;
+  border-radius:14px;
+  text-decoration:none;
+  transition:.15s;
+  background:white;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  border-color:#8dc5c8;
+}
+
+.icon{
+  font-size:2rem;
+}
+
+.card h3{
+  margin:0;
+  color:#123b4a;
+}
+
+.card p{
+  margin-top:6px;
+  color:#087f8c;
+}
+</style>

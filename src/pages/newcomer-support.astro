@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+const organizations = [
+  {
+    name: 'WelcomeBC',
+    icon: '🏔️',
+    description:
+      'Provincial information about settling in British Columbia and finding newcomer services.',
+    services: 'Settlement information • Government programs • Community services',
+    href: 'https://www.welcomebc.ca/',
+  },
+  {
+    name: 'ISSofBC',
+    icon: '🤝',
+    description:
+      'Settlement support, language programs, employment assistance, and community connections.',
+    services: 'Settlement • Employment • Language support',
+    href: 'https://issbc.org/',
+  },
+  {
+    name: 'MOSAIC',
+    icon: '🌍',
+    description:
+      'Programs supporting newcomers with settlement, employment, language learning, and community integration.',
+    services: 'Settlement • Employment • Language programs',
+    href: 'https://mosaicbc.org/',
+  },
+  {
+    name: 'S.U.C.C.E.S.S.',
+    icon: '🌱',
+    description:
+      'Settlement and community services for newcomers, families, seniors, and job seekers.',
+    services: 'Settlement • Community programs • Employment',
+    href: 'https://successbc.ca/',
+  },
+];
+---
+
+<Layout title="Newcomer Support Services | Newcomer Health Literacy Initiative">
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Support beyond healthcare</p>
+        <h1>Newcomer Support Services</h1>
+
+        <p class="intro">
+          Moving to a new country can be challenging. These organizations and
+          services can help you settle in British Columbia, understand the
+          healthcare system, and connect with your community.
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+
+<section>
+  <h2>🏠 Settlement Services</h2>
+
+  <p>
+    Settlement agencies provide free support for many newcomers,
+    including help with healthcare, housing, employment, education,
+    government forms, and community connections.
+  </p>
+
+  <div class="organization-grid">
+    {organizations.map((organization) => (
+      <a
+        class="organization-card"
+        href={organization.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit the ${organization.name} website`}
+      >
+        <div class="organization-icon">{organization.icon}</div>
+
+        <div>
+          <h3>{organization.name}</h3>
+          <p>{organization.description}</p>
+          <p class="services">{organization.services}</p>
+          <span class="visit-link">Visit website ↗</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+        <section>
+          <h2>🌍 Language Support</h2>
+
+          <p>
+            If English is not your first language, interpreter services are
+            available for many healthcare appointments and through HealthLink BC
+            (811).
+          </p>
+        </section>
+
+        <section>
+          <h2>🩺 Healthcare Navigation</h2>
+
+          <p>
+            Learn how to register for provincial health insurance (MSP), find a
+            family doctor, locate walk-in clinics, and understand when to use
+            emergency services.
+          </p>
+        </section>
+
+        <section>
+          <h2>💬 Community Resources</h2>
+
+          <p>
+            Many organizations offer free workshops, social programs, language
+            classes, and community events to help newcomers build connections.
+          </p>
+        </section>
+
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.organization-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.organization-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid #dce8e6;
+  border-radius: 18px;
+  background: white;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(22, 48, 47, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.organization-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(22, 48, 47, 0.1);
+}
+
+.organization-card:hover h3 {
+  color: #14766f;
+}
+
+.organization-icon {
+  flex-shrink: 0;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.organization-card h3 {
+  margin: 0 0 0.5rem;
+  color: #16302f;
+  font-size: 1.2rem;
+}
+
+.organization-card p {
+  margin: 0 0 0.75rem;
+  line-height: 1.6;
+  color: #60716f;
+}
+
+.services {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #536563;
+}
+
+.visit-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: #14766f;
+}
+
+@media (max-width: 800px) {
+  .organization-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

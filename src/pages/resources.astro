@@ -6,46 +6,55 @@ const resources = [
     icon: '🏥',
     title: 'Understanding Canadian Healthcare',
     description: 'Learn how healthcare services are organized and where to seek help.',
+    href: '/resources/finding-healthcare',
   },
   {
     icon: '👨‍⚕️',
     title: 'Finding a Family Doctor',
     description: 'Understand family doctors, walk-in clinics, and how to find primary care.',
+    href: '/resources/finding-healthcare',
   },
   {
     icon: '🚑',
     title: 'Emergency or Not?',
     description: 'Learn when to call 911, visit an emergency department, or use another service.',
+    href: '/resources/emergency-care',
   },
   {
     icon: '💊',
     title: 'Medications and Pharmacies',
     description: 'Learn how prescriptions, refills, pharmacists, and medication costs work.',
+    href: '/resources/medications',
   },
   {
     icon: '🧠',
     title: 'Mental Health Support',
     description: 'Find information about counselling, crisis support, and community resources.',
+    href: '/resources/mental-health',
   },
   {
     icon: '💉',
     title: 'Vaccines and Preventive Care',
     description: 'Learn about routine vaccines, screening, and preventive health services.',
+    href: '/resources/family-health',
   },
   {
     icon: '👶',
     title: "Children's Health",
     description: 'Find information about pediatric care, immunizations, and common health concerns.',
+    href: '/resources/family-health',
   },
   {
     icon: '🦷',
     title: 'Dental and Vision Care',
     description: 'Understand which services are covered and where to find affordable care.',
+    href: '/resources/health-coverage',
   },
   {
     icon: '📞',
     title: 'Health Advice by Phone',
     description: 'Learn how services such as 811 can help you decide what care you need.',
+    href: '/resources/finding-healthcare',
   },
 ];
 ---
@@ -67,14 +76,16 @@ const resources = [
       <div class="container">
         <div class="resource-grid">
           {resources.map((resource) => (
-            <article class="resource-card">
-              <div class="icon">{resource.icon}</div>
-              <h2>{resource.title}</h2>
-              <p>{resource.description}</p>
-              <a href="#" aria-label={`Learn more about ${resource.title}`}>
-                Learn more →
-              </a>
-            </article>
+<a
+  href={resource.href}
+  class="resource-card"
+  aria-label={`Learn more about ${resource.title}`}
+>
+  <div class="icon">{resource.icon}</div>
+  <h2>{resource.title}</h2>
+  <p>{resource.description}</p>
+  <span class="learn-more">Learn more →</span>
+</a>
           ))}
         </div>
       </div>
@@ -129,21 +140,34 @@ const resources = [
     gap: 1.5rem;
   }
 
-  .resource-card {
-    padding: 2rem;
-    border: 1px solid #dce8e6;
-    border-radius: 18px;
-    background: white;
-    box-shadow: 0 10px 30px rgba(22, 48, 47, 0.06);
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
+.resource-card {
+  display: block;
+  padding: 2rem;
+  border: 1px solid #dce8e6;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(22, 48, 47, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
-  .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 38px rgba(22, 48, 47, 0.1);
-  }
+  color: inherit;
+  text-decoration: none;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 38px rgba(22, 48, 47, 0.1);
+}
+
+.resource-card:hover h2 {
+  color: #14766f;
+}
+
+.learn-more {
+  font-weight: 700;
+  color: #14766f;
+}
 
   .icon {
     margin-bottom: 1.25rem;
@@ -162,11 +186,7 @@ const resources = [
     color: #60716f;
   }
 
-  .resource-card a {
-    font-weight: 700;
-    color: #14766f;
-    text-decoration: none;
-  }
+
 
   @media (max-width: 850px) {
     .resource-grid {

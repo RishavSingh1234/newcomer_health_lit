@@ -1,5 +1,6 @@
 ---
 import ResourceLayout from '../../components/ResourceLayout.astro';
+import RelatedTopics from '../../components/RelatedTopics.astro';
 ---
 
 <ResourceLayout
@@ -50,5 +51,24 @@ import ResourceLayout from '../../components/ResourceLayout.astro';
       Call 911 when immediate treatment may be needed. Paramedics can begin care
       before you reach the hospital.
     </p>
-  </aside>
+</aside>
+  <RelatedTopics
+  topics={[
+    {
+      icon: "🩺",
+      title: "Finding Healthcare",
+      href: "/resources/finding-healthcare"
+    },
+    {
+      icon: "💳",
+      title: "Health Coverage",
+      href: "/resources/health-coverage"
+    },
+    {
+      icon: "🚑",
+      title: "Emergency Care",
+      href: "/resources/emergency-care"
+    }
+  ]}
+/>
 </ResourceLayout>

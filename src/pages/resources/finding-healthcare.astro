@@ -1,5 +1,6 @@
 ---
 import ResourceLayout from '../../components/ResourceLayout.astro';
+import RelatedTopics from '../../components/RelatedTopics.astro';
 ---
 
 <ResourceLayout
@@ -39,4 +40,23 @@ import ResourceLayout from '../../components/ResourceLayout.astro';
       of stroke, loss of consciousness, or another life-threatening emergency.
     </p>
   </aside>
+<RelatedTopics
+  topics={[
+    {
+      icon: "🚑",
+      title: "Emergency Care",
+      href: "/resources/emergency-care"
+    },
+    {
+      icon: "💊",
+      title: "Medications",
+      href: "/resources/medications"
+    },
+    {
+      icon: "💳",
+      title: "Health Coverage",
+      href: "/resources/health-coverage"
+    }
+  ]}
+/>
 </ResourceLayout>

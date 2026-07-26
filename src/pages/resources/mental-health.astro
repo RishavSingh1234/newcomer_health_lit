@@ -1,14 +1,49 @@
 ---
 import ResourceLayout from '../../components/ResourceLayout.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import InfographicViewer from '../../components/InfographicViewer.astro';
+import ExternalResource from '../../components/ExternalResource.astro';
 ---
-
 <ResourceLayout
   icon="🧠"
   eyebrow="Mental health and well-being"
   title="Mental Health"
   introduction="Mental health is an important part of your overall health. Learn where to find support, what services are available, and when to seek help."
 >
-  <section>
+<VideoEmbed
+  title="Mental Health Support for Newcomers"
+  videoId="uhNavuCb3rg"
+  description="Watch this short video to learn about mental health, when to seek support, and where newcomers in British Columbia can find help."
+/>
+
+<InfographicViewer
+  title="Newcomer Mental Health: A Quick Guide"
+  description="Learn common signs of emotional distress, simple ways to protect your well-being, and where to seek support in Canada."
+  previewSrc="/infographics/mental-health/mental-health-en.png"
+  previewAlt="Preview of the newcomer mental health infographic"
+  languages={[
+    {
+      label: 'English',
+      href: '/infographics/mental-health/mental-health-en.png',
+      lang: 'en',
+    },
+    {
+      label: 'ਪੰਜਾਬੀ',
+      href: '/infographics/mental-health/mental-health-pa.png',
+      lang: 'pa',
+    },
+  ]}
+/>
+
+<ExternalResource
+  icon="🇨🇦"
+  source="Government of Canada"
+  title="Mental Health and Wellness"
+  description="Explore trusted information about mental health, mental illness, coping with stressful events, crisis support, and suicide prevention."
+  href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html"
+/>
+
+<section>
     <h2>What is mental health?</h2>
     <p>
       Mental health includes your emotional, psychological, and social
@@ -66,3 +101,4 @@ import ResourceLayout from '../../components/ResourceLayout.astro';
     </p>
   </aside>
 </ResourceLayout>
+

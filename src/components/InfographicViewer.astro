@@ -1,0 +1,146 @@
+---
+interface LanguageOption {
+  label: string;
+  href: string;
+  lang?: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  previewSrc: string;
+  previewAlt: string;
+  languages: LanguageOption[];
+}
+
+const {
+  title,
+  description,
+  previewSrc,
+  previewAlt,
+  languages,
+} = Astro.props;
+---
+
+<section class="infographic-section">
+  <div class="infographic-copy">
+    <span class="infographic-label">Visual guide</span>
+    <h2>{title}</h2>
+
+    {description && <p>{description}</p>}
+  </div>
+
+  <a
+    href={languages[0]?.href}
+    class="infographic-preview"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img src={previewSrc} alt={previewAlt} loading="lazy" />
+    <span class="preview-action">View full infographic ↗</span>
+  </a>
+
+  <div class="language-options" aria-label="Available infographic languages">
+    <span class="language-heading">Choose a language:</span>
+
+    <div class="language-links">
+      {languages.map((language) => (
+        <a
+          href={language.href}
+          lang={language.lang}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {language.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .infographic-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 20px;
+    background: #f8fbfa;
+  }
+
+  .infographic-copy {
+    max-width: 760px;
+    margin-bottom: 1.5rem;
+  }
+
+  .infographic-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: #14766f;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .infographic-copy h2 {
+    margin: 0 0 0.75rem;
+  }
+
+  .infographic-copy p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .infographic-preview {
+    display: block;
+    overflow: hidden;
+    border: 1px solid #dce8e6;
+    border-radius: 16px;
+    background: white;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .infographic-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .preview-action {
+    display: block;
+    padding: 1rem 1.25rem;
+    color: #14766f;
+    font-weight: 700;
+  }
+
+  .language-options {
+    margin-top: 1.25rem;
+  }
+
+  .language-heading {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  .language-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .language-links a {
+    padding: 0.65rem 1rem;
+    border: 1px solid #14766f;
+    border-radius: 999px;
+    color: #14766f;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .language-links a:hover {
+    background: #14766f;
+    color: white;
+  }
+</style>

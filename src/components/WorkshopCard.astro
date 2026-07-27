@@ -1,0 +1,186 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  description: string;
+  topics: string[];
+  activity: string;
+  takeHome: string;
+  date?: string;
+  time?: string;
+  location?: string;
+  registrationUrl?: string;
+}
+
+const {
+  number,
+  title,
+  description,
+  topics,
+  activity,
+  takeHome,
+  date = 'To be announced',
+  time,
+  location = 'To be announced',
+  registrationUrl,
+} = Astro.props;
+---
+
+<article class="workshop-card">
+  <div class="workshop-heading">
+    <span class="workshop-number">Workshop {number}</span>
+    <h2>{title}</h2>
+    <p>{description}</p>
+  </div>
+
+  <div class="schedule">
+    <div>
+      <strong>Date</strong>
+      <span>{date}</span>
+    </div>
+
+    {time && (
+      <div>
+        <strong>Time</strong>
+        <span>{time}</span>
+      </div>
+    )}
+
+    <div>
+      <strong>Location</strong>
+      <span>{location}</span>
+    </div>
+  </div>
+
+  <details>
+    <summary>View workshop details</summary>
+
+    <div class="details-content">
+      <h3>Key topics</h3>
+
+      <ul>
+        {topics.map((topic) => <li>{topic}</li>)}
+      </ul>
+
+      <h3>Interactive activity</h3>
+      <p>{activity}</p>
+
+      <h3>Take-home resource</h3>
+      <p>{takeHome}</p>
+    </div>
+  </details>
+
+  {
+    registrationUrl ? (
+      <a
+        class="register-button"
+        href={registrationUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Register for this workshop ↗
+      </a>
+    ) : (
+      <span class="registration-status">Registration coming soon</span>
+    )
+  }
+</article>
+
+<style>
+  .workshop-card {
+    margin: 2rem 0;
+    padding: 2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 8px 26px rgba(22, 48, 47, 0.06);
+  }
+
+  .workshop-number {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: #14766f;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .workshop-heading h2 {
+    margin: 0 0 0.75rem;
+  }
+
+  .workshop-heading p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .schedule {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 14px;
+    background: #f5faf9;
+  }
+
+  .schedule div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .schedule strong {
+    color: #14766f;
+  }
+
+  details {
+    margin: 1.5rem 0;
+    border-top: 1px solid #e3ecea;
+    border-bottom: 1px solid #e3ecea;
+  }
+
+  summary {
+    padding: 1rem 0;
+    cursor: pointer;
+    font-weight: 750;
+  }
+
+  .details-content {
+    padding-bottom: 1rem;
+  }
+
+  .details-content h3 {
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  .details-content ul {
+    padding-left: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .register-button,
+  .registration-status {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.8rem 1.15rem;
+    border-radius: 999px;
+    font-weight: 750;
+  }
+
+  .register-button {
+    background: #14766f;
+    color: white;
+    text-decoration: none;
+  }
+
+  .register-button:hover {
+    opacity: 0.9;
+  }
+
+  .registration-status {
+    background: #edf4f3;
+    color: #506260;
+  }
+</style>

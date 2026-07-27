@@ -1,0 +1,112 @@
+---
+import ResourceLayout from '../../components/ResourceLayout.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import InfographicViewer from '../../components/InfographicViewer.astro';
+import ExternalResource from '../../components/ExternalResource.astro';
+---
+
+<ResourceLayout
+  icon="❤️"
+  eyebrow="Heart health and prevention"
+  title="Heart Health"
+  introduction="Learn about blood pressure, cholesterol, heart disease prevention, warning signs, and when to seek urgent medical care."
+>
+  <VideoEmbed
+    title="Heart Health for Newcomers"
+    videoId="HGUxsClKZ00"
+    description="Watch this short video to learn about heart health, cardiovascular risk factors, common warning signs, and ways to protect your heart."
+  />
+
+  <InfographicViewer
+    title="The ABCDEs of Diabetes and Heart Care"
+    description="Learn practical steps for reducing cardiovascular risk, including blood sugar control, blood pressure, cholesterol, healthy habits, and medication use."
+    previewSrc="/infographics/mental-health/ABCDEs-of-Diabetes-Heart-Care-en.png"
+    previewAlt="Preview of the ABCDEs of diabetes and heart care infographic"
+  languages={[
+  {
+    label: 'English',
+    href: '/infographics/mental-health/heart-health-en.png',
+    lang: 'en',
+  },
+  {
+    label: 'ਪੰਜਾਬੀ',
+    href: '/infographics/mental-health/heart-health-pa.png',
+    lang: 'pa',
+  },
+]}
+  />
+
+  <ExternalResource
+    icon="🇨🇦"
+    source="HealthLink BC"
+    title="Heart Health"
+    description="Explore trusted information about heart disease, blood pressure, cholesterol, healthy living, and when to seek medical attention."
+    href="https://www.healthlinkbc.ca/health-topics/heart-and-circulation"
+  />
+
+  <section>
+    <h2>Why is heart health important?</h2>
+    <p>
+      Your heart and blood vessels carry oxygen and nutrients throughout your
+      body. High blood pressure, high cholesterol, diabetes, smoking, and other
+      risk factors can damage blood vessels over time and increase the risk of
+      heart attack and stroke.
+    </p>
+  </section>
+
+  <section>
+    <h2>Blood pressure</h2>
+    <p>
+      Blood pressure measures the force of blood against the walls of your
+      arteries. High blood pressure often causes no symptoms, so regular checks
+      are important. A healthcare provider can explain your results and whether
+      lifestyle changes or medication may be needed.
+    </p>
+  </section>
+
+  <section>
+    <h2>Cholesterol</h2>
+    <p>
+      Cholesterol is a type of fat carried in the blood. Some cholesterol is
+      needed by the body, but high levels of LDL cholesterol can contribute to
+      plaque buildup in the arteries. Blood tests can help assess your risk.
+    </p>
+  </section>
+
+  <section>
+    <h2>How can I reduce my risk?</h2>
+    <p>
+      Regular physical activity, balanced nutrition, avoiding tobacco, limiting
+      alcohol, getting enough sleep, managing stress, and taking prescribed
+      medications can all help reduce cardiovascular risk.
+    </p>
+  </section>
+
+  <section>
+    <h2>What tests might I have?</h2>
+    <p>
+      Common heart-related tests include blood pressure measurements,
+      cholesterol and blood sugar tests, an electrocardiogram or ECG, and other
+      tests depending on your symptoms and medical history.
+    </p>
+  </section>
+
+  <section>
+    <h2>Preparing for a heart health appointment</h2>
+    <p>
+      Bring a list of your medications, write down your symptoms and questions,
+      and tell your healthcare provider about any family history of heart
+      disease, stroke, high blood pressure, diabetes, or high cholesterol.
+    </p>
+  </section>
+
+  <aside class="notice">
+    <strong>Know the warning signs.</strong>
+    <p>
+      Call 911 immediately for severe chest pressure, trouble breathing,
+      sudden weakness or numbness on one side, facial drooping, sudden trouble
+      speaking, fainting, or other symptoms that may indicate a heart attack or
+      stroke.
+    </p>
+  </aside>
+</ResourceLayout>

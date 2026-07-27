@@ -1,12 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import WorkshopCard from '../components/WorkshopCard.astro';
 ---
 
 <Layout title="Workshops | Newcomer Health Literacy Initiative">
   <main class="page">
     <section>
       <p class="eyebrow">Learn together</p>
+
       <h1>Health literacy workshops</h1>
+
       <p>
         Our workshops help newcomers understand healthcare services, communicate
         with healthcare professionals, and make informed health decisions.
@@ -17,6 +20,216 @@ import Layout from '../layouts/Layout.astro';
         <p>
           Workshop dates and registration information will be posted here soon.
         </p>
+      </div>
+
+      <div class="workshop-list">
+        <WorkshopCard
+          number={1}
+          title="Coverage, Costs, and Medication Access"
+          description="Learn how health coverage and medication access work in British Columbia, including MSP, IFHP, Fair PharmaCare, pharmacy services, prescription refills, and options for reducing medication costs."
+          date="To be announced"
+          location="To be announced"
+          topics={[
+            'MSP basics',
+            'IFHP for eligible refugees and protected persons',
+            'Fair PharmaCare',
+            'Prescription medication coverage',
+            'Pharmacy access',
+            'Medication refills',
+            'Generic versus brand-name medications',
+            'How to speak with pharmacists',
+            'Medication safety',
+            'Financial support programs',
+          ]}
+          activity="Participants will practise reading a medication label and completing a medication list."
+          takeHome="Medication access guide, medication list template, and pharmacy question checklist."
+        />
+
+        <WorkshopCard
+          number={2}
+          title="Cardiac Care and Heart Health"
+          description="Learn the basics of heart health, blood pressure, cholesterol, heart attack and stroke warning signs, and when to seek urgent medical care."
+          date="To be announced"
+          location="To be announced"
+          topics={[
+            'Blood pressure',
+            'Cholesterol',
+            'Heart disease prevention',
+            'Stroke prevention',
+            'Heart attack warning signs',
+            'Stroke warning signs',
+            'When to call 9-1-1',
+            'ECGs',
+            'Bloodwork',
+            'Preparing for cardiac appointments',
+            'Lifestyle risk reduction',
+          ]}
+          activity="Blood pressure demonstration and heart attack or stroke warning-sign scenario practice."
+          takeHome="Heart health tracker and emergency warning signs guide."
+        />
+      <WorkshopCard
+  number={3}
+  title="Diabetes Prevention and Management"
+  description="Learn about diabetes, prediabetes, blood sugar, nutrition, physical activity, medications, and preventing long-term complications."
+  date="To be announced"
+  location="To be announced"
+  topics={[
+    'Diabetes and prediabetes',
+    'Blood sugar',
+    'A1c testing',
+    'Nutrition basics',
+    'Physical activity',
+    'Diabetes medications',
+    'Symptoms of high blood sugar',
+    'Symptoms of low blood sugar',
+    'Diabetes-related appointments',
+    'Heart, kidney, nerve, and eye complications',
+    'Monitoring and prevention',
+  ]}
+  activity="Participants will review sample bloodwork and practise using a diabetes appointment checklist."
+  takeHome="Diabetes care tracker and diabetes appointment preparation guide."
+/>
+<WorkshopCard
+  number={4}
+  title="Mental Health, Stress, and Trauma Support"
+  description="Learn about stress, anxiety, depression, trauma, grief, adjustment after migration, and accessing mental health supports."
+  date="To be announced"
+  location="To be announced"
+  topics={[
+    'Stress after migration',
+    'Anxiety',
+    'Depression',
+    'Trauma',
+    'Grief',
+    'Sleep',
+    'Adjustment after migration',
+    'Mental health stigma',
+    'Counselling access',
+    'Crisis supports',
+    'Family doctor support',
+    'Community programs',
+    'Culturally appropriate resources',
+  ]}
+  activity="Anonymous question box and case-based discussion on when and how to seek help."
+  takeHome="Mental health support map and crisis resource guide."
+/>
+<WorkshopCard
+  number={5}
+  title="Women's Health and Preventive Care"
+  description="Learn about preventive women's healthcare, pregnancy, sexual health, menopause, and accessing services confidentially."
+  date="To be announced"
+  location="To be announced"
+  topics={[
+    'Cervical cancer screening',
+    'Breast screening',
+    'Contraception',
+    'Pregnancy care',
+    'Postpartum health',
+    'Menopause',
+    'Sexual health',
+    'Family support services',
+    'Confidential care',
+    'Preventive health appointments',
+    'Questions to ask healthcare providers',
+  ]}
+  activity="Preventive care timeline exercise."
+  takeHome="Women's health checklist and appointment question guide."
+/>
+
+<WorkshopCard
+  number={6}
+  title="Children's Health, Vaccines, and Developmental Milestones"
+  description="Help parents and caregivers understand child health, immunizations, growth, development, and when to seek medical advice."
+  date="To be announced"
+  location="To be announced"
+  topics={[
+    'Well-child visits',
+    'Routine immunizations',
+    'School vaccines',
+    'Catch-up vaccines',
+    'Fever basics',
+    'Dental care',
+    'Vision care',
+    'Growth',
+    'Behaviour',
+    'Speech and language',
+    'Learning concerns',
+    'Developmental milestones',
+    'When to seek medical advice',
+  ]}
+  activity="Parent and caregiver case scenarios on fever, vaccines, and developmental concerns."
+  takeHome="Child health, vaccine, and developmental milestone tracker."
+/>
+<WorkshopCard
+  number={7}
+  title="Eye Health and Vision Care"
+  description="Learn about routine eye care, common eye conditions, emergency warning signs, and accessing vision services."
+  date="To be announced"
+  location="To be announced"
+  topics={[
+    'Routine eye exams',
+    'Glasses and vision correction',
+    'Diabetic eye disease',
+    'Glaucoma',
+    'Cataracts',
+    'Red eye warning signs',
+    'Sudden vision loss',
+    'Eye injury',
+    'Optometrists',
+    'Ophthalmologists',
+    'Emergency eye care',
+    'Community vision resources',
+  ]}
+  activity="Basic vision screening demonstration and red-eye/sudden vision loss triage scenarios."
+  takeHome="Eye health guide and vision care access pathway."
+/>
+<WorkshopCard
+  number={8}
+  title="Digital Health Tools and Navigating Digital Healthcare"
+  description="Learn how to confidently use digital health tools, patient portals, online booking, and reliable health information."
+  date="To be announced"
+  location="To be announced"
+  topics={[
+    'Online appointment booking',
+    'Patient portals',
+    'Lab results',
+    'Digital health records',
+    'Pharmacy apps',
+    'Reliable online health information',
+    'Privacy',
+    'Consent',
+    'Interpreter requests',
+    'Avoiding misinformation',
+    'Using the digital toolkit',
+  ]}
+  activity="Live digital toolkit walkthrough using phones or tablets."
+  takeHome="Digital health tools guide and reliable health information checklist."
+/>
+<WorkshopCard
+  number={9}
+  title="Navigating Care: Where to Go for Help"
+  description="Learn how to choose the right healthcare service for routine, urgent, and emergency concerns in British Columbia."
+  date="To be announced"
+  location="To be announced"
+  topics={[
+    'Family doctors',
+    'Nurse practitioners',
+    'Walk-in clinics',
+    'Urgent and primary care centres',
+    'Emergency departments',
+    'HealthLink BC 8-1-1',
+    '9-1-1',
+    'Pharmacies',
+    'Community services',
+    'Routine versus urgent versus emergency concerns',
+    'How to describe symptoms',
+    'How to prepare for care',
+  ]}
+  activity="Participants use an interactive flowchart to decide where to go for common health scenarios."
+  takeHome='"Where Do I Go for Care?" flowchart and healthcare navigation guide.'
+/>
+
+
       </div>
     </section>
   </main>
@@ -55,6 +268,10 @@ import Layout from '../layouts/Layout.astro';
     padding: 2rem;
     border-radius: 18px;
     background: #f0f8f7;
+  }
+
+  .workshop-list {
+    margin-top: 3rem;
   }
 
   h2 {

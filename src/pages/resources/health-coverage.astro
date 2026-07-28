@@ -1,29 +1,64 @@
 ---
 import ResourceLayout from '../../components/ResourceLayout.astro';
-import RelatedTopics from '../../components/RelatedTopics.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import InfographicViewer from '../../components/InfographicViewer.astro';
+import ExternalResource from '../../components/ExternalResource.astro';
 ---
 
 <ResourceLayout
   icon="💳"
   eyebrow="Insurance and healthcare costs"
   title="Health Coverage"
-  introduction="Learn how provincial health insurance works, which services may be covered, and which healthcare costs you may need to pay yourself."
+  introduction="Learn how provincial health insurance works, what services are covered, and how newcomers can access healthcare in British Columbia."
 >
+  <VideoEmbed
+    title="Healthcare Coverage for Newcomers in British Columbia"
+    videoId="CnZjlt38KVo"
+    description="Watch this short video to learn about MSP, health insurance, and healthcare coverage available to newcomers in British Columbia."
+  />
+
+  <InfographicViewer
+    title="Healthcare Guide for BC Newcomers"
+    description="Learn how BC's healthcare system works, what Medical Services Plan (MSP) covers, and where to find additional support."
+    previewSrc="/infographics/mental-health/Healthcare-Guide-for-BC-Newcomers-en.png"
+    previewAlt="Preview of the Healthcare Guide for BC Newcomers infographic"
+    languages={[
+      {
+        label: 'English',
+        href: '/infographics/mental-health/Healthcare-Guide-for-BC-Newcomers-en.png',
+        lang: 'en',
+      },
+      {
+        label: 'ਪੰਜਾਬੀ',
+        href: '/infographics/mental-health/Healthcare-Guide-for-BC-Newcomers-pa.png',
+        lang: 'pa',
+      },
+    ]}
+  />
+
+  <ExternalResource
+    icon="🇨🇦"
+    source="Government of British Columbia"
+    title="Medical Services Plan (MSP)"
+    description="Learn who is eligible for BC's Medical Services Plan, what services are covered, and how to enroll."
+    href="https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/msp"
+  />
+
   <section>
-    <h2>Provincial and territorial health insurance</h2>
+    <h2>Provincial health insurance</h2>
     <p>
-      Canada has publicly funded healthcare, but each province and territory
-      manages its own health insurance plan. Eligible residents usually need to
-      apply for a health card before using insured services.
+      British Columbia's Medical Services Plan (MSP) helps pay for many medically
+      necessary healthcare services. Most eligible residents should register for
+      MSP as soon as possible after arriving in British Columbia.
     </p>
   </section>
 
   <section>
     <h2>What is usually covered?</h2>
     <p>
-      Public health insurance generally covers medically necessary visits with
-      physicians, hospital care, diagnostic tests, and many emergency services.
-      Exact coverage differs across provinces and territories.
+      MSP generally covers medically necessary visits with physicians, hospital
+      care, diagnostic tests, and many emergency services. Coverage for other
+      healthcare services depends on the type of care and your circumstances.
     </p>
   </section>
 
@@ -31,63 +66,44 @@ import RelatedTopics from '../../components/RelatedTopics.astro';
     <h2>What may not be fully covered?</h2>
     <p>
       Prescription medications outside the hospital, dental care, vision care,
-      physiotherapy, counselling, ambulance services, and medical devices may
-      not be fully covered. Coverage varies by location, age, income, and health
-      condition.
+      physiotherapy, counselling, ambulance services, and many medical devices
+      may require additional insurance or out-of-pocket payment.
     </p>
   </section>
 
   <section>
-    <h2>Private or workplace insurance</h2>
+    <h2>Private health insurance</h2>
     <p>
-      Some employers, schools, and private insurance plans help pay for services
-      that are not included in public coverage, such as medications, dental
-      treatment, glasses, and therapy.
+      Many employers, schools, and private insurance plans help cover services
+      that MSP does not fully pay for, including medications, dental treatment,
+      eyeglasses, and counselling.
     </p>
   </section>
 
   <section>
-    <h2>Newcomers and waiting periods</h2>
+    <h2>Newcomers and healthcare coverage</h2>
     <p>
-      Eligibility rules depend on your immigration status and where you live.
-      Some newcomers may need temporary private insurance while waiting for
-      provincial or territorial coverage to begin.
+      Eligibility for MSP depends on your immigration status and residency.
+      Some newcomers may need temporary private health insurance until their
+      provincial coverage begins.
     </p>
   </section>
 
   <section>
     <h2>Ask about costs before receiving care</h2>
     <p>
-      When possible, ask whether a service is covered and whether you will need
-      to pay a fee. A clinic, pharmacy, insurer, settlement agency, or provincial
-      health authority may be able to explain your options.
+      If a service is not urgent, ask whether it is covered before your
+      appointment. Clinics, pharmacies, settlement agencies, and insurers can
+      help explain potential costs and available coverage.
     </p>
   </section>
 
   <aside class="notice">
-    <strong>Emergency care should not be delayed</strong>
+    <strong>Do not delay emergency care.</strong>
     <p>
-      In a life-threatening emergency, call 911 or go to the nearest emergency
-      department. Questions about insurance or cost should not delay urgent care.
+      If you are experiencing a medical emergency, call 911 or go to the nearest
+      emergency department immediately. Questions about insurance or payment
+      should never delay urgent medical treatment.
     </p>
   </aside>
-  <RelatedTopics
-  topics={[
-    {
-      icon: "🩺",
-      title: "Finding Healthcare",
-      href: "/resources/finding-healthcare"
-    },
-    {
-      icon: "💳",
-      title: "Health Coverage",
-      href: "/resources/health-coverage"
-    },
-    {
-      icon: "🚑",
-      title: "Emergency Care",
-      href: "/resources/emergency-care"
-    }
-  ]}
-/>
 </ResourceLayout>

@@ -2,67 +2,65 @@
 import Layout from '../layouts/Layout.astro';
 
 const resources = [
- {
+  {
     icon: '🤝',
     title: 'New to British Columbia?',
     description:
-      'Connect with trusted organizations offering free settlement support, healthcare navigation, language services, and community programs.',
+      'Connect with organizations offering settlement support, healthcare navigation, language services, and community programs.',
     href: '/newcomer-support',
-  },  
-{
+  },
+  {
     icon: '🩺',
     title: 'Finding Healthcare',
     description:
-      'Learn how to find a family doctor, use a walk-in clinic, and access virtual care.',
+      'Learn how to find a family doctor, use urgent or walk-in care, and choose the right healthcare service.',
     href: '/resources/finding-healthcare',
-  },
-  {
-    icon: '🚑',
-    title: 'Emergency Care',
-    description:
-      'Understand when to call 911, visit an emergency department, or seek less urgent care.',
-    href: '/resources/emergency-care',
   },
   {
     icon: '💊',
     title: 'Medications',
     description:
-      'Learn about prescriptions, pharmacies, refills, and how to take medicines safely.',
+      'Learn about prescriptions, pharmacies, medication coverage, refills, and how pharmacists can help.',
     href: '/resources/medications',
+  },
+  {
+    icon: '❤️',
+    title: 'Heart Health',
+    description:
+      'Learn about blood pressure, cholesterol, heart disease prevention, and important warning signs.',
+    href: '/resources/heart-health',
   },
   {
     icon: '🧠',
     title: 'Mental Health',
     description:
-      'Find plain-language information about mental health support and community services.',
+      'Find plain-language information about emotional well-being, counselling, and community support.',
     href: '/resources/mental-health',
   },
   {
     icon: '👶',
     title: 'Family Health',
     description:
-      'Explore information about pregnancy, children’s health, vaccinations, and screening.',
+      'Explore information about pregnancy, children’s health, vaccinations, checkups, and screening.',
     href: '/resources/family-health',
   },
   {
     icon: '💳',
     title: 'Health Coverage',
     description:
-      'Learn how provincial health insurance works and which services may be covered.',
+      'Learn how MSP and other health coverage programs work and which services may be covered.',
     href: '/resources/health-coverage',
   },
-  
 ];
 ---
 
 <Layout>
-
   <main>
     <section class="hero">
       <div class="hero-content">
         <p class="eyebrow">Accessible health information for newcomers</p>
 
-        <h1>Navigate Canadian healthcare with confidence.</h1>
+        <h1>Navigate healthcare in British Columbia with confidence.</h1>
 
         <p class="hero-description">
           Plain-language resources, multilingual education, and community
@@ -72,10 +70,10 @@ const resources = [
 
         <div class="hero-actions">
           <a class="button primary" href="/resources">Explore resources</a>
-<a class="button secondary" href="/workshops">View workshops</a>
+          <a class="button secondary" href="/workshops">View workshops</a>
         </div>
 
-        <p class="disclaimer">
+        <p class="hero-disclaimer">
           Educational information only. This website does not replace medical
           advice from a qualified healthcare professional.
         </p>
@@ -85,8 +83,8 @@ const resources = [
         <div class="illustration">🏥</div>
         <h2>Healthcare made clearer</h2>
         <p>
-          Understand where to go, what to expect, and how to ask questions about
-          your care.
+          Understand where to go, what to expect, and how to ask informed
+          questions about your care.
         </p>
       </div>
     </section>
@@ -96,8 +94,8 @@ const resources = [
         <p class="eyebrow">Start here</p>
         <h2>Health information for everyday needs</h2>
         <p>
-          Explore practical guides created to make the healthcare system easier
-          to understand.
+          Explore practical guides created to make British Columbia’s healthcare
+          system easier to understand.
         </p>
       </div>
 
@@ -105,12 +103,16 @@ const resources = [
         {
           resources.map((resource) => (
             <article class="resource-card">
-              <span class="resource-icon">{resource.icon}</span>
+              <span class="resource-icon" aria-hidden="true">
+                {resource.icon}
+              </span>
+
               <h3>{resource.title}</h3>
               <p>{resource.description}</p>
+
               <a href={resource.href}>
-  Learn more <span aria-hidden="true">→</span>
-</a>
+                Learn more <span aria-hidden="true">→</span>
+              </a>
             </article>
           ))
         }
@@ -119,15 +121,15 @@ const resources = [
 
     <section class="workshop-section" id="workshops">
       <div>
-        <p class="eyebrow">Community education</p>
+        <p class="eyebrow workshop-eyebrow">Community education</p>
         <h2>Attend a health literacy workshop</h2>
         <p>
           Our workshops help newcomers ask informed questions, understand health
-          services, and make confident decisions.
+          services, and make confident decisions about their care.
         </p>
       </div>
 
-      <a class="button light" href="#">See upcoming workshops</a>
+      <a class="button light" href="/workshops">See upcoming workshops</a>
     </section>
 
     <section class="section about-section" id="about">
@@ -137,10 +139,105 @@ const resources = [
       </div>
 
       <p>
-        The Newcomer Health Literacy Initiative supports newcomers through
-        understandable, culturally responsive health education. We work with
-        community members and healthcare professionals to identify common
-        barriers and create practical resources.
+        The Newcomer Health Literacy Initiative is a medical student-led project
+        developed with community input. We create plain-language, culturally
+        responsive, and multilingual resources that help newcomers understand
+        healthcare services, ask informed questions, and make confident
+        decisions about their care.
+      </p>
+    </section>
+
+    <section
+      class="section partners-section"
+      aria-labelledby="partners-heading"
+    >
+      <div class="section-heading partners-heading">
+        <p class="eyebrow">Project partnership and support</p>
+
+        <h2 id="partners-heading">Developed with community support</h2>
+
+        <p>
+          This initiative is being developed with DIVERSEcity Community
+          Resources Society as our community partner and with funding support
+          from the Community-University Engagement Support Fund.
+        </p>
+      </div>
+
+      <div class="partner-grid">
+        <article class="partner-card">
+          <div class="logo-container">
+            <img
+  class="diversecity-logo"
+  src="/logos/DIVERSEcity-Logo.png"
+  alt="DIVERSEcity Community Resources Society"
+  loading="lazy"
+/>
+          </div>
+
+          <div>
+            <strong>Community partner</strong>
+            <p>DIVERSEcity Community Resources Society</p>
+          </div>
+        </article>
+
+        <article class="partner-card">
+          <div class="logo-container">
+            <img
+              src="/logos/ubc-community-engagement.jpg"
+              alt="UBC Community Engagement"
+              loading="lazy"
+            />
+          </div>
+
+          <div>
+            <strong>Funding support</strong>
+            <p>
+              Community-University Engagement Support Fund
+            </p>
+          </div>
+        </article>
+
+        <article class="partner-card">
+          <div class="logo-container">
+            <img
+              src="/logos/ubc-medicine-logo.png"
+              alt="UBC Faculty of Medicine"
+              loading="lazy"
+            />
+          </div>
+
+          <div>
+            <strong>Student-led initiative</strong>
+            <p>Created by medical students studying at UBC</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section
+      class="project-disclaimer"
+      aria-labelledby="disclaimer-heading"
+    >
+      <h2 id="disclaimer-heading">Important information</h2>
+
+      <p>
+        The Newcomer Health Literacy Initiative is a student-led educational
+        project. Information on this website is provided for general education
+        only and does not replace medical advice, diagnosis, or treatment from a
+        qualified healthcare professional.
+      </p>
+
+      <p>
+        Although this project is supported through the
+        Community-University Engagement Support Fund and developed with
+        DIVERSEcity as a community partner, its website content does not
+        necessarily represent the views or official policies of DIVERSEcity,
+        the University of British Columbia, or the UBC Faculty of Medicine.
+      </p>
+
+      <p class="emergency-text">
+        In a medical emergency, call 911 or go to the nearest emergency
+        department.
       </p>
     </section>
   </main>
@@ -152,9 +249,13 @@ const resources = [
     </div>
 
     <div>
-      <strong>Contact</strong>
-      <p>Contact information coming soon.</p>
-    </div>
+  <strong>Contact</strong>
+  <p>
+    <a href="mailto:newcomerhealthliteracyproject@gmail.com">
+      newcomerhealthliteracyproject@gmail.com
+    </a>
+  </p>
+</div>
   </footer>
 </Layout>
 
@@ -172,11 +273,9 @@ const resources = [
     background: #f8fafc;
     color: #16324f;
     font-family:
-      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
   }
-
- 
 
   .hero {
     max-width: 1180px;
@@ -237,6 +336,14 @@ const resources = [
     border-radius: 10px;
     font-weight: 750;
     text-decoration: none;
+    transition:
+      background 160ms ease,
+      border-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
   }
 
   .primary {
@@ -258,7 +365,7 @@ const resources = [
     border-color: #087f8c;
   }
 
-  .disclaimer {
+  .hero-disclaimer {
     max-width: 680px;
     color: #70868e;
     font-size: 0.82rem;
@@ -324,16 +431,22 @@ const resources = [
 
   .resource-card {
     padding: 30px;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #dde8eb;
     border-radius: 18px;
     background: white;
     box-shadow: 0 10px 30px rgba(27, 65, 75, 0.05);
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      transform 160ms ease;
   }
 
   .resource-card:hover {
     border-color: #8dc5c8;
+    box-shadow: 0 16px 36px rgba(27, 65, 75, 0.09);
     transform: translateY(-3px);
-    transition: 160ms ease;
   }
 
   .resource-icon {
@@ -348,6 +461,7 @@ const resources = [
   }
 
   .resource-card p {
+    flex-grow: 1;
     min-height: 96px;
     color: #607983;
     line-height: 1.65;
@@ -357,6 +471,10 @@ const resources = [
     color: #087f8c;
     font-weight: 750;
     text-decoration: none;
+  }
+
+  .resource-card a:hover {
+    text-decoration: underline;
   }
 
   .workshop-section {
@@ -383,10 +501,18 @@ const resources = [
     opacity: 0.83;
   }
 
+  .workshop-eyebrow {
+    color: #87d8d6;
+  }
+
   .light {
     flex-shrink: 0;
     background: white;
     color: #123b4a;
+  }
+
+  .light:hover {
+    background: #eaf4f5;
   }
 
   .about-section {
@@ -398,6 +524,99 @@ const resources = [
 
   .about-section > p {
     font-size: 1.08rem;
+  }
+
+  .partners-section {
+    padding-top: 50px;
+  }
+
+  .partners-heading {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .partner-card {
+    min-height: 240px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border: 1px solid #dde8eb;
+    border-radius: 18px;
+    background: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(27, 65, 75, 0.05);
+  }
+  .diversecity-logo {
+  max-width: 180px;
+  max-height: 58px;
+}
+
+  .logo-container {
+    min-height: 105px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .partner-card img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    max-height: 90px;
+    object-fit: contain;
+  }
+
+  .partner-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #123b4a;
+  }
+
+  .partner-card p {
+    margin-bottom: 0;
+    color: #607983;
+    line-height: 1.55;
+  }
+
+  .project-disclaimer {
+    max-width: 1132px;
+    margin: 0 auto 70px;
+    padding: 34px 38px;
+    border: 1px solid #cfdfe3;
+    border-radius: 18px;
+    background: #eef6f7;
+  }
+
+  .project-disclaimer h2 {
+    margin-bottom: 16px;
+    color: #123b4a;
+    font-size: 1.35rem;
+  }
+
+  .project-disclaimer p {
+    margin-bottom: 12px;
+    color: #526f79;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .project-disclaimer p:last-child {
+    margin-bottom: 0;
+  }
+
+  .emergency-text {
+    font-weight: 750;
   }
 
   footer {
@@ -420,8 +639,6 @@ const resources = [
   }
 
   @media (max-width: 850px) {
-  
-
     .hero {
       padding-top: 64px;
       grid-template-columns: 1fr;
@@ -432,26 +649,47 @@ const resources = [
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .workshop-section,
-    .about-section {
-      grid-template-columns: 1fr;
-    }
-
     .workshop-section {
       margin: 24px;
       padding: 42px 30px;
       align-items: flex-start;
       flex-direction: column;
     }
+
+    .about-section {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .partner-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .partner-card {
+      min-height: auto;
+    }
+
+    .project-disclaimer {
+      margin: 0 24px 50px;
+    }
   }
 
   @media (max-width: 560px) {
+    .hero {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
     .resource-grid {
       grid-template-columns: 1fr;
     }
 
     .resource-card p {
       min-height: auto;
+    }
+
+    .project-disclaimer {
+      padding: 28px 24px;
     }
 
     footer {

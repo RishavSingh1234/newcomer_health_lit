@@ -1,20 +1,55 @@
 ---
 import ResourceLayout from '../../components/ResourceLayout.astro';
-import RelatedTopics from '../../components/RelatedTopics.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import InfographicViewer from '../../components/InfographicViewer.astro';
+import ExternalResource from '../../components/ExternalResource.astro';
 ---
 
 <ResourceLayout
   icon="👶"
   eyebrow="Pregnancy, children, and prevention"
   title="Family Health"
-  introduction="Learn about pregnancy care, children’s healthcare, vaccinations, routine checkups, and preventive screening in Canada."
+  introduction="Learn about pregnancy care, children's healthcare, vaccinations, routine checkups, and preventive health services available in British Columbia."
 >
+  <VideoEmbed
+    title="Children's Health for Newcomers"
+    videoId="IRU82cJsDcc"
+    description="Watch this short video to learn about children's healthcare, vaccinations, routine checkups, and how families can access healthcare services in British Columbia."
+  />
+
+  <InfographicViewer
+    title="Children's Health: A Guide for Newcomers"
+    description="Learn about routine childhood healthcare, vaccinations, developmental checkups, and when to seek medical care."
+    previewSrc="/infographics/mental-health/childrens-health-en.png"
+    previewAlt="Preview of the Children's Health infographic"
+    languages={[
+      {
+        label: 'English',
+        href: '/infographics/mental-health/childrens-health-en.png',
+        lang: 'en',
+      },
+      {
+        label: 'ਪੰਜਾਬੀ',
+        href: '/infographics/mental-health/childrens-health-pa.png',
+        lang: 'pa',
+      },
+    ]}
+  />
+
+  <ExternalResource
+    icon="🇨🇦"
+    source="HealthLink BC"
+    title="Children's Health"
+    description="Find trusted information about childhood illnesses, immunizations, development, nutrition, and healthy parenting."
+    href="https://www.healthlinkbc.ca/healthlinkbc-files"
+  />
+
   <section>
     <h2>Pregnancy care</h2>
     <p>
       Pregnancy care may be provided by a family doctor, midwife, obstetrician,
       or nurse practitioner. Regular appointments help monitor the health of the
-      pregnant person and the developing baby.
+      pregnant person and the developing baby throughout pregnancy.
     </p>
   </section>
 
@@ -23,63 +58,45 @@ import RelatedTopics from '../../components/RelatedTopics.astro';
     <p>
       Babies and children should have regular checkups to monitor growth,
       development, nutrition, hearing, vision, and overall health. These visits
-      are also a good time to ask questions about sleep, feeding, and behaviour.
+      are also an opportunity to discuss feeding, sleep, behaviour, and other
+      concerns with a healthcare provider.
     </p>
   </section>
 
   <section>
     <h2>Vaccinations</h2>
     <p>
-      Routine vaccines help protect children and adults from serious infectious
-      diseases. Provincial and territorial vaccination schedules may differ, so
-      ask a healthcare provider or public health clinic which vaccines are
-      recommended.
+      Routine immunizations protect children and adults from serious infectious
+      diseases. Your healthcare provider or local public health unit can explain
+      which vaccines are recommended based on your child's age and vaccination
+      history.
     </p>
   </section>
 
   <section>
-    <h2>School and public health services</h2>
+    <h2>School and community health services</h2>
     <p>
-      Some vaccinations, dental programs, hearing tests, and other health
-      services may be offered through schools or local public health units.
-      Availability depends on the province, territory, and community.
+      Many schools and local public health programs offer services such as
+      immunization clinics, hearing and vision screening, dental programs, and
+      other preventive health services for children and families.
     </p>
   </section>
 
   <section>
-    <h2>Screening and prevention</h2>
+    <h2>Preventive care</h2>
     <p>
-      Preventive care may include blood pressure checks, cancer screening,
-      prenatal testing, developmental screening, and other tests based on age,
-      health history, and individual risk.
+      Preventive healthcare includes routine checkups, developmental screening,
+      prenatal care, blood pressure monitoring, and age-appropriate screening
+      tests. Regular visits help identify health concerns early.
     </p>
   </section>
 
   <aside class="notice">
-    <strong>When a child needs urgent help</strong>
+    <strong>Know when to seek emergency care.</strong>
     <p>
-      Call 911 or seek emergency care if a child has severe difficulty
-      breathing, is difficult to wake, has a seizure, develops blue lips, has
-      major bleeding, or appears seriously unwell.
+      Call 911 or go to the nearest emergency department if a child has severe
+      difficulty breathing, is difficult to wake, has a seizure, develops blue
+      lips, has major bleeding, or appears seriously unwell.
     </p>
-</aside>
-  <RelatedTopics
-  topics={[
-    {
-      icon: "🩺",
-      title: "Finding Healthcare",
-      href: "/resources/finding-healthcare"
-    },
-    {
-      icon: "💳",
-      title: "Health Coverage",
-      href: "/resources/health-coverage"
-    },
-    {
-      icon: "🚑",
-      title: "Emergency Care",
-      href: "/resources/emergency-care"
-    }
-  ]}
-/>
+  </aside>
 </ResourceLayout>

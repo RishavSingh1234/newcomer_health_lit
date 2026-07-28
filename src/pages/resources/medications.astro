@@ -1,97 +1,123 @@
 ---
 import ResourceLayout from '../../components/ResourceLayout.astro';
-import RelatedTopics from '../../components/RelatedTopics.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import InfographicViewer from '../../components/InfographicViewer.astro';
+import ExternalResource from '../../components/ExternalResource.astro';
 ---
 
 <ResourceLayout
   icon="💊"
   eyebrow="Medicines and pharmacies"
   title="Medications"
-  introduction="Learn how prescriptions work, what pharmacies do, and how to take medications safely in Canada."
+  introduction="Learn how prescriptions work, what pharmacists can do, how to pay for medications, and how to use medicines safely in British Columbia."
 >
-  <section>
-    <h2>What is a prescription?</h2>
-    <p>
-      A prescription is a medication that must be authorized by a licensed
-      healthcare provider such as a physician or nurse practitioner. Take the
-      prescription to a pharmacy, where a pharmacist will prepare and dispense
-      the medication.
-    </p>
-  </section>
+  <VideoEmbed
+    title="Accessing Medications in British Columbia"
+    videoId="Szo2X5859ZM"
+    description="Watch this short video to learn how pharmacies work, how to pay for medications, and how pharmacists can help with your healthcare."
+  />
 
-  <section>
-    <h2>The role of a pharmacist</h2>
-    <p>
-      Pharmacists are healthcare professionals who explain how to take your
-      medication, answer questions about side effects, check for drug
-      interactions, and help ensure medicines are used safely.
-    </p>
-  </section>
+  <InfographicViewer
+    title="Medication Access for Newcomers"
+    description="Learn how to pay for prescriptions, what pharmacists can do, and how to safely access medications in British Columbia."
+    previewSrc="/infographics/mental-health/medication-en.png"
+    previewAlt="Preview of the Medication Access infographic"
+    languages={[
+      {
+        label: 'English',
+        href: '/infographics/mental-health/medication-en.png',
+        lang: 'en',
+      },
+      {
+        label: 'ਪੰਜਾਬੀ',
+        href: '/infographics/mental-health/medication-pa.png',
+        lang: 'pa',
+      },
+    ]}
+  />
 
-  <section>
-    <h2>Prescription vs. over-the-counter medicines</h2>
-    <p>
-      Some medicines require a prescription, while others can be purchased
-      directly from a pharmacy or grocery store. Even over-the-counter
-      medications can have side effects or interact with other medicines.
-    </p>
-  </section>
+  <h2>Trusted Resources</h2>
+  <p>
+    These trusted organizations can help you understand prescription coverage,
+    pharmacy services, and medication costs in British Columbia.
+  </p>
 
-  <section>
-    <h2>Refills</h2>
-    <p>
-      Some prescriptions include refills, allowing you to obtain more medication
-      without seeing your healthcare provider again. If no refills remain, you
-      may need a new prescription before the pharmacy can dispense additional
-      medication.
-    </p>
-  </section>
+  <ExternalResource
+    icon="💊"
+    source="Government of British Columbia"
+    title="Fair PharmaCare"
+    description="Learn who is eligible for Fair PharmaCare and how to apply for assistance with prescription medication costs."
+    href="https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/fair-pharmacare-plan"
+  />
 
-  <section>
-    <h2>Medication safety</h2>
-    <p>
-      Always take medications exactly as directed. Do not share prescription
-      medicines with others, and tell your healthcare provider and pharmacist
-      about all medications, vitamins, and herbal supplements you are taking.
-    </p>
-  </section>
+  <ExternalResource
+    icon="🌎"
+    source="Government of Canada"
+    title="Interim Federal Health Program (IFHP)"
+    description="Information for refugees and protected persons about prescription drug coverage and other healthcare benefits."
+    href="https://www.canada.ca/en/immigration-refugees-citizenship/services/refugees/help-within-canada/health-care.html"
+  />
 
+  <ExternalResource
+    icon="🏥"
+    source="BC Pharmacy Association"
+    title="Find a Pharmacy"
+    description="Locate community pharmacies throughout British Columbia."
+    href="https://www.bcpharmacy.ca/"
+  />
   <section>
-    <h2>Generic and brand-name medications</h2>
-    <p>
-      Generic medications contain the same active ingredient as the brand-name
-      version and are carefully regulated for quality and effectiveness. They
-      are often a more affordable option.
-    </p>
-  </section>
+  <h2>Paying for medications</h2>
+  <p>
+    Prescription medications are not always covered by MSP. Many British
+    Columbians receive financial assistance through Fair PharmaCare, while
+    eligible refugees and protected persons may receive coverage through the
+    Interim Federal Health Program (IFHP).
+  </p>
+</section>
 
-  <aside class="notice">
-    <strong>Questions about your medicine?</strong>
-    <p>
-      If you are unsure how to take a medication, experience unexpected side
-      effects, or think you may have taken the wrong dose, contact your
-      pharmacist or healthcare provider before making changes whenever possible.
-      If someone has severe difficulty breathing, collapses, or has a suspected
-      overdose, call 911 immediately.
-    </p>
-  </aside>
-  <RelatedTopics
-  topics={[
-    {
-      icon: "🩺",
-      title: "Finding Healthcare",
-      href: "/resources/finding-healthcare"
-    },
-    {
-      icon: "💳",
-      title: "Health Coverage",
-      href: "/resources/health-coverage"
-    },
-    {
-      icon: "🚑",
-      title: "Emergency Care",
-      href: "/resources/emergency-care"
-    }
-  ]}
-/>
+<section>
+  <h2>Your pharmacist can help</h2>
+  <p>
+    Pharmacists do much more than fill prescriptions. In British Columbia they
+    can assess and prescribe medications for many minor illnesses, renew some
+    prescriptions, administer many vaccines, provide contraception services,
+    and answer questions about medications.
+  </p>
+</section>
+
+<section>
+  <h2>Getting a prescription</h2>
+  <p>
+    Bring your BC Services Card or other health coverage documents when you
+    visit a pharmacy. If you need language support, ask the pharmacy staff if
+    interpretation services are available.
+  </p>
+</section>
+
+<section>
+  <h2>Medication reviews</h2>
+  <p>
+    If you take several medications, ask your pharmacist about a medication
+    review. They can explain how each medicine works, when to take it, possible
+    side effects, and whether any medications may interact with each other.
+  </p>
+</section>
+
+<section>
+  <h2>Medication safety</h2>
+  <p>
+    Always take medications exactly as directed. Never share prescription
+    medicines with others, and keep an up-to-date list of all prescription,
+    over-the-counter, vitamin, and herbal products you use.
+  </p>
+</section>
+<aside class="notice">
+  <strong>Questions about your medication?</strong>
+  <p>
+    Your pharmacist is often the best person to ask about side effects,
+    interactions, missed doses, or how to take a medication safely. If someone
+    has a suspected overdose, collapses, has severe difficulty breathing, or
+    develops a life-threatening allergic reaction, call 911 immediately.
+  </p>
+</aside>
 </ResourceLayout>

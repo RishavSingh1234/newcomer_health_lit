@@ -1,62 +1,128 @@
 ---
 import ResourceLayout from '../../components/ResourceLayout.astro';
-import RelatedTopics from '../../components/RelatedTopics.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import InfographicViewer from '../../components/InfographicViewer.astro';
+import ExternalResource from '../../components/ExternalResource.astro';
 ---
 
 <ResourceLayout
   icon="🩺"
   eyebrow="Healthcare navigation"
   title="Finding Healthcare"
-  introduction="Learn where to go when you need healthcare in Canada, including family doctors, walk-in clinics, virtual care, and community health centres."
+  introduction="Learn where to go when you need healthcare in British Columbia, including family doctors, walk-in clinics, urgent care, virtual care, and emergency services."
 >
+  <VideoEmbed
+    title="Finding Healthcare in British Columbia"
+    videoId="_xln4IlNejY"
+    description="Watch this short video to learn how to access healthcare services, find a healthcare provider, and choose the right place to receive care."
+  />
+
+  <InfographicViewer
+    title="Where to Go for Care"
+    description="Learn where to seek medical care depending on your symptoms, including family doctors, walk-in clinics, urgent care centres, and emergency departments."
+    previewSrc="/infographics/mental-health/where-to-go-for-care-en.png"
+    previewAlt="Preview of the Where to Go for Care infographic"
+    languages={[
+      {
+        label: 'English',
+        href: '/infographics/mental-health/where-to-go-for-care-en.png',
+        lang: 'en',
+      },
+      {
+        label: 'ਪੰਜਾਬੀ',
+        href: '/infographics/mental-health/where-to-go-for-care-pa.png',
+        lang: 'pa',
+      },
+    ]}
+  />
+
+  <ExternalResource
+  icon="🇨🇦"
+  source="WelcomeBC"
+  title="Newcomers' Guide to British Columbia"
+  description="Multilingual information about healthcare, MSP, finding a family doctor, emergency care, and other essential newcomer services."
+  href="https://www.welcomebc.ca/"
+/>
+
+<ExternalResource
+  icon="🏛️"
+  source="Government of British Columbia"
+  title="Health Care in British Columbia"
+  description="Official information about Medical Services Plan (MSP), finding healthcare providers, immunizations, and health services."
+  href="https://www2.gov.bc.ca/gov/content/health"
+ />
+
+<ExternalResource
+  icon="☎️"
+  source="HealthLink BC"
+  title="HealthLink BC (8-1-1)"
+  description="Speak with a registered nurse, pharmacist, dietitian, or health service navigator 24/7. Interpretation is available in over 130 languages."
+  href="https://www.healthlinkbc.ca/"
+/>
+
+<ExternalResource
+  icon="🏥"
+  source="Fraser Health"
+  title="South Asian & Newcomer Resources"
+  description="Find multilingual healthcare navigation guides, primary care directories, interpreter information, and newcomer health resources."
+  href="https://www.fraserhealth.ca/"
+/>
   <section>
-    <h2>Family doctors</h2>
+    <h2>Family doctors and nurse practitioners</h2>
     <p>
-      A family doctor provides ongoing care, manages long-term health concerns,
-      orders tests, and refers patients to specialists when needed.
+      A family doctor or nurse practitioner is usually your first point of
+      contact for non-emergency healthcare. They provide routine checkups,
+      manage chronic conditions, order tests, prescribe medications, and refer
+      patients to specialists when needed.
     </p>
   </section>
 
   <section>
-    <h2>Walk-in clinics</h2>
+    <h2>Walk-in clinics and Urgent & Primary Care Centres</h2>
     <p>
-      Walk-in clinics can help with non-emergency medical concerns when your
-      family doctor is unavailable or when you do not yet have one.
+      If you do not have a regular healthcare provider or need care the same
+      day for a non-life-threatening problem, a walk-in clinic or Urgent &
+      Primary Care Centre (UPCC) may be appropriate. They treat illnesses and
+      injuries that cannot wait for a routine appointment but are not medical
+      emergencies.
     </p>
   </section>
 
   <section>
     <h2>Virtual care</h2>
     <p>
-      Some healthcare concerns can be discussed by telephone or video. Virtual
-      care may not be suitable when a physical examination is needed.
+      Some medical concerns can be assessed by telephone or video appointment.
+      Virtual care is convenient for many health concerns but may not be
+      suitable if a physical examination or emergency treatment is required.
+    </p>
+  </section>
+
+  <section>
+    <h2>HealthLink BC (8-1-1)</h2>
+    <p>
+      HealthLink BC is available 24 hours a day, 7 days a week. By calling
+      8-1-1, you can speak with a registered nurse, pharmacist, dietitian, or
+      health service navigator. Interpretation is available in more than 130
+      languages to help you receive information in your preferred language.
+    </p>
+  </section>
+
+  <section>
+    <h2>Community organizations</h2>
+    <p>
+      Settlement organizations such as ISSofBC, MOSAIC, and S.U.C.C.E.S.S.
+      can help newcomers understand the healthcare system, register for MSP,
+      connect with healthcare providers, and access interpreter services and
+      other community supports.
     </p>
   </section>
 
   <aside class="notice">
-    <strong>Emergency warning</strong>
+    <strong>Know when to call 911.</strong>
     <p>
-      Call 911 when someone has severe difficulty breathing, chest pain, signs
-      of stroke, loss of consciousness, or another life-threatening emergency.
+      Call 911 immediately if someone has severe chest pain, difficulty
+      breathing, signs of stroke, major bleeding, loss of consciousness, or any
+      other life-threatening emergency.
     </p>
   </aside>
-<RelatedTopics
-  topics={[
-    {
-      icon: "🚑",
-      title: "Emergency Care",
-      href: "/resources/emergency-care"
-    },
-    {
-      icon: "💊",
-      title: "Medications",
-      href: "/resources/medications"
-    },
-    {
-      icon: "💳",
-      title: "Health Coverage",
-      href: "/resources/health-coverage"
-    }
-  ]}
-/>
 </ResourceLayout>

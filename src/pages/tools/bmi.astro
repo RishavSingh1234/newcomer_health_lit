@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BMICalculator from '../../components/BMICalculator.astro';
+---
+
+<Layout title="Adult BMI Calculator | Newcomer Health Literacy Initiative">
+  <main class="tool-page">
+    <a class="back-link" href="/tools">← Back to tools</a>
+
+    <BMICalculator />
+  </main>
+</Layout>
+
+<style>
+  .tool-page {
+    width: min(1000px, 90%);
+    margin: 0 auto;
+    padding: 4rem 0 6rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #14766f;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>

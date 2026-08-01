@@ -1,0 +1,550 @@
+<section
+  class="bp-checker"
+  aria-labelledby="bp-checker-heading"
+>
+  <div class="checker-heading">
+    <p class="eyebrow">Adult educational tool</p>
+    <h2 id="bp-checker-heading">Blood Pressure Checker</h2>
+
+    <p>
+      Enter one blood pressure reading to learn what the numbers may mean.
+      This tool does not diagnose high blood pressure.
+    </p>
+  </div>
+
+  <div class="number-explanation">
+    <div>
+      <strong>Systolic</strong>
+      <span>The top number — pressure while the heart pumps.</span>
+    </div>
+
+    <div>
+      <strong>Diastolic</strong>
+      <span>The bottom number — pressure between heartbeats.</span>
+    </div>
+  </div>
+
+  <form id="bp-form">
+    <div class="field-grid">
+      <label>
+        Systolic pressure
+        <span class="input-group">
+          <input
+            id="systolic"
+            type="number"
+            min="60"
+            max="260"
+            step="1"
+            inputmode="numeric"
+            placeholder="120"
+            required
+          />
+          <span>mm Hg</span>
+        </span>
+      </label>
+
+      <label>
+        Diastolic pressure
+        <span class="input-group">
+          <input
+            id="diastolic"
+            type="number"
+            min="30"
+            max="160"
+            step="1"
+            inputmode="numeric"
+            placeholder="80"
+            required
+          />
+          <span>mm Hg</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="button-row">
+      <button type="submit">Check reading</button>
+
+      <button
+        type="button"
+        class="reset-button"
+        id="reset-bp"
+      >
+        Reset
+      </button>
+    </div>
+
+    <p id="bp-error" class="error-message" role="alert"></p>
+  </form>
+
+  <section
+    id="bp-result"
+    class="result hidden"
+    aria-live="polite"
+  >
+    <p class="result-label">Your entered reading</p>
+
+    <p class="result-number">
+      <span id="result-systolic">—</span>
+      <span aria-hidden="true">/</span>
+      <span id="result-diastolic">—</span>
+    </p>
+
+    <p class="result-unit">mm Hg</p>
+
+    <p class="result-category" id="bp-category"></p>
+    <p class="result-explanation" id="bp-explanation"></p>
+    <p class="result-action" id="bp-action"></p>
+  </section>
+
+  <section class="measurement-guide">
+    <h3>How to get a more accurate reading</h3>
+
+    <ul>
+      <li>Sit quietly for five minutes before measuring.</li>
+      <li>Keep your back supported and both feet flat on the floor.</li>
+      <li>Place the cuff on your bare upper arm at heart level.</li>
+      <li>Avoid talking while the measurement is being taken.</li>
+      <li>
+        Take two readings, about one minute apart, and record both.
+      </li>
+    </ul>
+  </section>
+
+  <aside class="checker-disclaimer">
+    <strong>Important</strong>
+
+    <p>
+      Blood pressure changes during the day. One reading cannot confirm or rule
+      out hypertension. A healthcare professional may use repeated home,
+      clinic, or ambulatory readings to assess your blood pressure.
+    </p>
+
+    <p>
+      If you have chest pain, severe difficulty breathing, signs of stroke,
+      fainting, confusion, or another medical emergency, call 911.
+    </p>
+  </aside>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#bp-form');
+  const result = document.querySelector<HTMLElement>('#bp-result');
+
+  const systolicInput =
+    document.querySelector<HTMLInputElement>('#systolic');
+
+  const diastolicInput =
+    document.querySelector<HTMLInputElement>('#diastolic');
+
+  const resultSystolic =
+    document.querySelector<HTMLElement>('#result-systolic');
+
+  const resultDiastolic =
+    document.querySelector<HTMLElement>('#result-diastolic');
+
+  const categoryElement =
+    document.querySelector<HTMLElement>('#bp-category');
+
+  const explanationElement =
+    document.querySelector<HTMLElement>('#bp-explanation');
+
+  const actionElement =
+    document.querySelector<HTMLElement>('#bp-action');
+
+  const errorElement =
+    document.querySelector<HTMLElement>('#bp-error');
+
+  const resetButton =
+    document.querySelector<HTMLButtonElement>('#reset-bp');
+
+  interface BloodPressureResult {
+    category: string;
+    explanation: string;
+    action: string;
+    level: 'usual' | 'above-optimal' | 'high' | 'very-high';
+  }
+
+  function interpretBloodPressure(
+    systolic: number,
+    diastolic: number
+  ): BloodPressureResult {
+    if (systolic >= 180 || diastolic >= 120) {
+      return {
+        category: 'Very high blood pressure reading',
+        explanation:
+          'This reading is much higher than the usual range and should not be ignored.',
+        action:
+          'Sit quietly and repeat the measurement after a few minutes. If it remains this high, seek immediate medical advice. Call 911 if you have concerning symptoms such as chest pain, trouble breathing, weakness, confusion, or vision changes.',
+        level: 'very-high',
+      };
+    }
+
+    if (systolic >= 130 || diastolic >= 80) {
+      return {
+        category: 'High blood pressure range',
+        explanation:
+          'This reading is at or above the current Canadian threshold used to define hypertension when readings remain elevated over time.',
+        action:
+          'Record several properly measured readings and discuss the results with a healthcare professional. One reading does not establish a diagnosis.',
+        level: 'high',
+      };
+    }
+
+    if (systolic >= 120) {
+      return {
+        category: 'Higher than the optimal range',
+        explanation:
+          'This reading is below the hypertension threshold but the systolic number is above the optimal range.',
+        action:
+          'Continue monitoring your blood pressure and discuss your individual target with a healthcare professional.',
+        level: 'above-optimal',
+      };
+    }
+
+    return {
+      category: 'Below the hypertension threshold',
+      explanation:
+        'This reading is below 120/80 mm Hg.',
+      action:
+        'Continue regular health checkups. Your personal target may differ depending on your health conditions and medications.',
+      level: 'usual',
+    };
+  }
+
+  function setResultLevel(
+    level: BloodPressureResult['level']
+  ): void {
+    result?.classList.remove(
+      'result-usual',
+      'result-above-optimal',
+      'result-high',
+      'result-very-high'
+    );
+
+    result?.classList.add(`result-${level}`);
+  }
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    errorElement!.textContent = '';
+
+    const systolic = Number(systolicInput?.value);
+    const diastolic = Number(diastolicInput?.value);
+
+    if (
+      !systolic ||
+      !diastolic ||
+      systolic < 60 ||
+      systolic > 260 ||
+      diastolic < 30 ||
+      diastolic > 160
+    ) {
+      errorElement!.textContent =
+        'Please enter a valid systolic and diastolic reading.';
+
+      result?.classList.add('hidden');
+      return;
+    }
+
+    if (diastolic >= systolic) {
+      errorElement!.textContent =
+        'The systolic number is usually higher than the diastolic number. Please check the reading.';
+
+      result?.classList.add('hidden');
+      return;
+    }
+
+    const interpretation = interpretBloodPressure(
+      systolic,
+      diastolic
+    );
+
+    resultSystolic!.textContent = String(systolic);
+    resultDiastolic!.textContent = String(diastolic);
+    categoryElement!.textContent = interpretation.category;
+    explanationElement!.textContent = interpretation.explanation;
+    actionElement!.textContent = interpretation.action;
+
+    setResultLevel(interpretation.level);
+    result?.classList.remove('hidden');
+  });
+
+  resetButton?.addEventListener('click', () => {
+    form?.reset();
+    errorElement!.textContent = '';
+    result?.classList.add('hidden');
+  });
+</script>
+
+<style>
+  .bp-checker {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 22px;
+    background: white;
+    box-shadow: 0 12px 36px rgba(22, 48, 47, 0.08);
+  }
+
+  .checker-heading {
+    margin-bottom: 1.75rem;
+  }
+
+  .checker-heading h2 {
+    margin: 0 0 0.75rem;
+    color: #16302f;
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .checker-heading p:last-child {
+    margin-bottom: 0;
+    color: #586b68;
+    line-height: 1.7;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.5rem;
+    color: #14766f;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .number-explanation {
+    margin-bottom: 1.75rem;
+    padding: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    border-radius: 14px;
+    background: #f1f7f6;
+  }
+
+  .number-explanation div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .number-explanation strong {
+    color: #16302f;
+  }
+
+  .number-explanation span {
+    color: #586b68;
+    line-height: 1.5;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .field-grid > label {
+    color: #16302f;
+    font-weight: 700;
+  }
+
+  .input-group {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #bfd0cd;
+    border-radius: 12px;
+    background: white;
+  }
+
+  .input-group:focus-within {
+    border-color: #14766f;
+    box-shadow: 0 0 0 3px rgba(20, 118, 111, 0.13);
+  }
+
+  .input-group input {
+    min-width: 0;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 0;
+    outline: 0;
+    font: inherit;
+  }
+
+  .input-group span {
+    flex-shrink: 0;
+    padding: 0 1rem;
+    color: #536563;
+    font-weight: 700;
+  }
+
+  .button-row {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  button {
+    min-height: 48px;
+    padding: 0.8rem 1.2rem;
+    border: 0;
+    border-radius: 10px;
+    background: #14766f;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 750;
+  }
+
+  button:hover {
+    background: #0f625d;
+  }
+
+  .reset-button {
+    border: 1px solid #bfd0cd;
+    background: white;
+    color: #345451;
+  }
+
+  .reset-button:hover {
+    background: #f1f7f6;
+  }
+
+  .error-message {
+    min-height: 1.5rem;
+    margin: 0.75rem 0 0;
+    color: #a52a2a;
+    font-weight: 650;
+  }
+
+  .result {
+    margin-top: 1.5rem;
+    padding: 1.75rem;
+    border: 2px solid transparent;
+    border-radius: 18px;
+    text-align: center;
+  }
+
+  .result-usual {
+    border-color: #9bcab8;
+    background: #eef8f2;
+  }
+
+  .result-above-optimal {
+    border-color: #d8c879;
+    background: #fffbea;
+  }
+
+  .result-high {
+    border-color: #e3a66d;
+    background: #fff4e9;
+  }
+
+  .result-very-high {
+    border-color: #cc7777;
+    background: #fff0f0;
+  }
+
+  .result-label {
+    margin: 0;
+    color: #526664;
+    font-weight: 700;
+  }
+
+  .result-number {
+    margin: 0.25rem 0 0;
+    color: #123b4a;
+    font-size: clamp(3rem, 9vw, 5rem);
+    font-weight: 850;
+    line-height: 1;
+  }
+
+  .result-unit {
+    margin: 0.35rem 0 1rem;
+    color: #60716f;
+  }
+
+  .result-category {
+    margin-bottom: 0.5rem;
+    color: #16302f;
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+
+  .result-explanation {
+    margin: 0 auto 0.75rem;
+    max-width: 650px;
+    color: #526664;
+    line-height: 1.65;
+  }
+
+  .result-action {
+    margin: 0 auto;
+    max-width: 650px;
+    color: #354e4b;
+    font-weight: 650;
+    line-height: 1.65;
+  }
+
+  .measurement-guide {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #dce8e6;
+    border-radius: 16px;
+  }
+
+  .measurement-guide h3 {
+    margin: 0 0 1rem;
+    color: #16302f;
+  }
+
+  .measurement-guide ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: #586b68;
+    line-height: 1.75;
+  }
+
+  .checker-disclaimer {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    border-left: 5px solid #14766f;
+    border-radius: 10px;
+    background: #f5faf9;
+  }
+
+  .checker-disclaimer strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #16302f;
+  }
+
+  .checker-disclaimer p {
+    margin: 0 0 0.75rem;
+    color: #586b68;
+    line-height: 1.65;
+  }
+
+  .checker-disclaimer p:last-child {
+    margin-bottom: 0;
+    font-weight: 650;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 650px) {
+    .bp-checker {
+      padding: 1.35rem;
+    }
+
+    .number-explanation,
+    .field-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

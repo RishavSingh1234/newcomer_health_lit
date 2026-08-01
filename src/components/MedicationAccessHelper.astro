@@ -1,0 +1,763 @@
+<section
+  class="medication-helper"
+  aria-labelledby="medication-helper-heading"
+>
+  <div class="helper-heading">
+    <p class="eyebrow">British Columbia navigation tool</p>
+
+    <h2 id="medication-helper-heading">
+      Medication Access Helper
+    </h2>
+
+    <p>
+      Choose what you need help with to receive a practical next-step guide.
+      This tool provides general navigation information and does not diagnose
+      symptoms, prescribe treatment, or confirm insurance eligibility.
+    </p>
+  </div>
+
+  <div class="question-block">
+    <label for="medication-topic">
+      What do you need help with?
+    </label>
+
+    <select id="medication-topic">
+      <option value="">Choose an option</option>
+      <option value="cost">Paying for a prescription</option>
+      <option value="refills">I am running out of medication or refills</option>
+      <option value="minor-ailment">
+        I need help with a minor health concern
+      </option>
+      <option value="questions">
+        I have questions about my medications
+      </option>
+      <option value="ifhp">
+        I have Interim Federal Health Program coverage
+      </option>
+    </select>
+  </div>
+
+  <div id="cost-follow-up" class="follow-up hidden">
+    <label for="coverage-type">
+      Which coverage situation best describes you?
+    </label>
+
+    <select id="coverage-type">
+      <option value="">Choose an option</option>
+      <option value="msp">I have MSP</option>
+      <option value="ifhp">I have IFHP</option>
+      <option value="private">I have private insurance</option>
+      <option value="none">I am not sure or do not have coverage</option>
+    </select>
+  </div>
+
+  <div class="button-row">
+    <button id="show-medication-result" type="button">
+      Show my next steps
+    </button>
+
+    <button
+      id="reset-medication-helper"
+      class="reset-button"
+      type="button"
+    >
+      Reset
+    </button>
+  </div>
+
+  <p id="medication-error" class="error-message" role="alert"></p>
+
+  <section
+    id="medication-result"
+    class="result hidden"
+    aria-live="polite"
+  >
+    <div class="result-icon" id="result-icon" aria-hidden="true">
+      💊
+    </div>
+
+    <div>
+      <p class="result-label">Suggested next steps</p>
+      <h3 id="result-title"></h3>
+      <div id="result-content"></div>
+    </div>
+  </section>
+
+  <section class="pharmacy-checklist">
+    <h3>What to bring to the pharmacy</h3>
+
+    <ul>
+      <li>Your BC Services Card or other government-issued identification</li>
+      <li>Your Personal Health Number, if you have one</li>
+      <li>Your IFHP eligibility document, when applicable</li>
+      <li>A list of your medications, vitamins, and herbal products</li>
+      <li>Your prescription container or pharmacy receipt, when available</li>
+    </ul>
+  </section>
+
+  <aside class="helper-disclaimer">
+    <strong>Important</strong>
+
+    <p>
+      This tool does not determine whether a medication is safe or appropriate,
+      whether a pharmacist can renew a specific prescription, or whether an
+      insurer will pay for a product.
+    </p>
+
+    <p>
+      For severe difficulty breathing, collapse, a suspected overdose, or a
+      life-threatening allergic reaction, call 911 immediately.
+    </p>
+  </aside>
+</section>
+
+<script>
+  const topicSelect =
+    document.querySelector<HTMLSelectElement>('#medication-topic');
+
+  const coverageSelect =
+    document.querySelector<HTMLSelectElement>('#coverage-type');
+
+  const costFollowUp =
+    document.querySelector<HTMLElement>('#cost-follow-up');
+
+  const showResultButton =
+    document.querySelector<HTMLButtonElement>('#show-medication-result');
+
+  const resetButton =
+    document.querySelector<HTMLButtonElement>('#reset-medication-helper');
+
+  const errorElement =
+    document.querySelector<HTMLElement>('#medication-error');
+
+  const resultElement =
+    document.querySelector<HTMLElement>('#medication-result');
+
+  const resultIcon =
+    document.querySelector<HTMLElement>('#result-icon');
+
+  const resultTitle =
+    document.querySelector<HTMLElement>('#result-title');
+
+  const resultContent =
+    document.querySelector<HTMLElement>('#result-content');
+
+  interface HelperResult {
+    icon: string;
+    title: string;
+    html: string;
+  }
+
+  function hideResult(): void {
+    resultElement?.classList.add('hidden');
+
+    if (errorElement) {
+      errorElement.textContent = '';
+    }
+  }
+
+  topicSelect?.addEventListener('change', () => {
+    const isCostQuestion = topicSelect.value === 'cost';
+
+    costFollowUp?.classList.toggle('hidden', !isCostQuestion);
+
+    if (!isCostQuestion && coverageSelect) {
+      coverageSelect.value = '';
+    }
+
+    hideResult();
+  });
+
+  function getCostResult(coverage: string): HelperResult | null {
+    if (coverage === 'msp') {
+      return {
+        icon: '💳',
+        title: 'Check your PharmaCare coverage',
+        html: `
+          <ol>
+            <li>
+              Ask the pharmacy whether the medication is covered by PharmaCare.
+            </li>
+            <li>
+              Register for Fair PharmaCare if you have not already done so.
+              Coverage is based on family income.
+            </li>
+            <li>
+              If you are new to Canada and do not have the required Canadian
+              tax history, ask about the Fair PharmaCare Proof of Income
+              Affidavit, Form HLTH 5357.
+            </li>
+            <li>
+              Ask whether a generic version, covered alternative, or lower-cost
+              option is available.
+            </li>
+          </ol>
+
+          <div class="resource-links">
+            <a
+              href="https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents/who-we-cover/fair-pharmacare-plan"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn about Fair PharmaCare ↗
+            </a>
+
+            <a
+              href="https://www2.gov.bc.ca/gov/content/health/health-forms/pharmacare/forms-for-bc-residents"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Find Form HLTH 5357 ↗
+            </a>
+          </div>
+        `,
+      };
+    }
+
+    if (coverage === 'ifhp') {
+      return {
+        icon: '🌎',
+        title: 'Use an IFHP-registered pharmacy',
+        html: `
+          <ol>
+            <li>
+              Bring your IFHP eligibility document to a pharmacy registered
+              with the Interim Federal Health Program.
+            </li>
+            <li>
+              Ask the pharmacy to confirm that the medication is eligible
+              before it is filled.
+            </li>
+            <li>
+              As of May 1, 2026, eligible IFHP prescriptions generally require
+              a $4 co-payment for each fill or refill.
+            </li>
+            <li>
+              Keep your receipt and ask the pharmacy to explain any additional
+              cost before dispensing the medication.
+            </li>
+          </ol>
+
+          <div class="resource-links">
+            <a
+              href="https://www.canada.ca/en/immigration-refugees-citizenship/services/refugees/help-within-canada/health-care/interim-federal-health-program.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Check IFHP information ↗
+            </a>
+          </div>
+        `,
+      };
+    }
+
+    if (coverage === 'private') {
+      return {
+        icon: '🧾',
+        title: 'Check your private insurance plan',
+        html: `
+          <ol>
+            <li>
+              Bring your insurance card or plan information to the pharmacy.
+            </li>
+            <li>
+              Ask whether the pharmacy can bill the insurer directly.
+            </li>
+            <li>
+              Ask whether your plan requires a generic medication, prior
+              authorization, or a specific pharmacy.
+            </li>
+            <li>
+              Keep your receipt if you need to submit a claim yourself.
+            </li>
+            <li>
+              You may still be eligible to register for Fair PharmaCare.
+            </li>
+          </ol>
+        `,
+      };
+    }
+
+    if (coverage === 'none') {
+      return {
+        icon: '🤝',
+        title: 'Ask for help understanding your coverage',
+        html: `
+          <ol>
+            <li>
+              Ask the pharmacist for the medication price before it is filled.
+            </li>
+            <li>
+              Ask whether a lower-cost generic or covered alternative exists.
+            </li>
+            <li>
+              Contact Health Insurance BC or a settlement organization for help
+              understanding MSP and PharmaCare eligibility.
+            </li>
+            <li>
+              Do not stop an important medication without speaking with a
+              pharmacist or prescriber.
+            </li>
+          </ol>
+
+          <div class="resource-links">
+            <a
+              href="/newcomer-support"
+            >
+              Find newcomer support services →
+            </a>
+          </div>
+        `,
+      };
+    }
+
+    return null;
+  }
+
+  function getTopicResult(topic: string): HelperResult | null {
+    if (topic === 'refills') {
+      return {
+        icon: '🔄',
+        title: 'Speak with a pharmacist before you run out',
+        html: `
+          <ol>
+            <li>
+              Contact your pharmacy as early as possible.
+            </li>
+            <li>
+              Ask whether the prescription still has refills available.
+            </li>
+            <li>
+              A pharmacist may be able to renew or adapt some prescriptions or
+              provide an emergency supply.
+            </li>
+            <li>
+              Some medications cannot be renewed by a pharmacist and may
+              require an appointment with the original prescriber.
+            </li>
+            <li>
+              Do not change the dose or stop the medication without advice.
+            </li>
+          </ol>
+        `,
+      };
+    }
+
+    if (topic === 'minor-ailment') {
+      return {
+        icon: '🩺',
+        title: 'A B.C. pharmacist may be able to assess you',
+        html: `
+          <ol>
+            <li>
+              Contact or visit a community pharmacy and ask for a minor-ailment
+              assessment.
+            </li>
+            <li>
+              Bring government-issued identification and your Personal Health
+              Number.
+            </li>
+            <li>
+              Pharmacists may assess and prescribe for certain listed minor
+              ailments and contraception.
+            </li>
+            <li>
+              The pharmacist may prescribe medication, recommend non-prescription
+              treatment, or direct you to another healthcare professional.
+            </li>
+          </ol>
+
+          <p class="result-note">
+            This helper does not determine whether your symptoms qualify as a
+            minor ailment. The pharmacist must complete the assessment.
+          </p>
+
+          <div class="resource-links">
+            <a
+              href="https://www2.gov.bc.ca/gov/content/health/accessing-health-care/pharmacy-services"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View B.C. pharmacy services ↗
+            </a>
+          </div>
+        `,
+      };
+    }
+
+    if (topic === 'questions') {
+      return {
+        icon: '💬',
+        title: 'Ask for a private conversation with the pharmacist',
+        html: `
+          <p>
+            Pharmacists can answer questions about:
+          </p>
+
+          <ul>
+            <li>How and when to take a medication</li>
+            <li>Side effects and drug interactions</li>
+            <li>Missed doses</li>
+            <li>Generic and brand-name medications</li>
+            <li>Over-the-counter medicines and supplements</li>
+            <li>Medication storage and disposal</li>
+          </ul>
+
+          <p>
+            If you take several medications, ask whether you qualify for a
+            medication review. Bring a complete list of prescription medicines,
+            over-the-counter products, vitamins, and herbal products.
+          </p>
+        `,
+      };
+    }
+
+    if (topic === 'ifhp') {
+      return {
+        icon: '🌎',
+        title: 'Bring your IFHP document to a registered provider',
+        html: `
+          <ol>
+            <li>
+              Confirm that the pharmacy is registered with the Interim Federal
+              Health Program.
+            </li>
+            <li>
+              Bring your IFHP eligibility document.
+            </li>
+            <li>
+              Ask whether the medication is covered before it is dispensed.
+            </li>
+            <li>
+              Eligible prescriptions generally require a $4 co-payment per fill
+              or refill as of May 1, 2026.
+            </li>
+            <li>
+              Keep your receipt and ask for an explanation of any other charge.
+            </li>
+          </ol>
+
+          <div class="resource-links">
+            <a
+              href="https://www.canada.ca/en/immigration-refugees-citizenship/services/refugees/help-within-canada/health-care/interim-federal-health-program/coverage-summary.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Review IFHP coverage ↗
+            </a>
+          </div>
+        `,
+      };
+    }
+
+    return null;
+  }
+
+  showResultButton?.addEventListener('click', () => {
+    if (!topicSelect || !resultElement || !resultTitle || !resultContent) {
+      return;
+    }
+
+    const topic = topicSelect.value;
+
+    if (!topic) {
+      errorElement!.textContent =
+        'Please choose what you need help with.';
+
+      resultElement.classList.add('hidden');
+      return;
+    }
+
+    let result: HelperResult | null = null;
+
+    if (topic === 'cost') {
+      const coverage = coverageSelect?.value ?? '';
+
+      if (!coverage) {
+        errorElement!.textContent =
+          'Please choose your current coverage situation.';
+
+        resultElement.classList.add('hidden');
+        return;
+      }
+
+      result = getCostResult(coverage);
+    } else {
+      result = getTopicResult(topic);
+    }
+
+    if (!result) {
+      errorElement!.textContent =
+        'We could not generate a result. Please try again.';
+
+      resultElement.classList.add('hidden');
+      return;
+    }
+
+    errorElement!.textContent = '';
+    resultIcon!.textContent = result.icon;
+    resultTitle.textContent = result.title;
+    resultContent.innerHTML = result.html;
+
+    resultElement.classList.remove('hidden');
+    resultElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
+  });
+
+  resetButton?.addEventListener('click', () => {
+    if (topicSelect) {
+      topicSelect.value = '';
+    }
+
+    if (coverageSelect) {
+      coverageSelect.value = '';
+    }
+
+    costFollowUp?.classList.add('hidden');
+    hideResult();
+  });
+</script>
+
+<style>
+  .medication-helper {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 22px;
+    background: white;
+    box-shadow: 0 12px 36px rgba(22, 48, 47, 0.08);
+  }
+
+  .helper-heading {
+    margin-bottom: 2rem;
+  }
+
+  .helper-heading h2 {
+    margin: 0 0 0.75rem;
+    color: #16302f;
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .helper-heading p:last-child {
+    margin-bottom: 0;
+    color: #586b68;
+    line-height: 1.7;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.5rem;
+    color: #14766f;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .question-block,
+  .follow-up {
+    margin-top: 1.25rem;
+  }
+
+  .question-block label,
+  .follow-up label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: #16302f;
+    font-weight: 750;
+  }
+
+  select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid #bfd0cd;
+    border-radius: 12px;
+    background: white;
+    color: #294643;
+    font: inherit;
+  }
+
+  select:focus {
+    border-color: #14766f;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(20, 118, 111, 0.13);
+  }
+
+  .button-row {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  button {
+    min-height: 48px;
+    padding: 0.8rem 1.2rem;
+    border: 0;
+    border-radius: 10px;
+    background: #14766f;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 750;
+  }
+
+  button:hover {
+    background: #0f625d;
+  }
+
+  .reset-button {
+    border: 1px solid #bfd0cd;
+    background: white;
+    color: #345451;
+  }
+
+  .reset-button:hover {
+    background: #f1f7f6;
+  }
+
+  .error-message {
+    min-height: 1.5rem;
+    margin: 0.75rem 0 0;
+    color: #a52a2a;
+    font-weight: 650;
+  }
+
+  .result {
+    margin-top: 1.5rem;
+    padding: 1.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    border: 1px solid #a8d2cd;
+    border-radius: 18px;
+    background: #eef8f7;
+  }
+
+  .result-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .result-label {
+    margin: 0 0 0.35rem;
+    color: #14766f;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .result h3 {
+    margin: 0 0 1rem;
+    color: #16302f;
+    font-size: 1.4rem;
+  }
+
+  #result-content {
+    color: #4f6663;
+    line-height: 1.7;
+  }
+
+  #result-content :global(ol),
+  #result-content :global(ul) {
+    padding-left: 1.3rem;
+  }
+
+  #result-content :global(li) {
+    margin-bottom: 0.55rem;
+  }
+
+  #result-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .result-note {
+    padding: 1rem;
+    border-left: 4px solid #14766f;
+    border-radius: 8px;
+    background: white;
+  }
+
+  .resource-links {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .resource-links :global(a) {
+    display: inline-flex;
+    padding: 0.7rem 1rem;
+    border: 1px solid #14766f;
+    border-radius: 999px;
+    color: #14766f;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .resource-links :global(a:hover) {
+    background: #14766f;
+    color: white;
+  }
+
+  .pharmacy-checklist {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #dce8e6;
+    border-radius: 16px;
+  }
+
+  .pharmacy-checklist h3 {
+    margin: 0 0 1rem;
+    color: #16302f;
+  }
+
+  .pharmacy-checklist ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: #586b68;
+    line-height: 1.75;
+  }
+
+  .helper-disclaimer {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    border-left: 5px solid #14766f;
+    border-radius: 10px;
+    background: #f5faf9;
+  }
+
+  .helper-disclaimer strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #16302f;
+  }
+
+  .helper-disclaimer p {
+    margin: 0 0 0.75rem;
+    color: #586b68;
+    line-height: 1.65;
+  }
+
+  .helper-disclaimer p:last-child {
+    margin-bottom: 0;
+    font-weight: 650;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 620px) {
+    .medication-helper {
+      padding: 1.35rem;
+    }
+
+    .result {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

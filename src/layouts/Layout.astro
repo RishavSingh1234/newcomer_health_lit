@@ -3,9 +3,13 @@ import Navbar from "../components/Navbar.astro";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "Newcomer Health Literacy Initiative" } = Astro.props;
+const {
+  title = "Newcomer Health Literacy Initiative",
+  description = "Helping newcomers navigate the Canadian healthcare system through clear, accessible health education.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +20,7 @@ const { title = "Newcomer Health Literacy Initiative" } = Astro.props;
 
     <meta
       name="description"
-      content="Helping newcomers navigate the Canadian healthcare system through clear, accessible health education."
+      content={description}
     />
 
     <meta

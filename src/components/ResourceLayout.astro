@@ -11,7 +11,10 @@ interface Props {
 const { icon, eyebrow, title, introduction } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout
+  title={`${title} | Newcomer Health Literacy Initiative`}
+  description={introduction}
+>
   <section class="resource-page">
     <a class="back-link" href="/resources">← Back to resources</a>
 

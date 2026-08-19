@@ -10,6 +10,8 @@ const {
   title = "Newcomer Health Literacy Initiative",
   description = "Helping newcomers navigate the Canadian healthcare system through clear, accessible health education.",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -29,6 +31,9 @@ const {
     />
 
     <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <title>{title}</title>
   </head>

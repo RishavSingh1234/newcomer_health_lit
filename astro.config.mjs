@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://newcomer-health-lit.vercel.app',
+  site: 'https://www.newcomerhealthliteracy.ca',
   integrations: [sitemap()]
 });

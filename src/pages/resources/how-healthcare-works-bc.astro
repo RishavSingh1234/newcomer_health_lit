@@ -1,0 +1,5386 @@
+---
+import ResourceLayout from '../../components/ResourceLayout.astro';
+---
+
+<ResourceLayout
+  icon="🏥"
+  eyebrow="Newcomer learning module"
+  title="How Healthcare Works in B.C."
+  introduction="Learn the essentials of getting health coverage, finding healthcare, choosing the right place for care, and navigating the B.C. healthcare system."
+>
+  <div class="learning-module" data-learning-module>
+
+    <!-- =====================================================
+         WELCOME SCREEN
+    ====================================================== -->
+    <div class="module-welcome" data-welcome>
+      <div class="welcome-badge">
+        <span>✦</span>
+        Interactive learning module
+      </div>
+
+      <h2>Welcome</h2>
+
+      <p class="welcome-intro">
+        Moving to a new country can make even simple healthcare decisions feel
+        confusing. This short module introduces the most important parts of the
+        healthcare system in British Columbia.
+      </p>
+
+      <div class="module-details">
+        <div class="detail">
+          <div class="detail-icon-wrap">
+            <span class="detail-icon">⏱️</span>
+          </div>
+
+          <div>
+            <strong>10–15 minutes</strong>
+            <span>Estimated time</span>
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="detail-icon-wrap">
+            <span class="detail-icon">📚</span>
+          </div>
+
+          <div>
+            <strong>7 lessons</strong>
+            <span>Short and practical</span>
+          </div>
+        </div>
+
+        <div class="detail">
+          <div class="detail-icon-wrap">
+            <span class="detail-icon">✅</span>
+          </div>
+
+          <div>
+            <strong>Knowledge check</strong>
+            <span>5 questions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="learning-objectives">
+        <div class="objectives-heading">
+          <span>🎯</span>
+          <h3>By the end of this module, you should be able to:</h3>
+        </div>
+
+        <ul>
+          <li>Explain what MSP is and what it covers.</li>
+          <li>Know how to look for a family doctor or nurse practitioner.</li>
+          <li>
+            Choose between primary care, urgent care, 8-1-1 and emergency care.
+          </li>
+          <li>Understand how referrals, tests and prescriptions work.</li>
+          <li>
+            Identify common healthcare services that may not be fully covered.
+          </li>
+        </ul>
+      </div>
+
+      <div class="saved-progress" data-saved-progress hidden>
+        <div class="saved-progress-icon">↻</div>
+
+        <div>
+          <strong>Welcome back!</strong>
+          <p data-saved-progress-text></p>
+        </div>
+      </div>
+
+      <div class="welcome-actions">
+        <button class="primary-button large-button" type="button" data-start>
+          <span>Start Module</span>
+          <span class="button-arrow">→</span>
+        </button>
+
+        <button class="text-button" type="button" data-reset>
+          Reset progress
+        </button>
+      </div>
+    </div>
+
+
+    <!-- =====================================================
+         ACTIVE MODULE
+    ====================================================== -->
+    <div class="module-shell" data-module-shell hidden>
+
+      <!-- PROGRESS CARD -->
+      <div class="progress-header">
+        <div class="progress-top">
+          <div class="progress-title-area">
+            <div class="progress-mini-icon">✓</div>
+
+            <div>
+              <span class="progress-small-label">Your progress</span>
+              <strong data-progress-label>Lesson 1 of 7</strong>
+            </div>
+          </div>
+
+          <div class="progress-percentage">
+            <strong data-progress-percent>0%</strong>
+            <span>complete</span>
+          </div>
+        </div>
+
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Module progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          data-progress-track
+        >
+          <div class="progress-fill" data-progress-fill>
+            <div class="progress-shine"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- =====================================================
+           LESSON NAVIGATION
+      ====================================================== -->
+      <div class="lesson-navigation-wrapper">
+        <div class="lesson-navigation" aria-label="Module lessons">
+
+          <button type="button" class="lesson-tab" data-step="0">
+            <span class="step-circle">1</span>
+
+            <span class="step-text">
+              <span class="step-label">Lesson 1</span>
+              <span class="step-name">The B.C. system</span>
+            </span>
+          </button>
+
+          <button type="button" class="lesson-tab" data-step="1">
+            <span class="step-circle">2</span>
+
+            <span class="step-text">
+              <span class="step-label">Lesson 2</span>
+              <span class="step-name">MSP coverage</span>
+            </span>
+          </button>
+
+          <button type="button" class="lesson-tab" data-step="2">
+            <span class="step-circle">3</span>
+
+            <span class="step-text">
+              <span class="step-label">Lesson 3</span>
+              <span class="step-name">Primary care</span>
+            </span>
+          </button>
+
+          <button type="button" class="lesson-tab" data-step="3">
+            <span class="step-circle">4</span>
+
+            <span class="step-text">
+              <span class="step-label">Lesson 4</span>
+              <span class="step-name">Where to go</span>
+            </span>
+          </button>
+
+          <button type="button" class="lesson-tab" data-step="4">
+            <span class="step-circle">5</span>
+
+            <span class="step-text">
+              <span class="step-label">Lesson 5</span>
+              <span class="step-name">Specialists & tests</span>
+            </span>
+          </button>
+
+          <button type="button" class="lesson-tab" data-step="5">
+            <span class="step-circle">6</span>
+
+            <span class="step-text">
+              <span class="step-label">Lesson 6</span>
+              <span class="step-name">Medications & costs</span>
+            </span>
+          </button>
+
+          <button type="button" class="lesson-tab" data-step="6">
+            <span class="step-circle">7</span>
+
+            <span class="step-text">
+              <span class="step-label">Lesson 7</span>
+              <span class="step-name">Language support</span>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="lesson-tab quiz-tab"
+            data-step="7"
+          >
+            <span class="step-circle">✓</span>
+
+            <span class="step-text">
+              <span class="step-label">Final step</span>
+              <span class="step-name">Knowledge check</span>
+            </span>
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- =====================================================
+           LESSON 1
+      ====================================================== -->
+      <article class="lesson" data-lesson="0">
+        <div class="lesson-heading">
+          <span class="lesson-number">Lesson 1</span>
+
+          <h2>How healthcare works in B.C.</h2>
+
+          <p>
+            Start with the big picture: who pays for healthcare and where you
+            usually enter the system.
+          </p>
+        </div>
+
+        <div class="content-block">
+          <h3>Publicly funded healthcare</h3>
+
+          <p>
+            British Columbia has a publicly funded healthcare system. If you
+            are eligible and enrolled in the Medical Services Plan
+            (<strong>MSP</strong>), many medically necessary healthcare
+            services are paid for by the province.
+          </p>
+        </div>
+
+        <div class="plain-language">
+          <div class="plain-icon">💡</div>
+
+          <div>
+            <strong>In simple terms</strong>
+
+            <p>
+              You usually do not receive a bill when you see an MSP-covered
+              physician for a medically necessary visit.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>
+            But “universal healthcare” does not mean everything is free
+          </h3>
+
+          <p>
+            Prescription medications, routine dental care, eyeglasses,
+            physiotherapy and other health services may be handled separately.
+            We will cover these later in the module.
+          </p>
+        </div>
+
+        <div class="lesson-takeaway">
+          <div class="takeaway-icon">⭐</div>
+
+          <div>
+            <strong>Key takeaway</strong>
+
+            <p>
+              MSP is the foundation of B.C.'s public healthcare system, but it
+              does not pay for every health-related service.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           LESSON 2
+      ====================================================== -->
+      <article class="lesson" data-lesson="1" hidden>
+        <div class="lesson-heading">
+          <span class="lesson-number">Lesson 2</span>
+
+          <h2>MSP and health coverage</h2>
+
+          <p>
+            Learn what MSP covers and an important rule for people who have
+            recently moved to B.C.
+          </p>
+        </div>
+
+        <div class="coverage-grid">
+          <div class="coverage-card covered">
+            <span class="card-icon success-icon">✓</span>
+
+            <h3>Commonly covered</h3>
+
+            <ul>
+              <li>Medically necessary physician visits</li>
+              <li>Medically required hospital care</li>
+              <li>Many medically necessary diagnostic tests</li>
+              <li>Medically required specialist care</li>
+            </ul>
+          </div>
+
+          <div class="coverage-card not-covered">
+            <span class="card-icon question-icon">?</span>
+
+            <h3>May not be fully covered</h3>
+
+            <ul>
+              <li>Routine dental care</li>
+              <li>Prescription medications</li>
+              <li>Eyeglasses</li>
+              <li>Many routine adult eye examinations</li>
+              <li>Many physiotherapy or massage services</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="important-box">
+          <div class="important-heading">
+            <span>⏳</span>
+            <strong>Important for newcomers</strong>
+          </div>
+
+          <p>
+            New and returning residents may have an MSP waiting period.
+            The usual waiting period is the
+            <strong>
+              remainder of the month in which residence is established in B.C.,
+              plus two additional months.
+            </strong>
+          </p>
+
+          <p>
+            Apply for MSP as soon as possible after arriving rather than
+            waiting for the waiting period to finish.
+          </p>
+        </div>
+
+        <div class="example">
+          <span class="example-label">Example</span>
+
+          <p>
+            If you establish residence in B.C. on May 10, the usual waiting
+            period would include the rest of May, all of June and all of July.
+            Coverage would generally begin August 1 if eligibility and
+            enrolment requirements are met.
+          </p>
+        </div>
+
+        <p class="fine-print">
+          Individual eligibility can vary based on residency and immigration
+          circumstances.
+        </p>
+
+        <div class="lesson-takeaway">
+          <div class="takeaway-icon">⭐</div>
+
+          <div>
+            <strong>Key takeaway</strong>
+
+            <p>
+              Apply for MSP early. Do not assume healthcare coverage starts
+              immediately when you arrive in B.C.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           LESSON 3
+      ====================================================== -->
+      <article class="lesson" data-lesson="2" hidden>
+        <div class="lesson-heading">
+          <span class="lesson-number">Lesson 3</span>
+
+          <h2>Your regular healthcare provider</h2>
+
+          <p>
+            Family doctors and nurse practitioners are usually the starting
+            point for ongoing, non-emergency healthcare.
+          </p>
+        </div>
+
+        <div class="provider-grid">
+          <div class="provider-card">
+            <span class="provider-icon">🩺</span>
+
+            <h3>They can help with</h3>
+
+            <ul>
+              <li>New health concerns</li>
+              <li>Routine follow-up</li>
+              <li>Chronic medical conditions</li>
+              <li>Preventive care</li>
+              <li>Prescriptions</li>
+            </ul>
+          </div>
+
+          <div class="provider-card">
+            <span class="provider-icon">🧪</span>
+
+            <h3>They can arrange</h3>
+
+            <ul>
+              <li>Blood tests</li>
+              <li>Medical imaging</li>
+              <li>Other investigations</li>
+              <li>Specialist referrals</li>
+              <li>Follow-up after treatment</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>What if I do not have a family doctor?</h3>
+
+          <p>
+            You can register with the provincial
+            <strong>Health Connect Registry</strong> if you need a family
+            doctor or nurse practitioner.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <span class="step-number">1</span>
+
+            <div>
+              <strong>Register</strong>
+
+              <p>
+                Join the Health Connect Registry if you need a regular primary
+                care provider.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <span class="step-number">2</span>
+
+            <div>
+              <strong>Use available services while you wait</strong>
+
+              <p>
+                Walk-in clinics, UPCCs, pharmacies and 8-1-1 may still be
+                available depending on your health concern.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <span class="step-number">3</span>
+
+            <div>
+              <strong>Get matched</strong>
+
+              <p>
+                Your local attachment team may contact you when a suitable
+                provider becomes available.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-takeaway">
+          <div class="takeaway-icon">⭐</div>
+
+          <div>
+            <strong>Key takeaway</strong>
+
+            <p>
+              A family doctor or nurse practitioner is ideal for ongoing care,
+              but you still have healthcare options while waiting to find one.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           LESSON 4
+      ====================================================== -->
+      <article class="lesson" data-lesson="3" hidden>
+        <div class="lesson-heading">
+          <span class="lesson-number">Lesson 4</span>
+
+          <h2>Where should I go for care?</h2>
+
+          <p>
+            Different healthcare services are designed for different levels of
+            urgency.
+          </p>
+        </div>
+
+        <div class="care-options">
+          <div class="care-card">
+            <span class="care-icon">👨‍⚕️</span>
+
+            <h3>Family doctor or NP</h3>
+
+            <span class="best-for">Best for</span>
+
+            <p>
+              Routine care, ongoing problems, prevention, prescriptions and
+              non-emergency concerns.
+            </p>
+          </div>
+
+          <div class="care-card">
+            <span class="care-icon">🚶</span>
+
+            <h3>Walk-in clinic</h3>
+
+            <span class="best-for">Best for</span>
+
+            <p>
+              Non-emergency problems when your regular provider is unavailable
+              or you do not have one.
+            </p>
+          </div>
+
+          <div class="care-card">
+            <span class="care-icon">🏥</span>
+
+            <h3>Urgent & Primary Care Centre</h3>
+
+            <span class="best-for">Best for</span>
+
+            <p>
+              Urgent same-day problems that are not life-threatening.
+            </p>
+          </div>
+
+          <div class="care-card">
+            <span class="care-icon">☎️</span>
+
+            <h3>HealthLink BC: 8-1-1</h3>
+
+            <span class="best-for">Best for</span>
+
+            <p>
+              When you are unsure what care you need or need health information
+              and navigation.
+            </p>
+          </div>
+
+          <div class="care-card emergency-card">
+            <span class="care-icon">🚑</span>
+
+            <h3>9-1-1 / Emergency Department</h3>
+
+            <span class="best-for">Best for</span>
+
+            <p>
+              Serious or potentially life-threatening emergencies.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- INTERACTIVE SCENARIO -->
+        <div class="scenario-box">
+          <div class="scenario-header">
+            <div class="scenario-icon">🧠</div>
+
+            <div>
+              <span class="activity-label">Try it yourself</span>
+
+              <h3>Where would you go?</h3>
+            </div>
+          </div>
+
+          <p>
+            You develop a sore throat and fever. You are breathing normally,
+            awake and otherwise stable. You do not have a family doctor.
+          </p>
+
+          <p class="scenario-question">
+            Which is the most reasonable option below?
+          </p>
+
+          <div class="scenario-options">
+            <button
+              type="button"
+              class="scenario-choice"
+              data-scenario-choice="911"
+            >
+              <span>🚑</span>
+              <span>Call 9-1-1</span>
+            </button>
+
+            <button
+              type="button"
+              class="scenario-choice"
+              data-scenario-choice="primary"
+            >
+              <span>🏥</span>
+              <span>Walk-in clinic / primary care</span>
+            </button>
+
+            <button
+              type="button"
+              class="scenario-choice"
+              data-scenario-choice="ignore"
+            >
+              <span>🛋️</span>
+
+              <span>
+                Healthcare is not available without a family doctor
+              </span>
+            </button>
+          </div>
+
+          <div
+            class="scenario-feedback"
+            data-scenario-feedback
+            hidden
+          ></div>
+        </div>
+
+        <div class="notice">
+          <strong>Unsure what level of care you need?</strong>
+
+          <p>
+            HealthLink BC at 8-1-1 can help you decide what healthcare service
+            may be appropriate.
+          </p>
+        </div>
+
+        <div class="lesson-takeaway">
+          <div class="takeaway-icon">⭐</div>
+
+          <div>
+            <strong>Key takeaway</strong>
+
+            <p>
+              Use emergency services for emergencies. For most other problems,
+              start with primary or urgent care — and call 8-1-1 if you are
+              unsure.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           LESSON 5
+      ====================================================== -->
+      <article class="lesson" data-lesson="4" hidden>
+        <div class="lesson-heading">
+          <span class="lesson-number">Lesson 5</span>
+
+          <h2>Specialists and medical tests</h2>
+
+          <p>
+            Learn what usually happens when your healthcare problem needs
+            additional investigation or expertise.
+          </p>
+        </div>
+
+        <div class="journey">
+          <div class="journey-item">
+            <span>1</span>
+            <strong>See a primary care provider</strong>
+          </div>
+
+          <div class="journey-arrow">→</div>
+
+          <div class="journey-item">
+            <span>2</span>
+            <strong>Your problem is assessed</strong>
+          </div>
+
+          <div class="journey-arrow">→</div>
+
+          <div class="journey-item">
+            <span>3</span>
+            <strong>Tests or referral may be ordered</strong>
+          </div>
+
+          <div class="journey-arrow">→</div>
+
+          <div class="journey-item">
+            <span>4</span>
+            <strong>You are contacted for next steps</strong>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>Seeing a specialist</h3>
+
+          <p>
+            A specialist is a physician with additional training in an area
+            such as cardiology, dermatology or surgery.
+          </p>
+
+          <p>
+            Many specialist services are accessed through a referral from
+            another healthcare provider. Waiting times can vary based on the
+            specialty, location and urgency of your condition.
+          </p>
+        </div>
+
+        <div class="content-block">
+          <h3>Medical tests</h3>
+
+          <p>
+            Blood tests, X-rays, ultrasounds and other investigations may
+            require an order from an appropriate healthcare provider.
+          </p>
+
+          <p>
+            Being sent for a test does not necessarily mean that something
+            serious is wrong. Tests are often used to help identify or rule out
+            possible causes.
+          </p>
+        </div>
+
+        <div class="lesson-takeaway">
+          <div class="takeaway-icon">⭐</div>
+
+          <div>
+            <strong>Key takeaway</strong>
+
+            <p>
+              Primary care providers often act as the connection between you,
+              medical tests and specialist care.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           LESSON 6
+      ====================================================== -->
+      <article class="lesson" data-lesson="5" hidden>
+        <div class="lesson-heading">
+          <span class="lesson-number">Lesson 6</span>
+
+          <h2>Medications and healthcare costs</h2>
+
+          <p>
+            Some healthcare services are funded differently from physician and
+            hospital care.
+          </p>
+        </div>
+
+        <div class="content-block">
+          <h3>Prescription medications</h3>
+
+          <p>
+            Prescriptions are usually filled at community pharmacies.
+            Pharmacists can explain how medications should be taken, answer
+            medication questions and help identify potential problems.
+          </p>
+        </div>
+
+        <div class="important-box medication-box">
+          <div class="important-heading">
+            <span>💊</span>
+
+            <strong>
+              MSP does not automatically pay for every prescription.
+            </strong>
+          </div>
+
+          <p>
+            B.C. PharmaCare helps eligible residents with the cost of many
+            prescription drugs, pharmacy services and some medical supplies.
+            Coverage depends on the medication and PharmaCare plan.
+          </p>
+        </div>
+
+        <div class="not-free-grid">
+          <div>
+            <span>🦷</span>
+
+            <h3>Dental care</h3>
+
+            <p>
+              Most routine dental services are not covered through MSP.
+            </p>
+          </div>
+
+          <div>
+            <span>👓</span>
+
+            <h3>Vision</h3>
+
+            <p>
+              Eyeglasses and many routine adult eye examinations are not
+              universally covered.
+            </p>
+          </div>
+
+          <div>
+            <span>🧘</span>
+
+            <h3>Other services</h3>
+
+            <p>
+              Physiotherapy, massage therapy and counselling may require
+              insurance or out-of-pocket payment in many situations.
+            </p>
+          </div>
+
+          <div>
+            <span>💼</span>
+
+            <h3>Extended health insurance</h3>
+
+            <p>
+              Employers, schools or private plans may help cover services not
+              included in MSP.
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-takeaway">
+          <div class="takeaway-icon">⭐</div>
+
+          <div>
+            <strong>Key takeaway</strong>
+
+            <p>
+              Public healthcare does not mean every health expense is covered.
+              Ask about PharmaCare, private insurance and lower-cost options
+              when cost is a concern.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           LESSON 7
+      ====================================================== -->
+      <article class="lesson" data-lesson="6" hidden>
+        <div class="lesson-heading">
+          <span class="lesson-number">Lesson 7</span>
+
+          <h2>Language and newcomer support</h2>
+
+          <p>
+            Language should not prevent you from asking questions or seeking
+            healthcare.
+          </p>
+        </div>
+
+        <div class="language-card">
+          <div class="language-icon">🌎</div>
+
+          <div>
+            <h3>HealthLink BC offers interpretation</h3>
+
+            <p>
+              Call <strong>8-1-1</strong>. You will first reach an
+              English-speaking navigator. Say the name of the language you need
+              and an interpreter can be added to the call.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <h3>At clinics and hospitals</h3>
+
+          <p>
+            Healthcare organizations may also have interpretation services.
+            Ask the clinic or healthcare team if you need an interpreter.
+          </p>
+        </div>
+
+        <div class="content-block">
+          <h3>Community organizations</h3>
+
+          <p>
+            Newcomer and settlement organizations may help you understand the
+            healthcare system, complete applications, find community services
+            and connect with other forms of support.
+          </p>
+        </div>
+
+        <div class="five-things">
+          <div class="five-things-title">
+            <span>📌</span>
+            <h3>The five things to remember</h3>
+          </div>
+
+          <div class="memory-row">
+            <span>1</span>
+
+            <p>
+              <strong>Apply for MSP early.</strong>
+            </p>
+          </div>
+
+          <div class="memory-row">
+            <span>2</span>
+
+            <p>
+              <strong>Register for the Health Connect Registry</strong> if you
+              need a regular family doctor or nurse practitioner.
+            </p>
+          </div>
+
+          <div class="memory-row">
+            <span>3</span>
+
+            <p>
+              <strong>Use primary care</strong> for most everyday,
+              non-emergency health concerns.
+            </p>
+          </div>
+
+          <div class="memory-row">
+            <span>4</span>
+
+            <p>
+              <strong>Call 8-1-1 if you are unsure</strong> where to get care.
+            </p>
+          </div>
+
+          <div class="memory-row">
+            <span>5</span>
+
+            <p>
+              <strong>Call 9-1-1 for a life-threatening emergency.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="lesson-takeaway final-takeaway">
+          <div class="takeaway-icon">🎓</div>
+
+          <div>
+            <strong>You have reached the end of the lessons.</strong>
+
+            <p>
+              Next, complete the short knowledge check to finish the module.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           KNOWLEDGE CHECK
+      ====================================================== -->
+      <article
+        class="lesson quiz-lesson"
+        data-lesson="7"
+        hidden
+      >
+        <div class="lesson-heading">
+          <span class="lesson-number quiz-number">
+            Knowledge check
+          </span>
+
+          <h2>Check what you learned</h2>
+
+          <p>
+            Answer five questions. A score of <strong>4 out of 5</strong> is
+            required to complete the module.
+          </p>
+        </div>
+
+        <div class="quiz-intro-card">
+          <div class="quiz-intro-icon">🧠</div>
+
+          <div>
+            <strong>Don't worry — this isn't an exam.</strong>
+
+            <p>
+              You can review your answers and try again if needed.
+            </p>
+          </div>
+        </div>
+
+        <form data-quiz>
+
+          <!-- QUESTION 1 -->
+          <fieldset
+            class="quiz-question"
+            data-question
+            data-correct="b"
+          >
+            <legend>
+              <span>1</span>
+
+              For most routine, non-emergency health concerns, which provider
+              is usually the best starting point?
+            </legend>
+
+            <label>
+              <input type="radio" name="q1" value="a" />
+
+              <span>The Emergency Department</span>
+            </label>
+
+            <label>
+              <input type="radio" name="q1" value="b" />
+
+              <span>A family doctor or nurse practitioner</span>
+            </label>
+
+            <label>
+              <input type="radio" name="q1" value="c" />
+
+              <span>9-1-1</span>
+            </label>
+
+            <div
+              class="question-feedback"
+              data-question-feedback
+            ></div>
+          </fieldset>
+
+
+          <!-- QUESTION 2 -->
+          <fieldset
+            class="quiz-question"
+            data-question
+            data-correct="c"
+          >
+            <legend>
+              <span>2</span>
+
+              You are unsure whether your health concern needs urgent care.
+              Which service can help you decide what to do?
+            </legend>
+
+            <label>
+              <input type="radio" name="q2" value="a" />
+
+              <span>The driver's licensing office</span>
+            </label>
+
+            <label>
+              <input type="radio" name="q2" value="b" />
+
+              <span>Only an Emergency Department</span>
+            </label>
+
+            <label>
+              <input type="radio" name="q2" value="c" />
+
+              <span>HealthLink BC at 8-1-1</span>
+            </label>
+
+            <div
+              class="question-feedback"
+              data-question-feedback
+            ></div>
+          </fieldset>
+
+
+          <!-- QUESTION 3 -->
+          <fieldset
+            class="quiz-question"
+            data-question
+            data-correct="b"
+          >
+            <legend>
+              <span>3</span>
+
+              What is the usual MSP waiting period for a new or returning
+              resident when it applies?
+            </legend>
+
+            <label>
+              <input type="radio" name="q3" value="a" />
+
+              <span>Exactly 90 days for every person</span>
+            </label>
+
+            <label>
+              <input type="radio" name="q3" value="b" />
+
+              <span>
+                The remainder of the month residence is established plus two
+                additional months
+              </span>
+            </label>
+
+            <label>
+              <input type="radio" name="q3" value="c" />
+
+              <span>One full year</span>
+            </label>
+
+            <div
+              class="question-feedback"
+              data-question-feedback
+            ></div>
+          </fieldset>
+
+
+          <!-- QUESTION 4 -->
+          <fieldset
+            class="quiz-question"
+            data-question
+            data-correct="a"
+          >
+            <legend>
+              <span>4</span>
+
+              How are many medical specialists accessed in B.C.?
+            </legend>
+
+            <label>
+              <input type="radio" name="q4" value="a" />
+
+              <span>
+                Through a referral from another healthcare provider
+              </span>
+            </label>
+
+            <label>
+              <input type="radio" name="q4" value="b" />
+
+              <span>By calling 9-1-1</span>
+            </label>
+
+            <label>
+              <input type="radio" name="q4" value="c" />
+
+              <span>Specialists are not available to newcomers</span>
+            </label>
+
+            <div
+              class="question-feedback"
+              data-question-feedback
+            ></div>
+          </fieldset>
+
+
+          <!-- QUESTION 5 -->
+          <fieldset
+            class="quiz-question"
+            data-question
+            data-correct="c"
+          >
+            <legend>
+              <span>5</span>
+
+              Which statement about prescription medications is most accurate?
+            </legend>
+
+            <label>
+              <input type="radio" name="q5" value="a" />
+
+              <span>MSP automatically pays for every prescription</span>
+            </label>
+
+            <label>
+              <input type="radio" name="q5" value="b" />
+
+              <span>
+                Prescription medications are never covered by any public
+                program
+              </span>
+            </label>
+
+            <label>
+              <input type="radio" name="q5" value="c" />
+
+              <span>
+                Prescription coverage is separate from MSP and programs such
+                as PharmaCare may help with costs
+              </span>
+            </label>
+
+            <div
+              class="question-feedback"
+              data-question-feedback
+            ></div>
+          </fieldset>
+
+          <button
+            class="primary-button submit-quiz"
+            type="submit"
+          >
+            <span>Check my answers</span>
+            <span>✓</span>
+          </button>
+
+          <div
+            class="quiz-result"
+            data-quiz-result
+            hidden
+          ></div>
+        </form>
+      </article>
+
+
+      <!-- =====================================================
+           COMPLETION SCREEN
+      ====================================================== -->
+      <article
+        class="lesson completion-screen"
+        data-lesson="8"
+        hidden
+      >
+        <div class="celebration">
+          <span class="confetti confetti-1">✦</span>
+          <span class="confetti confetti-2">●</span>
+          <span class="confetti confetti-3">✦</span>
+          <span class="confetti confetti-4">●</span>
+
+          <div class="completion-icon">✓</div>
+        </div>
+
+        <p class="completion-eyebrow">
+          Module complete
+        </p>
+
+        <h2>Congratulations!</h2>
+
+        <p class="completion-intro">
+          You completed
+          <strong>How Healthcare Works in B.C.</strong>
+        </p>
+
+        <div class="completion-score-card">
+          <div>
+            <span class="score-label">Knowledge check</span>
+            <strong data-final-score>Passed</strong>
+          </div>
+
+          <div class="score-divider"></div>
+
+          <div>
+            <span class="score-label">Module status</span>
+            <strong>Complete ✓</strong>
+          </div>
+        </div>
+
+        <div class="completion-card">
+          <span>🎓</span>
+
+          <div>
+            <strong>What you learned</strong>
+
+            <p>
+              You now know the basics of MSP, primary care, urgent and emergency
+              services, specialists, prescriptions, healthcare costs and
+              language support in British Columbia.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- =================================================
+             CERTIFICATE GENERATOR
+        ================================================== -->
+        <div class="certificate-generator">
+          <div class="certificate-generator-heading">
+            <div class="certificate-heading-icon">🏆</div>
+
+            <div>
+              <span class="certificate-eyebrow">
+                Optional
+              </span>
+
+              <h3>Create your completion certificate</h3>
+
+              <p>
+                Enter your name exactly as you would like it to appear.
+              </p>
+            </div>
+          </div>
+
+          <div class="certificate-form">
+            <label for="certificate-name">
+              Name
+            </label>
+
+            <div class="certificate-input-row">
+              <input
+                id="certificate-name"
+                type="text"
+                placeholder="Enter your name"
+                maxlength="80"
+                data-certificate-name-input
+              />
+
+              <button
+                type="button"
+                class="primary-button"
+                data-generate-certificate
+              >
+                Generate Certificate
+              </button>
+            </div>
+
+            <p
+              class="certificate-error"
+              data-certificate-error
+              hidden
+            >
+              Please enter your name first.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- =================================================
+             CERTIFICATE
+        ================================================== -->
+        <div
+          class="certificate-area"
+          data-certificate-area
+          hidden
+        >
+          <div
+            class="certificate"
+            id="completion-certificate"
+            data-certificate
+          >
+            <div class="certificate-border">
+
+              <div class="certificate-top">
+                <div class="certificate-logo-mark">
+                  <span>✦</span>
+                </div>
+
+                <div class="certificate-brand">
+                  Newcomer Health Literacy Initiative
+                </div>
+              </div>
+
+              <div class="certificate-decoration">
+                <span></span>
+                <strong>Certificate of Completion</strong>
+                <span></span>
+              </div>
+
+              <p class="certificate-presents">
+                This certificate is presented to
+              </p>
+
+              <div
+                class="certificate-name"
+                data-certificate-name
+              >
+                Learner Name
+              </div>
+
+              <p class="certificate-copy">
+                for successfully completing the learning module
+              </p>
+
+              <h2>
+                How Healthcare Works in B.C.
+              </h2>
+
+              <p class="certificate-description">
+                A newcomer health literacy module covering health coverage,
+                primary care, urgent and emergency services, referrals,
+                medications, healthcare costs and language support in
+                British Columbia.
+              </p>
+
+              <div class="certificate-footer">
+                <div class="certificate-footer-item">
+                  <span>Date completed</span>
+
+                  <strong data-certificate-date>
+                    —
+                  </strong>
+                </div>
+
+                <div class="certificate-seal">
+                  <div class="seal-inner">
+                    ✓
+                  </div>
+
+                  <span>Completed</span>
+                </div>
+
+                <div class="certificate-footer-item right">
+                  <span>Knowledge check</span>
+
+                  <strong data-certificate-score>
+                    Passed
+                  </strong>
+                </div>
+              </div>
+
+              <p class="certificate-note">
+                Educational completion certificate · Newcomer Health Literacy
+                Initiative
+              </p>
+            </div>
+          </div>
+
+          <div class="certificate-actions">
+            <button
+              type="button"
+              class="primary-button"
+              data-print-certificate
+            >
+              <span>🖨️</span>
+              <span>Print / Save as PDF</span>
+            </button>
+
+            <button
+              type="button"
+              class="secondary-button"
+              data-edit-certificate
+            >
+              Edit name
+            </button>
+          </div>
+
+          <p class="certificate-help">
+            In the print window, choose
+            <strong>Save as PDF</strong>
+            if you want a digital copy.
+          </p>
+        </div>
+
+
+        <div class="completion-actions">
+          <a
+            class="primary-link"
+            href="/resources"
+          >
+            <span>Return to Resources</span>
+            <span>→</span>
+          </a>
+
+          <button
+            type="button"
+            class="secondary-button"
+            data-restart
+          >
+            Review Module Again
+          </button>
+        </div>
+      </article>
+
+
+      <!-- =====================================================
+           BOTTOM NAVIGATION
+      ====================================================== -->
+      <div class="module-controls" data-controls>
+        <button
+          type="button"
+          class="secondary-button navigation-button"
+          data-prev
+        >
+          <span>←</span>
+          <span>Back</span>
+        </button>
+
+        <button
+          type="button"
+          class="primary-button navigation-button"
+          data-next
+        >
+          <span data-next-text>Next</span>
+          <span class="button-arrow">→</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       DISCLAIMER
+  ====================================================== -->
+  <aside class="module-disclaimer">
+    <strong>About this learning module</strong>
+
+    <p>
+      This module provides general educational information about navigating
+      healthcare in British Columbia. Eligibility, coverage and available
+      services can differ between individuals and can change over time.
+      Confirm information about your own coverage or medical needs with the
+      appropriate B.C. healthcare service or government program.
+    </p>
+  </aside>
+</ResourceLayout>
+
+
+<script>
+  function initializeLearningModule() {
+    const root = document.querySelector('[data-learning-module]');
+
+    if (!root || root.dataset.initialized === 'true') {
+      return;
+    }
+
+    root.dataset.initialized = 'true';
+
+    const STORAGE_KEY =
+      'bc-healthcare-module-progress-v2';
+
+    const TOTAL_REQUIRED_STEPS = 8;
+    const QUIZ_INDEX = 7;
+    const COMPLETION_INDEX = 8;
+
+    const welcome =
+      root.querySelector('[data-welcome]');
+
+    const shell =
+      root.querySelector('[data-module-shell]');
+
+    const startButton =
+      root.querySelector('[data-start]');
+
+    const resetButton =
+      root.querySelector('[data-reset]');
+
+    const restartButton =
+      root.querySelector('[data-restart]');
+
+    const savedProgress =
+      root.querySelector('[data-saved-progress]');
+
+    const savedProgressText =
+      root.querySelector('[data-saved-progress-text]');
+
+    const lessons =
+      Array.from(
+        root.querySelectorAll('[data-lesson]')
+      );
+
+    const stepButtons =
+      Array.from(
+        root.querySelectorAll('[data-step]')
+      );
+
+    const previousButton =
+      root.querySelector('[data-prev]');
+
+    const nextButton =
+      root.querySelector('[data-next]');
+
+    const nextText =
+      root.querySelector('[data-next-text]');
+
+    const controls =
+      root.querySelector('[data-controls]');
+
+    const progressFill =
+      root.querySelector('[data-progress-fill]');
+
+    const progressTrack =
+      root.querySelector('[data-progress-track]');
+
+    const progressLabel =
+      root.querySelector('[data-progress-label]');
+
+    const progressPercent =
+      root.querySelector('[data-progress-percent]');
+
+    const quiz =
+      root.querySelector('[data-quiz]');
+
+    const quizResult =
+      root.querySelector('[data-quiz-result]');
+
+    const finalScore =
+      root.querySelector('[data-final-score]');
+
+
+    /* =====================================================
+       CERTIFICATE ELEMENTS
+    ====================================================== */
+
+    const certificateNameInput =
+      root.querySelector(
+        '[data-certificate-name-input]'
+      );
+
+    const generateCertificateButton =
+      root.querySelector(
+        '[data-generate-certificate]'
+      );
+
+    const certificateError =
+      root.querySelector(
+        '[data-certificate-error]'
+      );
+
+    const certificateArea =
+      root.querySelector(
+        '[data-certificate-area]'
+      );
+
+    const certificateName =
+      root.querySelector(
+        '[data-certificate-name]'
+      );
+
+    const certificateDate =
+      root.querySelector(
+        '[data-certificate-date]'
+      );
+
+    const certificateScore =
+      root.querySelector(
+        '[data-certificate-score]'
+      );
+
+    const printCertificateButton =
+      root.querySelector(
+        '[data-print-certificate]'
+      );
+
+    const editCertificateButton =
+      root.querySelector(
+        '[data-edit-certificate]'
+      );
+
+
+    /* =====================================================
+       STATE
+    ====================================================== */
+
+    let state = {
+      current: 0,
+      completed: [],
+      quizPassed: false,
+      quizScore: null,
+      finished: false,
+      certificateName: '',
+      completionDate: '',
+    };
+
+
+    /* =====================================================
+       STORAGE
+    ====================================================== */
+
+    function loadState() {
+      try {
+        const stored =
+          localStorage.getItem(STORAGE_KEY);
+
+        if (stored) {
+          const parsed =
+            JSON.parse(stored);
+
+          state = {
+            ...state,
+            ...parsed,
+          };
+        }
+      } catch (error) {
+        console.warn(
+          'Could not load module progress.',
+          error
+        );
+      }
+
+      if (!Array.isArray(state.completed)) {
+        state.completed = [];
+      }
+
+      if (
+        typeof state.current !== 'number' ||
+        state.current < 0 ||
+        state.current > COMPLETION_INDEX
+      ) {
+        state.current = 0;
+      }
+    }
+
+
+    function saveState() {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(state)
+        );
+      } catch (error) {
+        console.warn(
+          'Could not save module progress.',
+          error
+        );
+      }
+    }
+
+
+    /* =====================================================
+       HELPERS
+    ====================================================== */
+
+    function completedCount() {
+      return state.completed.filter(
+        (step) =>
+          step >= 0 &&
+          step < TOTAL_REQUIRED_STEPS
+      ).length;
+    }
+
+
+    function markComplete(index) {
+      if (
+        index >= 0 &&
+        index < TOTAL_REQUIRED_STEPS &&
+        !state.completed.includes(index)
+      ) {
+        state.completed.push(index);
+      }
+
+      saveState();
+    }
+
+
+    function formatDate(dateString) {
+      if (!dateString) {
+        return '';
+      }
+
+      const date =
+        new Date(dateString);
+
+      return date.toLocaleDateString(
+        undefined,
+        {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }
+      );
+    }
+
+
+    /* =====================================================
+       WELCOME
+    ====================================================== */
+
+    function updateWelcome() {
+      const completed =
+        completedCount();
+
+      if (state.finished) {
+        savedProgress.hidden = false;
+
+        savedProgressText.textContent =
+          'You previously completed this module.';
+
+        startButton.innerHTML =
+          `
+            <span>View Completed Module</span>
+            <span class="button-arrow">→</span>
+          `;
+
+        return;
+      }
+
+      if (
+        completed > 0 ||
+        state.current > 0
+      ) {
+        savedProgress.hidden = false;
+
+        savedProgressText.textContent =
+          `You completed ${completed} of ${TOTAL_REQUIRED_STEPS} module steps.`;
+
+        startButton.innerHTML =
+          `
+            <span>Continue Module</span>
+            <span class="button-arrow">→</span>
+          `;
+      } else {
+        savedProgress.hidden = true;
+
+        startButton.innerHTML =
+          `
+            <span>Start Module</span>
+            <span class="button-arrow">→</span>
+          `;
+      }
+    }
+
+
+    function showModule() {
+      welcome.hidden = true;
+      shell.hidden = false;
+
+      if (state.finished) {
+        state.current =
+          COMPLETION_INDEX;
+      }
+
+      renderLesson();
+    }
+
+
+    /* =====================================================
+       LESSON RENDERING
+    ====================================================== */
+
+    function renderLesson() {
+      state.current =
+        Math.max(
+          0,
+          Math.min(
+            state.current,
+            COMPLETION_INDEX
+          )
+        );
+
+      lessons.forEach((lesson) => {
+        const index =
+          Number(
+            lesson.dataset.lesson
+          );
+
+        lesson.hidden =
+          index !== state.current;
+      });
+
+
+      stepButtons.forEach((button) => {
+        const index =
+          Number(
+            button.dataset.step
+          );
+
+        const completed =
+          state.completed.includes(index);
+
+        button.classList.toggle(
+          'active',
+          index === state.current
+        );
+
+        button.classList.toggle(
+          'complete',
+          completed
+        );
+
+        const circle =
+          button.querySelector(
+            '.step-circle'
+          );
+
+        if (circle) {
+          if (completed) {
+            circle.textContent = '✓';
+          } else if (
+            index === QUIZ_INDEX
+          ) {
+            circle.textContent = '✓';
+          } else {
+            circle.textContent =
+              String(index + 1);
+          }
+        }
+      });
+
+
+      updateProgress();
+
+
+      if (
+        state.current ===
+        COMPLETION_INDEX
+      ) {
+        controls.hidden = true;
+
+        updateCompletionScreen();
+        return;
+      }
+
+
+      controls.hidden = false;
+
+      previousButton.disabled =
+        state.current === 0;
+
+
+      if (
+        state.current === QUIZ_INDEX
+      ) {
+        nextText.textContent =
+          state.quizPassed
+            ? 'Complete Module'
+            : 'Complete Knowledge Check';
+
+        nextButton.disabled =
+          !state.quizPassed;
+      } else {
+        nextText.textContent =
+          'Next';
+
+        nextButton.disabled =
+          false;
+      }
+
+
+      window.scrollTo({
+        top:
+          root.getBoundingClientRect().top +
+          window.scrollY -
+          20,
+
+        behavior: 'smooth',
+      });
+
+      saveState();
+    }
+
+
+    /* =====================================================
+       PROGRESS BAR
+    ====================================================== */
+
+    function updateProgress() {
+      const completed =
+        completedCount();
+
+      const percentage =
+        state.finished
+          ? 100
+          : Math.round(
+              (
+                completed /
+                TOTAL_REQUIRED_STEPS
+              ) *
+                100
+            );
+
+
+      progressFill.style.width =
+        `${percentage}%`;
+
+      progressTrack.setAttribute(
+        'aria-valuenow',
+        String(percentage)
+      );
+
+      progressPercent.textContent =
+        `${percentage}%`;
+
+
+      if (
+        state.current === QUIZ_INDEX
+      ) {
+        progressLabel.textContent =
+          'Knowledge Check';
+      } else if (
+        state.current ===
+        COMPLETION_INDEX
+      ) {
+        progressLabel.textContent =
+          'Module Complete';
+      } else {
+        progressLabel.textContent =
+          `Lesson ${state.current + 1} of 7`;
+      }
+    }
+
+
+    /* =====================================================
+       MODULE BUTTONS
+    ====================================================== */
+
+    startButton.addEventListener(
+      'click',
+      showModule
+    );
+
+
+    resetButton.addEventListener(
+      'click',
+      () => {
+        const confirmed =
+          window.confirm(
+            'Reset all progress for this learning module?'
+          );
+
+        if (!confirmed) {
+          return;
+        }
+
+
+        localStorage.removeItem(
+          STORAGE_KEY
+        );
+
+
+        state = {
+          current: 0,
+          completed: [],
+          quizPassed: false,
+          quizScore: null,
+          finished: false,
+          certificateName: '',
+          completionDate: '',
+        };
+
+
+        if (quiz) {
+          quiz.reset();
+        }
+
+
+        if (quizResult) {
+          quizResult.hidden = true;
+        }
+
+
+        root
+          .querySelectorAll(
+            '[data-question-feedback]'
+          )
+          .forEach((feedback) => {
+            feedback.textContent = '';
+
+            feedback.className =
+              'question-feedback';
+          });
+
+
+        certificateArea.hidden = true;
+
+        certificateNameInput.value = '';
+
+        updateWelcome();
+      }
+    );
+
+
+    previousButton.addEventListener(
+      'click',
+      () => {
+        if (state.current <= 0) {
+          return;
+        }
+
+        state.current -= 1;
+
+        renderLesson();
+      }
+    );
+
+
+    nextButton.addEventListener(
+      'click',
+      () => {
+        if (
+          state.current === QUIZ_INDEX
+        ) {
+          if (!state.quizPassed) {
+            return;
+          }
+
+          markComplete(
+            QUIZ_INDEX
+          );
+
+          state.finished = true;
+
+          state.current =
+            COMPLETION_INDEX;
+
+
+          if (!state.completionDate) {
+            state.completionDate =
+              new Date().toISOString();
+          }
+
+
+          saveState();
+
+          renderLesson();
+
+          return;
+        }
+
+
+        markComplete(
+          state.current
+        );
+
+
+        if (
+          state.current < QUIZ_INDEX
+        ) {
+          state.current += 1;
+        }
+
+
+        renderLesson();
+      }
+    );
+
+
+    stepButtons.forEach((button) => {
+      button.addEventListener(
+        'click',
+        () => {
+          const index =
+            Number(
+              button.dataset.step
+            );
+
+          state.current =
+            index;
+
+          renderLesson();
+        }
+      );
+    });
+
+
+    restartButton?.addEventListener(
+      'click',
+      () => {
+        state.current = 0;
+
+        saveState();
+
+        renderLesson();
+      }
+    );
+
+
+    /* =====================================================
+       INTERACTIVE CARE SCENARIO
+    ====================================================== */
+
+    const scenarioButtons =
+      root.querySelectorAll(
+        '[data-scenario-choice]'
+      );
+
+    const scenarioFeedback =
+      root.querySelector(
+        '[data-scenario-feedback]'
+      );
+
+
+    scenarioButtons.forEach(
+      (button) => {
+        button.addEventListener(
+          'click',
+          () => {
+            const choice =
+              button.dataset.scenarioChoice;
+
+
+            scenarioButtons.forEach(
+              (item) => {
+                item.classList.remove(
+                  'selected-correct',
+                  'selected-wrong'
+                );
+              }
+            );
+
+
+            scenarioFeedback.hidden =
+              false;
+
+
+            if (
+              choice === 'primary'
+            ) {
+              button.classList.add(
+                'selected-correct'
+              );
+
+              scenarioFeedback.className =
+                'scenario-feedback feedback-correct';
+
+              scenarioFeedback.innerHTML =
+                `
+                  <strong>✓ Good choice.</strong>
+
+                  <p>
+                    Because the problem described is not currently
+                    life-threatening, a walk-in clinic or other primary-care
+                    option is more appropriate than 9-1-1. If you are unsure
+                    how urgent a problem is, 8-1-1 can also help guide you.
+                  </p>
+                `;
+            } else if (
+              choice === '911'
+            ) {
+              button.classList.add(
+                'selected-wrong'
+              );
+
+              scenarioFeedback.className =
+                'scenario-feedback feedback-review';
+
+              scenarioFeedback.innerHTML =
+                `
+                  <strong>Think again.</strong>
+
+                  <p>
+                    9-1-1 is intended for emergencies. The scenario does not
+                    describe signs of a life-threatening emergency. Primary or
+                    urgent care is a more reasonable choice based on the
+                    information given.
+                  </p>
+                `;
+            } else {
+              button.classList.add(
+                'selected-wrong'
+              );
+
+              scenarioFeedback.className =
+                'scenario-feedback feedback-review';
+
+              scenarioFeedback.innerHTML =
+                `
+                  <strong>Not quite.</strong>
+
+                  <p>
+                    You can still access healthcare even if you do not have a
+                    regular family doctor. Walk-in clinics, UPCCs and other
+                    services may be available.
+                  </p>
+                `;
+            }
+          }
+        );
+      }
+    );
+
+
+    /* =====================================================
+       KNOWLEDGE CHECK
+    ====================================================== */
+
+    quiz?.addEventListener(
+      'submit',
+      (event) => {
+        event.preventDefault();
+
+
+        const questions =
+          Array.from(
+            quiz.querySelectorAll(
+              '[data-question]'
+            )
+          );
+
+
+        let score = 0;
+        let unanswered = 0;
+
+
+        questions.forEach(
+          (question) => {
+            const correct =
+              question.dataset.correct;
+
+            const selected =
+              question.querySelector(
+                'input[type="radio"]:checked'
+              );
+
+            const feedback =
+              question.querySelector(
+                '[data-question-feedback]'
+              );
+
+
+            if (!selected) {
+              unanswered += 1;
+
+              feedback.textContent =
+                'Please choose an answer.';
+
+              feedback.className =
+                'question-feedback question-unanswered';
+
+              return;
+            }
+
+
+            if (
+              selected.value === correct
+            ) {
+              score += 1;
+
+              feedback.textContent =
+                '✓ Correct';
+
+              feedback.className =
+                'question-feedback question-correct';
+            } else {
+              feedback.textContent =
+                'Review this topic and try again.';
+
+              feedback.className =
+                'question-feedback question-wrong';
+            }
+          }
+        );
+
+
+        if (unanswered > 0) {
+          quizResult.hidden =
+            false;
+
+          quizResult.className =
+            'quiz-result quiz-result-review';
+
+          quizResult.innerHTML =
+            `
+              <div class="result-icon">!</div>
+
+              <div>
+                <strong>Please answer all five questions.</strong>
+
+                <p>
+                  You still have ${unanswered}
+                  unanswered question${unanswered === 1 ? '' : 's'}.
+                </p>
+              </div>
+            `;
+
+          return;
+        }
+
+
+        state.quizScore =
+          score;
+
+
+        if (score >= 4) {
+          state.quizPassed =
+            true;
+
+          markComplete(
+            QUIZ_INDEX
+          );
+
+
+          quizResult.hidden =
+            false;
+
+          quizResult.className =
+            'quiz-result quiz-result-pass';
+
+          quizResult.innerHTML =
+            `
+              <div class="result-score">${score}/5</div>
+
+              <div>
+                <strong>Knowledge check passed!</strong>
+
+                <p>
+                  Nice work. You can now complete the module.
+                </p>
+              </div>
+            `;
+        } else {
+          state.quizPassed =
+            false;
+
+
+          quizResult.hidden =
+            false;
+
+          quizResult.className =
+            'quiz-result quiz-result-review';
+
+          quizResult.innerHTML =
+            `
+              <div class="result-score">${score}/5</div>
+
+              <div>
+                <strong>Almost there.</strong>
+
+                <p>
+                  Review the questions above and try again.
+                  You need 4/5 to complete the module.
+                </p>
+              </div>
+            `;
+        }
+
+
+        saveState();
+
+        renderLesson();
+      }
+    );
+
+
+    /* =====================================================
+       COMPLETION SCREEN
+    ====================================================== */
+
+    function updateCompletionScreen() {
+      if (
+        state.quizScore !== null
+      ) {
+        finalScore.textContent =
+          `${state.quizScore}/5`;
+      }
+
+
+      if (state.certificateName) {
+        certificateNameInput.value =
+          state.certificateName;
+
+        showCertificate(
+          state.certificateName
+        );
+      }
+    }
+
+
+    /* =====================================================
+       CERTIFICATE
+    ====================================================== */
+
+    function showCertificate(name) {
+      const cleanName =
+        name.trim();
+
+
+      if (!cleanName) {
+        return;
+      }
+
+
+      state.certificateName =
+        cleanName;
+
+
+      if (!state.completionDate) {
+        state.completionDate =
+          new Date().toISOString();
+      }
+
+
+      certificateName.textContent =
+        cleanName;
+
+
+      certificateDate.textContent =
+        formatDate(
+          state.completionDate
+        );
+
+
+      certificateScore.textContent =
+        state.quizScore !== null
+          ? `${state.quizScore}/5`
+          : 'Passed';
+
+
+      certificateArea.hidden =
+        false;
+
+
+      certificateError.hidden =
+        true;
+
+
+      saveState();
+
+
+      setTimeout(
+        () => {
+          certificateArea.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        },
+        100
+      );
+    }
+
+
+    generateCertificateButton?.addEventListener(
+      'click',
+      () => {
+        const name =
+          certificateNameInput.value.trim();
+
+
+        if (!name) {
+          certificateError.hidden =
+            false;
+
+          certificateNameInput.focus();
+
+          return;
+        }
+
+
+        showCertificate(name);
+      }
+    );
+
+
+    certificateNameInput?.addEventListener(
+      'keydown',
+      (event) => {
+        if (
+          event.key === 'Enter'
+        ) {
+          event.preventDefault();
+
+          generateCertificateButton.click();
+        }
+      }
+    );
+
+
+    editCertificateButton?.addEventListener(
+      'click',
+      () => {
+        certificateArea.hidden =
+          true;
+
+        certificateNameInput.focus();
+
+        certificateNameInput.select();
+      }
+    );
+
+
+    printCertificateButton?.addEventListener(
+      'click',
+      () => {
+        document.body.classList.add(
+          'printing-certificate'
+        );
+
+        window.print();
+      }
+    );
+
+
+    window.addEventListener(
+      'afterprint',
+      () => {
+        document.body.classList.remove(
+          'printing-certificate'
+        );
+      }
+    );
+
+
+    /* =====================================================
+       INITIALIZE
+    ====================================================== */
+
+    loadState();
+
+    updateWelcome();
+
+
+    if (state.finished) {
+      state.current =
+        COMPLETION_INDEX;
+    }
+  }
+
+
+  initializeLearningModule();
+
+
+  document.addEventListener(
+    'astro:page-load',
+    initializeLearningModule
+  );
+</script>
+
+
+<style>
+
+  /* =====================================================
+     GENERAL
+  ====================================================== */
+
+  .learning-module {
+    color: #38585f;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .text-button,
+  .primary-link {
+    cursor: pointer;
+  }
+
+
+  /* =====================================================
+     PRIMARY BUTTON
+  ====================================================== */
+
+  .primary-button,
+  .primary-link {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.55rem;
+
+    padding: 0.95rem 1.45rem;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+      linear-gradient(
+        135deg,
+        #14766f 0%,
+        #159187 55%,
+        #20a194 100%
+      );
+
+    color: white;
+
+    font-weight: 800;
+
+    letter-spacing: 0.01em;
+
+    text-decoration: none;
+
+    box-shadow:
+      0 8px 18px rgba(20, 118, 111, 0.18),
+      0 2px 5px rgba(20, 118, 111, 0.12);
+
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      filter 0.18s ease;
+  }
+
+  .primary-button:hover,
+  .primary-link:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 12px 28px rgba(20, 118, 111, 0.22),
+      0 4px 8px rgba(20, 118, 111, 0.12);
+
+    filter: brightness(1.035);
+  }
+
+  .primary-button:active,
+  .primary-link:active {
+    transform: translateY(0);
+  }
+
+  .primary-button:disabled {
+    background: #cfdddd;
+
+    color: #79908e;
+
+    box-shadow: none;
+
+    cursor: not-allowed;
+
+    transform: none;
+  }
+
+  .button-arrow {
+    font-size: 1.1rem;
+
+    transition:
+      transform 0.18s ease;
+  }
+
+  .primary-button:hover .button-arrow,
+  .primary-link:hover .button-arrow {
+    transform: translateX(3px);
+  }
+
+  .large-button {
+    min-width: 180px;
+
+    padding: 1rem 1.55rem;
+
+    font-size: 1rem;
+  }
+
+
+  /* =====================================================
+     SECONDARY BUTTON
+  ====================================================== */
+
+  .secondary-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+
+    padding: 0.95rem 1.35rem;
+
+    border: 1px solid #c9dcda;
+
+    border-radius: 14px;
+
+    background: white;
+
+    color: #14766f;
+
+    font-weight: 800;
+
+    box-shadow:
+      0 3px 10px rgba(22, 48, 47, 0.05);
+
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .secondary-button:hover {
+    transform: translateY(-2px);
+
+    border-color: #91c2bd;
+
+    background: #f5fbfa;
+
+    box-shadow:
+      0 8px 18px rgba(22, 48, 47, 0.08);
+  }
+
+  .secondary-button:disabled {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+
+    transform: none;
+  }
+
+
+  /* =====================================================
+     TEXT BUTTON
+  ====================================================== */
+
+  .text-button {
+    padding: 0.5rem;
+
+    border: none;
+
+    background: transparent;
+
+    color: #718789;
+
+    font-size: 0.9rem;
+
+    text-decoration: underline;
+
+    text-underline-offset: 3px;
+  }
+
+  .text-button:hover {
+    color: #14766f;
+  }
+
+
+  /* =====================================================
+     WELCOME
+  ====================================================== */
+
+  .module-welcome {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 2.2rem;
+
+    border: 1px solid #d7e7e4;
+
+    border-radius: 26px;
+
+    background:
+      radial-gradient(
+        circle at top right,
+        rgba(32, 161, 148, 0.12),
+        transparent 32%
+      ),
+      linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #f5fbfa 100%
+      );
+
+    box-shadow:
+      0 18px 45px rgba(22, 48, 47, 0.07);
+  }
+
+  .welcome-badge {
+    display: inline-flex;
+
+    gap: 0.4rem;
+
+    align-items: center;
+
+    margin-bottom: 1rem;
+
+    padding: 0.48rem 0.8rem;
+
+    border: 1px solid #cae5e1;
+
+    border-radius: 999px;
+
+    background: rgba(234, 247, 246, 0.9);
+
+    color: #14766f;
+
+    font-size: 0.76rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+  }
+
+  .welcome-badge span {
+    color: #22a396;
+  }
+
+  .module-welcome h2 {
+    margin-bottom: 0.8rem;
+
+    font-size: 2.2rem;
+  }
+
+  .welcome-intro {
+    max-width: 720px;
+
+    font-size: 1.08rem;
+
+    line-height: 1.75;
+  }
+
+
+  /* =====================================================
+     WELCOME DETAILS
+  ====================================================== */
+
+  .module-details {
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, 1fr);
+
+    gap: 1rem;
+
+    margin: 2rem 0;
+  }
+
+  .detail {
+    display: flex;
+
+    gap: 0.85rem;
+
+    align-items: center;
+
+    padding: 1.1rem;
+
+    border: 1px solid #dbe9e7;
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.86);
+
+    box-shadow:
+      0 5px 15px rgba(22, 48, 47, 0.04);
+  }
+
+  .detail-icon-wrap {
+    display: flex;
+
+    width: 2.7rem;
+    height: 2.7rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eff9f7;
+  }
+
+  .detail-icon {
+    font-size: 1.4rem;
+  }
+
+  .detail strong,
+  .detail span {
+    display: block;
+  }
+
+  .detail div > span {
+    margin-top: 0.2rem;
+
+    color: #728689;
+
+    font-size: 0.84rem;
+  }
+
+
+  /* =====================================================
+     OBJECTIVES
+  ====================================================== */
+
+  .learning-objectives {
+    margin: 2rem 0;
+
+    padding: 1.5rem;
+
+    border: 1px solid #d4e8e4;
+
+    border-radius: 18px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #f0f8f7,
+        #f8fcfb
+      );
+  }
+
+  .objectives-heading {
+    display: flex;
+
+    gap: 0.7rem;
+
+    align-items: center;
+
+    margin-bottom: 0.7rem;
+  }
+
+  .objectives-heading > span {
+    font-size: 1.4rem;
+  }
+
+  .learning-objectives h3 {
+    margin: 0;
+
+    color: #123b4a;
+  }
+
+  .learning-objectives ul {
+    margin-bottom: 0;
+
+    padding-left: 1.4rem;
+
+    line-height: 1.85;
+  }
+
+
+  /* =====================================================
+     SAVED PROGRESS
+  ====================================================== */
+
+  .saved-progress {
+    display: flex;
+
+    gap: 0.9rem;
+
+    align-items: center;
+
+    margin: 1.5rem 0;
+
+    padding: 1.1rem 1.3rem;
+
+    border: 1px solid #cce4e0;
+
+    border-radius: 14px;
+
+    background: #edf8f6;
+  }
+
+  .saved-progress-icon {
+    display: flex;
+
+    width: 2rem;
+    height: 2rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #14766f;
+
+    color: white;
+
+    font-weight: 900;
+  }
+
+  .saved-progress p {
+    margin: 0.2rem 0 0 !important;
+  }
+
+  .welcome-actions {
+    display: flex;
+
+    gap: 1rem;
+
+    align-items: center;
+  }
+
+
+  /* =====================================================
+     PROGRESS CARD
+  ====================================================== */
+
+  .progress-header {
+    position: sticky;
+
+    top: 12px;
+
+    z-index: 20;
+
+    margin-bottom: 1.3rem;
+
+    padding: 1.1rem 1.25rem;
+
+    border: 1px solid rgba(191, 219, 215, 0.92);
+
+    border-radius: 19px;
+
+    background:
+      rgba(255, 255, 255, 0.95);
+
+    backdrop-filter:
+      blur(15px);
+
+    box-shadow:
+      0 12px 32px rgba(22, 48, 47, 0.08),
+      0 2px 7px rgba(22, 48, 47, 0.04);
+  }
+
+  .progress-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    margin-bottom: 0.75rem;
+  }
+
+  .progress-title-area {
+    display: flex;
+
+    gap: 0.7rem;
+
+    align-items: center;
+  }
+
+  .progress-mini-icon {
+    display: flex;
+
+    width: 2rem;
+    height: 2rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+      linear-gradient(
+        135deg,
+        #14766f,
+        #22a396
+      );
+
+    color: white;
+
+    font-size: 0.8rem;
+
+    font-weight: 900;
+
+    box-shadow:
+      0 4px 10px rgba(20, 118, 111, 0.18);
+  }
+
+  .progress-title-area strong,
+  .progress-title-area span {
+    display: block;
+  }
+
+  .progress-small-label {
+    margin-bottom: 0.1rem;
+
+    color: #819092;
+
+    font-size: 0.7rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+  }
+
+  .progress-title-area strong {
+    color: #36585c;
+
+    font-size: 0.9rem;
+  }
+
+  .progress-percentage {
+    text-align: right;
+  }
+
+  .progress-percentage strong {
+    display: block;
+
+    color: #14766f;
+
+    font-size: 1.1rem;
+  }
+
+  .progress-percentage span {
+    display: block;
+
+    margin-top: -0.1rem;
+
+    color: #8a999b;
+
+    font-size: 0.72rem;
+  }
+
+  .progress-track {
+    height: 11px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #e7f0ef;
+
+    box-shadow:
+      inset 0 1px 3px rgba(22, 48, 47, 0.08);
+  }
+
+  .progress-fill {
+    position: relative;
+
+    width: 0;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: inherit;
+
+    background:
+      linear-gradient(
+        90deg,
+        #14766f,
+        #22a396
+      );
+
+    box-shadow:
+      0 0 12px rgba(34, 163, 150, 0.3);
+
+    transition:
+      width 0.45s ease;
+  }
+
+  .progress-shine {
+    position: absolute;
+
+    top: 0;
+
+    width: 60px;
+    height: 100%;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+      );
+
+    animation:
+      progressShine 2.6s infinite;
+  }
+
+  @keyframes progressShine {
+    from {
+      left: -80px;
+    }
+
+    to {
+      left: calc(100% + 80px);
+    }
+  }
+
+
+  /* =====================================================
+     LESSON NAVIGATION
+  ====================================================== */
+
+  .lesson-navigation-wrapper {
+    position: relative;
+
+    margin-bottom: 2rem;
+  }
+
+  .lesson-navigation {
+    display: flex;
+
+    gap: 0.75rem;
+
+    padding: 0.3rem 0 1rem;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+      #c9dcda transparent;
+  }
+
+  .lesson-tab {
+    position: relative;
+
+    display: flex;
+
+    min-width: 160px;
+
+    gap: 0.75rem;
+
+    align-items: center;
+
+    padding: 0.9rem;
+
+    border: 1px solid #dce8e6;
+
+    border-radius: 16px;
+
+    background: white;
+
+    color: #60787c;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    box-shadow:
+      0 4px 12px rgba(22, 48, 47, 0.04);
+
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      background 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .lesson-tab:hover {
+    transform: translateY(-3px);
+
+    border-color: #9fc9c4;
+
+    box-shadow:
+      0 10px 22px rgba(22, 48, 47, 0.08);
+  }
+
+  .lesson-tab.active {
+    border-color: #14766f;
+
+    background:
+      linear-gradient(
+        145deg,
+        #eff9f7 0%,
+        #ffffff 100%
+      );
+
+    color: #123b4a;
+
+    box-shadow:
+      0 9px 24px rgba(20, 118, 111, 0.14);
+  }
+
+  .lesson-tab.active::after {
+    content: '';
+
+    position: absolute;
+
+    right: 18px;
+    bottom: -1px;
+    left: 18px;
+
+    height: 3px;
+
+    border-radius: 999px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #14766f,
+        #22a396
+      );
+  }
+
+  .lesson-tab.complete {
+    border-color: #b9ddd8;
+
+    background: #f8fcfb;
+  }
+
+  .step-circle {
+    display: flex;
+
+    width: 2.2rem;
+    height: 2.2rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #edf2f2;
+
+    color: #597276;
+
+    font-size: 0.8rem;
+
+    font-weight: 900;
+
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .lesson-tab.active .step-circle {
+    background:
+      linear-gradient(
+        135deg,
+        #14766f,
+        #22a396
+      );
+
+    color: white;
+
+    transform: scale(1.08);
+
+    box-shadow:
+      0 5px 12px rgba(20, 118, 111, 0.22);
+  }
+
+  .lesson-tab.complete .step-circle {
+    background: #14766f;
+
+    color: white;
+
+    box-shadow:
+      0 3px 9px rgba(20, 118, 111, 0.16);
+  }
+
+  .step-text {
+    display: block;
+  }
+
+  .step-label {
+    display: block;
+
+    margin-bottom: 0.18rem;
+
+    color: #94a2a4;
+
+    font-size: 0.65rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+  }
+
+  .step-name {
+    display: block;
+
+    color: inherit;
+
+    font-size: 0.8rem;
+
+    font-weight: 800;
+
+    line-height: 1.25;
+  }
+
+
+  /* =====================================================
+     QUIZ TAB
+  ====================================================== */
+
+  .quiz-tab {
+    min-width: 175px;
+  }
+
+  .quiz-tab .step-circle {
+    background: #f0eafb;
+
+    color: #7454a3;
+  }
+
+  .quiz-tab.active {
+    border-color: #8264ad;
+
+    background:
+      linear-gradient(
+        145deg,
+        #f7f3fc,
+        #ffffff
+      );
+  }
+
+  .quiz-tab.active .step-circle {
+    background:
+      linear-gradient(
+        135deg,
+        #7554a5,
+        #9674c3
+      );
+
+    color: white;
+  }
+
+  .quiz-tab.active::after {
+    background:
+      linear-gradient(
+        90deg,
+        #7554a5,
+        #9674c3
+      );
+  }
+
+
+  /* =====================================================
+     LESSON
+  ====================================================== */
+
+  .lesson {
+    animation:
+      lessonIn 0.3s ease;
+  }
+
+  @keyframes lessonIn {
+    from {
+      opacity: 0;
+
+      transform:
+        translateY(7px);
+    }
+
+    to {
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+  }
+
+  .lesson-heading {
+    margin-bottom: 2rem;
+
+    padding-bottom: 1.7rem;
+
+    border-bottom: 1px solid #dce8e6;
+  }
+
+  .lesson-number {
+    display: inline-block;
+
+    margin-bottom: 0.6rem;
+
+    padding: 0.35rem 0.6rem;
+
+    border-radius: 7px;
+
+    background: #eaf7f6;
+
+    color: #14766f;
+
+    font-size: 0.72rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+  }
+
+  .quiz-number {
+    background: #f2ecfa;
+
+    color: #7454a3;
+  }
+
+  .lesson-heading h2 {
+    margin-bottom: 0.8rem;
+
+    font-size: 2rem;
+  }
+
+  .lesson-heading > p {
+    max-width: 700px;
+
+    font-size: 1.05rem;
+  }
+
+  .content-block {
+    margin: 1.7rem 0;
+  }
+
+  .content-block h3 {
+    margin-bottom: 0.65rem;
+
+    color: #123b4a;
+  }
+
+  .content-block p + p {
+    margin-top: 1rem !important;
+  }
+
+
+  /* =====================================================
+     PLAIN LANGUAGE
+  ====================================================== */
+
+  .plain-language {
+    display: flex;
+
+    gap: 1rem;
+
+    margin: 1.5rem 0;
+
+    padding: 1.4rem;
+
+    border: 1px solid #d3e8e4;
+
+    border-radius: 16px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #f0f8f7,
+        #f8fcfb
+      );
+  }
+
+  .plain-icon,
+  .takeaway-icon {
+    display: flex;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: white;
+
+    font-size: 1.4rem;
+
+    box-shadow:
+      0 3px 10px rgba(22, 48, 47, 0.06);
+  }
+
+  .plain-language p {
+    margin-top: 0.3rem !important;
+  }
+
+
+  /* =====================================================
+     TAKEAWAY
+  ====================================================== */
+
+  .lesson-takeaway {
+    display: flex;
+
+    gap: 1rem;
+
+    margin-top: 2rem;
+
+    padding: 1.4rem;
+
+    border: 1px solid #c9e2df;
+
+    border-radius: 17px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #f5fbfa,
+        #ffffff
+      );
+
+    box-shadow:
+      0 5px 16px rgba(22, 48, 47, 0.04);
+  }
+
+  .lesson-takeaway p {
+    margin-top: 0.3rem !important;
+  }
+
+  .final-takeaway {
+    border-color: #cbbde0;
+
+    background:
+      linear-gradient(
+        145deg,
+        #f8f5fc,
+        #ffffff
+      );
+  }
+
+
+  /* =====================================================
+     CONTENT CARDS
+  ====================================================== */
+
+  .coverage-grid,
+  .provider-grid,
+  .not-free-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 1rem;
+
+    margin: 1.5rem 0;
+  }
+
+  .coverage-card,
+  .provider-card,
+  .not-free-grid > div {
+    padding: 1.4rem;
+
+    border: 1px solid #dce8e6;
+
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow:
+      0 5px 16px rgba(22, 48, 47, 0.04);
+  }
+
+  .coverage-card h3,
+  .provider-card h3,
+  .not-free-grid h3 {
+    margin: 0.5rem 0 0.8rem;
+
+    color: #123b4a;
+  }
+
+  .coverage-card ul,
+  .provider-card ul {
+    margin-bottom: 0;
+
+    padding-left: 1.2rem;
+
+    line-height: 1.7;
+  }
+
+  .card-icon {
+    display: flex;
+
+    width: 2rem;
+    height: 2rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-weight: 900;
+  }
+
+  .success-icon {
+    background: #eaf7f0;
+
+    color: #308260;
+  }
+
+  .question-icon {
+    background: #fff4df;
+
+    color: #ae7626;
+  }
+
+  .provider-icon {
+    font-size: 1.8rem;
+  }
+
+  .not-free-grid > div > span {
+    font-size: 1.7rem;
+  }
+
+
+  /* =====================================================
+     IMPORTANT / EXAMPLE
+  ====================================================== */
+
+  .important-box {
+    margin: 1.5rem 0;
+
+    padding: 1.5rem;
+
+    border-left: 5px solid #dfa82f;
+
+    border-radius: 13px;
+
+    background: #fff8e9;
+  }
+
+  .important-heading {
+    display: flex;
+
+    gap: 0.65rem;
+
+    align-items: center;
+
+    margin-bottom: 0.7rem;
+  }
+
+  .important-box p + p {
+    margin-top: 0.8rem !important;
+  }
+
+  .medication-box {
+    border-left-color: #14766f;
+
+    background: #eff9f7;
+  }
+
+  .example {
+    margin: 1.2rem 0;
+
+    padding: 1.35rem;
+
+    border: 1px solid #e0e8e7;
+
+    border-radius: 15px;
+
+    background: #f7faf9;
+  }
+
+  .example-label,
+  .activity-label,
+  .certificate-eyebrow {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: #14766f;
+
+    font-size: 0.72rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.09em;
+
+    text-transform: uppercase;
+  }
+
+  .fine-print {
+    font-size: 0.9rem;
+
+    font-style: italic;
+  }
+
+
+  /* =====================================================
+     STEPS
+  ====================================================== */
+
+  .steps {
+    display: grid;
+
+    gap: 0.85rem;
+
+    margin: 1.5rem 0;
+  }
+
+  .step {
+    display: flex;
+
+    gap: 1rem;
+
+    padding: 1.2rem;
+
+    border: 1px solid #dce8e6;
+
+    border-radius: 14px;
+
+    background: white;
+  }
+
+  .step-number {
+    display: flex;
+
+    width: 2.1rem;
+    height: 2.1rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+      linear-gradient(
+        135deg,
+        #14766f,
+        #22a396
+      );
+
+    color: white;
+
+    font-weight: 900;
+
+    box-shadow:
+      0 4px 10px rgba(20, 118, 111, 0.16);
+  }
+
+  .step p {
+    margin-top: 0.25rem !important;
+  }
+
+
+  /* =====================================================
+     CARE OPTIONS
+  ====================================================== */
+
+  .care-options {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 1rem;
+
+    margin: 1.5rem 0;
+  }
+
+  .care-card {
+    padding: 1.35rem;
+
+    border: 1px solid #dce8e6;
+
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow:
+      0 5px 16px rgba(22, 48, 47, 0.035);
+  }
+
+  .care-icon {
+    font-size: 1.8rem;
+  }
+
+  .care-card h3 {
+    margin: 0.5rem 0;
+
+    color: #123b4a;
+  }
+
+  .best-for {
+    display: block;
+
+    margin-bottom: 0.35rem;
+
+    color: #14766f;
+
+    font-size: 0.72rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+  }
+
+  .emergency-card {
+    border-color: #eac3c3;
+
+    background: #fffafa;
+  }
+
+  .notice {
+    margin-top: 1.5rem;
+
+    padding: 1.35rem;
+
+    border-left: 4px solid #14766f;
+
+    border-radius: 11px;
+
+    background: #eff9f7;
+  }
+
+
+  /* =====================================================
+     SCENARIO
+  ====================================================== */
+
+  .scenario-box {
+    margin: 2rem 0;
+
+    padding: 1.6rem;
+
+    border: 2px solid #cce3df;
+
+    border-radius: 19px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #fbfefd,
+        #f5fbfa
+      );
+  }
+
+  .scenario-header {
+    display: flex;
+
+    gap: 0.8rem;
+
+    margin-bottom: 1rem;
+  }
+
+  .scenario-icon {
+    display: flex;
+
+    width: 2.7rem;
+    height: 2.7rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: white;
+
+    font-size: 1.5rem;
+
+    box-shadow:
+      0 4px 12px rgba(22, 48, 47, 0.06);
+  }
+
+  .scenario-header h3 {
+    margin: 0;
+
+    color: #123b4a;
+  }
+
+  .scenario-question {
+    margin-top: 1rem !important;
+
+    font-weight: 800;
+  }
+
+  .scenario-options {
+    display: grid;
+
+    gap: 0.7rem;
+
+    margin-top: 1rem;
+  }
+
+  .scenario-choice {
+    display: flex;
+
+    gap: 0.8rem;
+
+    align-items: center;
+
+    padding: 1rem;
+
+    border: 1px solid #d2e1df;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #395b60;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition:
+      transform 0.16s ease,
+      border-color 0.16s ease,
+      background 0.16s ease,
+      box-shadow 0.16s ease;
+  }
+
+  .scenario-choice:hover {
+    transform: translateY(-1px);
+
+    border-color: #86bdb7;
+
+    background: #f6fbfa;
+
+    box-shadow:
+      0 5px 12px rgba(22, 48, 47, 0.06);
+  }
+
+  .scenario-choice.selected-correct {
+    border-color: #4b9b78;
+
+    background: #edf9f2;
+  }
+
+  .scenario-choice.selected-wrong {
+    border-color: #d59a62;
+
+    background: #fff8ef;
+  }
+
+  .scenario-feedback {
+    margin-top: 1rem;
+
+    padding: 1.2rem;
+
+    border-radius: 13px;
+  }
+
+  .scenario-feedback p {
+    margin-top: 0.35rem !important;
+  }
+
+  .feedback-correct {
+    background: #edf9f2;
+
+    color: #315e49;
+  }
+
+  .feedback-review {
+    background: #fff8ef;
+
+    color: #70563a;
+  }
+
+
+  /* =====================================================
+     JOURNEY
+  ====================================================== */
+
+  .journey {
+    display: flex;
+
+    gap: 0.55rem;
+
+    align-items: stretch;
+
+    margin: 1.6rem 0;
+  }
+
+  .journey-item {
+    flex: 1;
+
+    padding: 1rem;
+
+    border: 1px solid #dce8e6;
+
+    border-radius: 14px;
+
+    background: white;
+
+    text-align: center;
+  }
+
+  .journey-item span {
+    display: flex;
+
+    width: 2rem;
+    height: 2rem;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 0.6rem;
+
+    border-radius: 50%;
+
+    background: #eaf7f6;
+
+    color: #14766f;
+
+    font-weight: 900;
+  }
+
+  .journey-item strong {
+    font-size: 0.88rem;
+  }
+
+  .journey-arrow {
+    display: flex;
+
+    align-items: center;
+
+    color: #14766f;
+
+    font-weight: 900;
+  }
+
+
+  /* =====================================================
+     LANGUAGE
+  ====================================================== */
+
+  .language-card {
+    display: flex;
+
+    gap: 1.1rem;
+
+    margin: 1.5rem 0;
+
+    padding: 1.45rem;
+
+    border: 1px solid #d3e8e4;
+
+    border-radius: 16px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #eff9f7,
+        #f8fcfb
+      );
+  }
+
+  .language-icon {
+    display: flex;
+
+    width: 3rem;
+    height: 3rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: white;
+
+    font-size: 1.8rem;
+
+    box-shadow:
+      0 4px 12px rgba(22, 48, 47, 0.06);
+  }
+
+  .language-card h3 {
+    margin: 0 0 0.5rem;
+
+    color: #123b4a;
+  }
+
+
+  /* =====================================================
+     FIVE THINGS
+  ====================================================== */
+
+  .five-things {
+    margin: 2rem 0;
+
+    padding: 1.5rem;
+
+    border: 1px solid #dde9e7;
+
+    border-radius: 18px;
+
+    background: #f7faf9;
+  }
+
+  .five-things-title {
+    display: flex;
+
+    gap: 0.6rem;
+
+    align-items: center;
+
+    margin-bottom: 0.6rem;
+  }
+
+  .five-things-title h3 {
+    margin: 0;
+
+    color: #123b4a;
+  }
+
+  .memory-row {
+    display: flex;
+
+    gap: 0.9rem;
+
+    align-items: center;
+
+    padding: 0.75rem 0;
+
+    border-bottom: 1px solid #e1ebea;
+  }
+
+  .memory-row:last-child {
+    border-bottom: 0;
+  }
+
+  .memory-row > span {
+    display: flex;
+
+    width: 1.9rem;
+    height: 1.9rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+      linear-gradient(
+        135deg,
+        #14766f,
+        #22a396
+      );
+
+    color: white;
+
+    font-size: 0.8rem;
+
+    font-weight: 900;
+  }
+
+
+  /* =====================================================
+     QUIZ INTRO
+  ====================================================== */
+
+  .quiz-intro-card {
+    display: flex;
+
+    gap: 0.9rem;
+
+    align-items: center;
+
+    margin-bottom: 1.5rem;
+
+    padding: 1.15rem 1.3rem;
+
+    border: 1px solid #ddd1eb;
+
+    border-radius: 15px;
+
+    background: #faf7fd;
+  }
+
+  .quiz-intro-icon {
+    display: flex;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: white;
+
+    font-size: 1.4rem;
+  }
+
+  .quiz-intro-card p {
+    margin-top: 0.2rem !important;
+  }
+
+
+  /* =====================================================
+     QUIZ QUESTIONS
+  ====================================================== */
+
+  .quiz-question {
+    margin: 0 0 1.5rem;
+
+    padding: 1.45rem;
+
+    border: 1px solid #dce8e6;
+
+    border-radius: 17px;
+
+    background: white;
+
+    box-shadow:
+      0 5px 16px rgba(22, 48, 47, 0.035);
+  }
+
+  .quiz-question legend {
+    width: 100%;
+
+    padding: 0 0 1rem;
+
+    color: #123b4a;
+
+    font-weight: 800;
+
+    line-height: 1.5;
+  }
+
+  .quiz-question legend span {
+    display: inline-flex;
+
+    width: 1.9rem;
+    height: 1.9rem;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 0.45rem;
+
+    border-radius: 50%;
+
+    background: #f0eafb;
+
+    color: #7454a3;
+
+    font-size: 0.8rem;
+  }
+
+  .quiz-question label {
+    display: flex;
+
+    gap: 0.7rem;
+
+    align-items: flex-start;
+
+    margin-bottom: 0.65rem;
+
+    padding: 0.85rem;
+
+    border: 1px solid transparent;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .quiz-question label:hover {
+    border-color: #e0d6ec;
+
+    background: #faf8fc;
+  }
+
+  .quiz-question input {
+    margin-top: 0.25rem;
+
+    accent-color: #7554a5;
+  }
+
+  .question-feedback {
+    min-height: 1.2rem;
+
+    margin-top: 0.8rem;
+
+    font-size: 0.86rem;
+
+    font-weight: 800;
+  }
+
+  .question-correct {
+    color: #367e5b;
+  }
+
+  .question-wrong {
+    color: #9c612e;
+  }
+
+  .question-unanswered {
+    color: #a06231;
+  }
+
+  .submit-quiz {
+    margin-top: 0.5rem;
+  }
+
+
+  /* =====================================================
+     QUIZ RESULT
+  ====================================================== */
+
+  .quiz-result {
+    display: flex;
+
+    gap: 1rem;
+
+    align-items: center;
+
+    margin-top: 1.3rem;
+
+    padding: 1.4rem;
+
+    border-radius: 15px;
+  }
+
+  .quiz-result p {
+    margin-top: 0.25rem !important;
+  }
+
+  .quiz-result-pass {
+    border: 1px solid #bee0cd;
+
+    background: #edf9f2;
+
+    color: #315e49;
+  }
+
+  .quiz-result-review {
+    border: 1px solid #efd9bd;
+
+    background: #fff8ef;
+
+    color: #70563a;
+  }
+
+  .result-score,
+  .result-icon {
+    display: flex;
+
+    min-width: 3.1rem;
+    height: 3.1rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    font-size: 1.25rem;
+
+    font-weight: 900;
+  }
+
+
+  /* =====================================================
+     BOTTOM CONTROLS
+  ====================================================== */
+
+  .module-controls {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-top: 2.5rem;
+
+    padding-top: 1.5rem;
+
+    border-top: 1px solid #dce8e6;
+  }
+
+  .navigation-button {
+    min-width: 115px;
+  }
+
+
+  /* =====================================================
+     COMPLETION
+  ====================================================== */
+
+  .completion-screen {
+    padding: 2.2rem 0 1rem;
+
+    text-align: center;
+  }
+
+  .celebration {
+    position: relative;
+
+    width: 130px;
+
+    margin: 0 auto;
+  }
+
+  .completion-icon {
+    display: flex;
+
+    width: 5rem;
+    height: 5rem;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 1.2rem;
+
+    border-radius: 50%;
+
+    background:
+      linear-gradient(
+        135deg,
+        #14766f,
+        #22a396
+      );
+
+    color: white;
+
+    font-size: 2.3rem;
+
+    font-weight: 900;
+
+    box-shadow:
+      0 12px 28px rgba(20, 118, 111, 0.24);
+
+    animation:
+      completionPop 0.5s ease;
+  }
+
+  @keyframes completionPop {
+    0% {
+      transform: scale(0.7);
+
+      opacity: 0;
+    }
+
+    70% {
+      transform: scale(1.08);
+    }
+
+    100% {
+      transform: scale(1);
+
+      opacity: 1;
+    }
+  }
+
+  .confetti {
+    position: absolute;
+
+    color: #c8933e;
+
+    animation:
+      confettiFloat 2.3s ease-in-out infinite;
+  }
+
+  .confetti-1 {
+    top: 5px;
+
+    left: 2px;
+  }
+
+  .confetti-2 {
+    top: 28px;
+
+    right: 2px;
+
+    color: #22a396;
+
+    animation-delay: 0.3s;
+  }
+
+  .confetti-3 {
+    top: 63px;
+
+    left: -5px;
+
+    color: #7554a5;
+
+    animation-delay: 0.6s;
+  }
+
+  .confetti-4 {
+    top: 2px;
+
+    right: 17px;
+
+    animation-delay: 0.8s;
+  }
+
+  @keyframes confettiFloat {
+    0%,
+    100% {
+      transform:
+        translateY(0)
+        rotate(0deg);
+    }
+
+    50% {
+      transform:
+        translateY(-5px)
+        rotate(15deg);
+    }
+  }
+
+  .completion-eyebrow {
+    color: #14766f !important;
+
+    font-size: 0.78rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+  }
+
+  .completion-screen > h2 {
+    margin: 0.35rem 0 0.8rem;
+
+    font-size: 2.6rem;
+  }
+
+  .completion-intro {
+    font-size: 1.12rem;
+  }
+
+  .completion-score-card {
+    display: inline-flex;
+
+    gap: 1.3rem;
+
+    align-items: center;
+
+    margin: 1.6rem auto;
+
+    padding: 1rem 1.4rem;
+
+    border: 1px solid #d4e7e4;
+
+    border-radius: 16px;
+
+    background: #f6fbfa;
+
+    text-align: left;
+  }
+
+  .score-label {
+    display: block;
+
+    margin-bottom: 0.2rem;
+
+    color: #819092;
+
+    font-size: 0.7rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+  }
+
+  .completion-score-card strong {
+    color: #14766f;
+  }
+
+  .score-divider {
+    width: 1px;
+    height: 34px;
+
+    background: #d2e3e1;
+  }
+
+  .completion-card {
+    display: flex;
+
+    gap: 1rem;
+
+    max-width: 650px;
+
+    margin: 1rem auto 2rem;
+
+    padding: 1.5rem;
+
+    border: 1px solid #d3e7e3;
+
+    border-radius: 17px;
+
+    background: #eff9f7;
+
+    text-align: left;
+  }
+
+  .completion-card > span {
+    font-size: 2rem;
+  }
+
+  .completion-card p {
+    margin-top: 0.4rem !important;
+  }
+
+
+  /* =====================================================
+     CERTIFICATE GENERATOR
+  ====================================================== */
+
+  .certificate-generator {
+    max-width: 700px;
+
+    margin: 2.5rem auto;
+
+    padding: 1.6rem;
+
+    border: 1px solid #e0d5bd;
+
+    border-radius: 20px;
+
+    background:
+      linear-gradient(
+        145deg,
+        #fffdf8,
+        #ffffff
+      );
+
+    text-align: left;
+
+    box-shadow:
+      0 8px 22px rgba(84, 67, 38, 0.05);
+  }
+
+  .certificate-generator-heading {
+    display: flex;
+
+    gap: 1rem;
+
+    margin-bottom: 1.3rem;
+  }
+
+  .certificate-heading-icon {
+    display: flex;
+
+    width: 3rem;
+    height: 3rem;
+
+    flex-shrink: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #fff6dc;
+
+    font-size: 1.6rem;
+  }
+
+  .certificate-generator h3 {
+    margin: 0 0 0.3rem;
+
+    color: #3d4c4d;
+  }
+
+  .certificate-generator-heading p {
+    font-size: 0.92rem;
+  }
+
+  .certificate-form label {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: #485e61;
+
+    font-size: 0.85rem;
+
+    font-weight: 800;
+  }
+
+  .certificate-input-row {
+    display: flex;
+
+    gap: 0.75rem;
+  }
+
+  .certificate-input-row input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 0.9rem 1rem;
+
+    border: 1px solid #ccdcd9;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    color: #314f53;
+
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .certificate-input-row input:focus {
+    border-color: #14766f;
+
+    box-shadow:
+      0 0 0 3px rgba(20, 118, 111, 0.1);
+  }
+
+  .certificate-error {
+    margin-top: 0.5rem !important;
+
+    color: #a64d4d !important;
+
+    font-size: 0.85rem;
+  }
+
+
+  /* =====================================================
+     CERTIFICATE AREA
+  ====================================================== */
+
+  .certificate-area {
+    margin: 3rem auto;
+  }
+
+  .certificate {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 14px;
+
+    background:
+      linear-gradient(
+        135deg,
+        #c39442,
+        #e8d29d,
+        #a8792d
+      );
+
+    box-shadow:
+      0 20px 50px rgba(44, 54, 55, 0.14);
+  }
+
+  .certificate-border {
+    position: relative;
+
+    padding: 3rem 3.5rem 2.3rem;
+
+    border: 2px solid #d6b86c;
+
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(211, 181, 110, 0.12),
+        transparent 28%
+      ),
+      radial-gradient(
+        circle at bottom right,
+        rgba(20, 118, 111, 0.08),
+        transparent 32%
+      ),
+      #fffefb;
+
+    color: #374d50;
+
+    text-align: center;
+  }
+
+  .certificate-top {
+    display: flex;
+
+    gap: 0.6rem;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 2rem;
+  }
+
+  .certificate-logo-mark {
+    display: flex;
+
+    width: 2rem;
+    height: 2rem;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #14766f;
+
+    color: white;
+
+    font-size: 0.8rem;
+  }
+
+  .certificate-brand {
+    color: #53686b;
+
+    font-size: 0.8rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+  }
+
+  .certificate-decoration {
+    display: flex;
+
+    gap: 1rem;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 1.7rem;
+  }
+
+  .certificate-decoration span {
+    width: 70px;
+    height: 1px;
+
+    background: #caaa5e;
+  }
+
+  .certificate-decoration strong {
+    color: #967129;
+
+    font-family: Georgia, serif;
+
+    font-size: 1.05rem;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+  }
+
+  .certificate-presents {
+    margin-bottom: 0.7rem !important;
+
+    color: #7c8a8b !important;
+
+    font-size: 0.95rem;
+  }
+
+  .certificate-name {
+    display: inline-block;
+
+    min-width: 60%;
+
+    margin: 0 auto 0.8rem;
+
+    padding: 0.25rem 1rem 0.45rem;
+
+    border-bottom: 1px solid #c3a75f;
+
+    color: #183e40;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(
+      2rem,
+      5vw,
+      3.4rem
+    );
+
+    font-weight: 700;
+
+    line-height: 1.15;
+  }
+
+  .certificate-copy {
+    margin: 0.7rem 0 !important;
+
+    color: #758486 !important;
+
+    font-size: 0.95rem;
+  }
+
+  .certificate h2 {
+    margin: 1rem 0;
+
+    color: #14766f;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(
+      1.8rem,
+      4vw,
+      2.7rem
+    );
+  }
+
+  .certificate-description {
+    max-width: 650px;
+
+    margin: 0 auto !important;
+
+    color: #667b7d !important;
+
+    font-size: 0.9rem;
+
+    line-height: 1.65;
+  }
+
+  .certificate-footer {
+    display: grid;
+
+    grid-template-columns:
+      1fr auto 1fr;
+
+    gap: 1.5rem;
+
+    align-items: end;
+
+    margin-top: 2.5rem;
+  }
+
+  .certificate-footer-item {
+    padding-top: 0.7rem;
+
+    border-top: 1px solid #bfcac9;
+
+    text-align: left;
+  }
+
+  .certificate-footer-item.right {
+    text-align: right;
+  }
+
+  .certificate-footer-item span,
+  .certificate-footer-item strong {
+    display: block;
+  }
+
+  .certificate-footer-item span {
+    margin-bottom: 0.2rem;
+
+    color: #8c999a;
+
+    font-size: 0.7rem;
+
+    text-transform: uppercase;
+  }
+
+  .certificate-footer-item strong {
+    color: #4c6062;
+
+    font-size: 0.88rem;
+  }
+
+  .certificate-seal {
+    text-align: center;
+  }
+
+  .seal-inner {
+    display: flex;
+
+    width: 3.3rem;
+    height: 3.3rem;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 0.25rem;
+
+    border: 3px double #b9913f;
+
+    border-radius: 50%;
+
+    color: #a37b2e;
+
+    font-size: 1.3rem;
+
+    font-weight: 900;
+  }
+
+  .certificate-seal span {
+    color: #a37b2e;
+
+    font-size: 0.63rem;
+
+    font-weight: 900;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
+  }
+
+  .certificate-note {
+    margin-top: 2rem !important;
+
+    color: #a0a9aa !important;
+
+    font-size: 0.66rem;
+
+    letter-spacing: 0.03em;
+  }
+
+  .certificate-actions {
+    display: flex;
+
+    gap: 0.8rem;
+
+    justify-content: center;
+
+    margin-top: 1.4rem;
+  }
+
+  .certificate-help {
+    margin-top: 0.8rem !important;
+
+    color: #7f9092 !important;
+
+    font-size: 0.82rem;
+  }
+
+
+  /* =====================================================
+     COMPLETION ACTIONS
+  ====================================================== */
+
+  .completion-actions {
+    display: flex;
+
+    gap: 0.8rem;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    margin-top: 2.5rem;
+  }
+
+
+  /* =====================================================
+     DISCLAIMER
+  ====================================================== */
+
+  .module-disclaimer {
+    margin-top: 2rem;
+
+    padding: 1.3rem;
+
+    border-radius: 14px;
+
+    background: #f3f6f6;
+  }
+
+  .module-disclaimer strong {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: #536a6e;
+  }
+
+  .module-disclaimer p {
+    font-size: 0.88rem;
+
+    line-height: 1.65;
+  }
+
+
+  /* =====================================================
+     MOBILE
+  ====================================================== */
+
+  @media (max-width: 700px) {
+
+    .module-welcome {
+      padding: 1.3rem;
+    }
+
+    .module-details,
+    .coverage-grid,
+    .provider-grid,
+    .not-free-grid,
+    .care-options {
+      grid-template-columns: 1fr;
+    }
+
+    .journey {
+      flex-direction: column;
+    }
+
+    .journey-arrow {
+      justify-content: center;
+
+      transform: rotate(90deg);
+    }
+
+    .progress-header {
+      position: static;
+    }
+
+    .progress-top {
+      align-items: flex-start;
+    }
+
+    .lesson-tab {
+      min-width: 150px;
+    }
+
+    .module-controls {
+      flex-direction: column-reverse;
+    }
+
+    .module-controls button {
+      width: 100%;
+    }
+
+    .welcome-actions {
+      align-items: stretch;
+
+      flex-direction: column;
+    }
+
+    .language-card,
+    .completion-card {
+      flex-direction: column;
+    }
+
+    .certificate-input-row {
+      flex-direction: column;
+    }
+
+    .certificate-input-row button {
+      width: 100%;
+    }
+
+    .certificate-border {
+      padding: 2rem 1.2rem;
+    }
+
+    .certificate-footer {
+      grid-template-columns: 1fr;
+
+      gap: 1.2rem;
+    }
+
+    .certificate-seal {
+      order: -1;
+    }
+
+    .certificate-footer-item,
+    .certificate-footer-item.right {
+      text-align: center;
+    }
+
+    .certificate-actions {
+      flex-direction: column;
+    }
+
+    .certificate-actions button {
+      width: 100%;
+    }
+
+    .completion-score-card {
+      flex-direction: column;
+
+      align-items: stretch;
+
+      text-align: center;
+    }
+
+    .score-divider {
+      width: 100%;
+      height: 1px;
+    }
+  }
+
+
+  /* =====================================================
+     PRINT CERTIFICATE
+  ====================================================== */
+
+  @media print {
+
+    body.printing-certificate * {
+      visibility: hidden !important;
+    }
+
+    body.printing-certificate
+    [data-certificate],
+    body.printing-certificate
+    [data-certificate] * {
+      visibility: visible !important;
+    }
+
+    body.printing-certificate
+    [data-certificate] {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+
+      max-width: none;
+
+      margin: 0;
+
+      padding: 10px;
+
+      box-shadow: none;
+    }
+
+    body.printing-certificate
+    [data-certificate]
+    .certificate-border {
+      min-height: 90vh;
+    }
+
+    @page {
+      size: landscape;
+
+      margin: 0.35in;
+    }
+  }
+
+</style>

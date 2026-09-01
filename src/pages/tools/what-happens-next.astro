@@ -1,0 +1,1990 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="What Happens Next? | Newcomer Health Literacy Initiative"
+  description="An interactive B.C. healthcare navigation tool that explains what usually happens next after referrals, tests, prescriptions, and emergency visits."
+>
+  <main class="app-page">
+    <div class="topbar">
+      <a href="/tools" class="back-link">← Back to tools</a>
+      <span class="mode"><i></i> B.C. Healthcare Navigation Mode</span>
+    </div>
+
+    <section class="navigator" data-app>
+      <header class="hero">
+        <div>
+          <span class="badge">🧭 Interactive navigator</span>
+          <h1>What Happens Next?</h1>
+          <p>
+            Choose what happened in your healthcare journey. We’ll show you where you are,
+            what usually happens next, and what action may help.
+          </p>
+        </div>
+
+        <div class="ready">
+          <span>Status</span>
+          <strong><i></i> Ready</strong>
+        </div>
+      </header>
+
+      <div class="app-grid">
+        <aside class="sidebar">
+          <div class="sidebar-heading">
+            <span>01</span>
+            <div>
+              <strong>What happened?</strong>
+              <small>Choose your situation</small>
+            </div>
+          </div>
+
+          <div class="scenario-list">
+            <button class="scenario lab" type="button" data-scenario="lab">
+              <span class="scenario-icon">🧪</span>
+              <span class="scenario-copy">
+                <em>Testing</em>
+                <strong>Lab requisition</strong>
+                <small>Bloodwork or another lab test</small>
+              </span>
+              <span class="dot"></span>
+            </button>
+
+            <button class="scenario imaging" type="button" data-scenario="imaging">
+              <span class="scenario-icon">🩻</span>
+              <span class="scenario-copy">
+                <em>Diagnostic</em>
+                <strong>Medical imaging</strong>
+                <small>X-ray, ultrasound, CT or MRI</small>
+              </span>
+              <span class="dot"></span>
+            </button>
+
+            <button class="scenario referral" type="button" data-scenario="referral">
+              <span class="scenario-icon">📨</span>
+              <span class="scenario-copy">
+                <em>Specialist care</em>
+                <strong>Specialist referral</strong>
+                <small>My provider sent a referral</small>
+              </span>
+              <span class="dot"></span>
+            </button>
+
+            <button class="scenario prescription" type="button" data-scenario="prescription">
+              <span class="scenario-icon">💊</span>
+              <span class="scenario-copy">
+                <em>Medication</em>
+                <strong>Prescription</strong>
+                <small>I was prescribed a medication</small>
+              </span>
+              <span class="dot"></span>
+            </button>
+
+            <button class="scenario discharge" type="button" data-scenario="discharge">
+              <span class="scenario-icon">🏥</span>
+              <span class="scenario-copy">
+                <em>Follow-up</em>
+                <strong>ER discharge</strong>
+                <small>I went home after an ER visit</small>
+              </span>
+              <span class="dot"></span>
+            </button>
+
+            <button class="scenario waiting" type="button" data-scenario="waiting">
+              <span class="scenario-icon">⏳</span>
+              <span class="scenario-copy">
+                <em>Status check</em>
+                <strong>I’m still waiting</strong>
+                <small>I haven’t heard what happens next</small>
+              </span>
+              <span class="dot"></span>
+            </button>
+          </div>
+        </aside>
+
+        <section class="workspace">
+          <div class="empty" data-empty>
+            <div class="radar">
+              <span></span>
+              <span></span>
+              <b>🧭</b>
+            </div>
+
+            <small>Navigator ready</small>
+            <h2>What happened to you?</h2>
+            <p>
+              Choose a situation on the left. Your healthcare journey will appear here
+              without opening another page.
+            </p>
+          </div>
+
+          <div class="journey hidden" data-journey>
+            <div class="journey-title">
+              <div class="journey-icon" data-icon>📨</div>
+              <div>
+                <small>Your healthcare journey</small>
+                <h2 data-title></h2>
+                <p data-intro></p>
+              </div>
+            </div>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <small>Journey map</small>
+                  <h3>Where am I in the process?</h3>
+                </div>
+                <span>Click any stage</span>
+              </div>
+
+              <div class="journey-track" data-track></div>
+            </section>
+
+            <section class="stage-detail">
+              <div class="stage-number" data-stage-number>1</div>
+
+              <div>
+                <small data-stage-status>You are here</small>
+                <h3 data-stage-title></h3>
+                <p data-stage-description></p>
+
+                <div class="tip">
+                  <span>💡</span>
+                  <span>
+                    <strong>Helpful to know:</strong>
+                    <span data-stage-tip></span>
+                  </span>
+                </div>
+              </div>
+            </section>
+
+            <section class="next-card">
+              <div class="next-heading">
+                <span>🧭</span>
+                <div>
+                  <small>Your next move</small>
+                  <h3>What should I do right now?</h3>
+                </div>
+              </div>
+
+              <div class="next-main">
+                <span data-next-icon>📞</span>
+                <div>
+                  <strong data-next-title></strong>
+                  <p data-next-text></p>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="primary" type="button" data-open-sos>
+                  🆘 I’m still stuck
+                </button>
+
+                <button class="secondary" type="button" data-toggle-checklist>
+                  ☑ Show my checklist
+                </button>
+              </div>
+            </section>
+
+            <section class="panel checklist hidden" data-checklist-box>
+              <div class="panel-heading">
+                <div>
+                  <small>Quick checklist</small>
+                  <h3>Things worth keeping track of</h3>
+                </div>
+                <button class="mini-close" type="button" data-close-checklist>×</button>
+              </div>
+
+              <div class="check-grid" data-checklist></div>
+            </section>
+          </div>
+        </section>
+      </div>
+
+      <footer class="app-footer">
+        <p>
+          ⚠️ This tool explains healthcare navigation, not diagnosis or treatment.
+          For a life-threatening emergency, call <strong>9-1-1</strong>.
+        </p>
+
+        <a
+          href="https://www.healthlinkbc.ca/more/contact-us/8-1-1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          HealthLink BC 8-1-1 ↗
+        </a>
+      </footer>
+    </section>
+
+    <div class="modal-overlay" data-modal aria-hidden="true">
+      <section class="sos-modal" role="dialog" aria-modal="true" aria-labelledby="sos-title">
+        <div data-sos-menu>
+          <div class="modal-header">
+            <div>
+              <small>Navigation SOS</small>
+              <h2 id="sos-title">I’m stuck</h2>
+            </div>
+            <button type="button" data-close-sos aria-label="Close">×</button>
+          </div>
+
+          <p>Which problem is closest to yours?</p>
+
+          <div class="sos-grid">
+            <button type="button" data-issue="no-contact">
+              <span>📵</span>
+              <div>
+                <strong>Nobody has contacted me</strong>
+                <small>I expected a call or appointment</small>
+              </div>
+              <b>→</b>
+            </button>
+
+            <button type="button" data-issue="who">
+              <span>📞</span>
+              <div>
+                <strong>I don’t know who to contact</strong>
+                <small>I’m not sure which clinic is responsible</small>
+              </div>
+              <b>→</b>
+            </button>
+
+            <button type="button" data-issue="paperwork">
+              <span>📄</span>
+              <div>
+                <strong>I don’t understand what I was given</strong>
+                <small>A form, instruction, referral or prescription</small>
+              </div>
+              <b>→</b>
+            </button>
+
+            <button type="button" data-issue="next">
+              <span>🧭</span>
+              <div>
+                <strong>I don’t know what to do next</strong>
+                <small>Just tell me my next move</small>
+              </div>
+              <b>→</b>
+            </button>
+          </div>
+        </div>
+
+        <div class="sos-answer hidden" data-sos-answer>
+          <div class="modal-header">
+            <button class="back" type="button" data-sos-back>← Back</button>
+            <button type="button" data-close-sos-answer aria-label="Close">×</button>
+          </div>
+
+          <div class="answer-icon">🧭</div>
+          <small>Your next move</small>
+          <h2 data-answer-title></h2>
+          <div class="answer-steps" data-answer-steps></div>
+
+          <div class="say-this">
+            <small>You can say:</small>
+            <p data-answer-script></p>
+          </div>
+
+          <button class="primary" type="button" data-got-it>✓ Got it</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  function initNavigator() {
+    const app = document.querySelector('[data-app]');
+
+    if (!app || app.dataset.ready === 'true') {
+      return;
+    }
+
+    app.dataset.ready = 'true';
+
+    const journeys = {
+      lab: {
+        icon: '🧪',
+        title: 'Lab requisition',
+        intro:
+          'A healthcare provider ordered laboratory testing such as bloodwork or a urine test.',
+        current: 1,
+        stages: [
+          [
+            '🩺',
+            'Test ordered',
+            'Your healthcare provider decides laboratory testing may help with your care.',
+            'Ask whether there are preparation instructions.'
+          ],
+          [
+            '📄',
+            'Requisition received',
+            'You receive the order describing which tests were requested.',
+            'Keep a paper requisition safe if one was given to you.'
+          ],
+          [
+            '📍',
+            'Find a lab',
+            'You identify an appropriate laboratory service.',
+            'Ask the ordering clinic if you do not know where to go.'
+          ],
+          [
+            '🧪',
+            'Test completed',
+            'The requested sample is collected and tested.',
+            'Follow any fasting, timing or preparation instructions.'
+          ],
+          [
+            '📤',
+            'Results sent',
+            'Results are generally sent to the provider who ordered the test.',
+            'The laboratory usually does not manage your medical follow-up.'
+          ],
+          [
+            '🩺',
+            'Provider reviews results',
+            'The ordering provider reviews the results and decides whether follow-up is needed.',
+            'Ask how the clinic normally communicates results.'
+          ]
+        ],
+        next: [
+          '📄',
+          'Check your requisition and instructions',
+          'Find out where the test can be completed and whether you need to prepare in any special way.'
+        ],
+        checklist: [
+          ['📄', 'Requisition', 'Bring it if you were given a paper copy.'],
+          ['🪪', 'Identification', 'Bring requested identification or health information.'],
+          ['📋', 'Instructions', 'Review preparation instructions if provided.'],
+          ['🩺', 'Ordering provider', 'Know which clinic ordered the test.']
+        ]
+      },
+
+      imaging: {
+        icon: '🩻',
+        title: 'Medical imaging',
+        intro:
+          'Your healthcare provider ordered an imaging test such as an X-ray, ultrasound, CT or MRI.',
+        current: 1,
+        stages: [
+          [
+            '🩺',
+            'Imaging ordered',
+            'Your healthcare provider requests an imaging study.',
+            'Ask which imaging test was ordered.'
+          ],
+          [
+            '📨',
+            'Request sent',
+            'The request may be sent directly or given to you as a requisition.',
+            'Different tests use different booking processes.'
+          ],
+          [
+            '📅',
+            'Appointment arranged',
+            'You may book the test yourself or be contacted by an imaging facility.',
+            'If nobody explained the booking process, ask the ordering clinic.'
+          ],
+          [
+            '🩻',
+            'Imaging completed',
+            'The imaging study is performed.',
+            'Follow any preparation instructions from the facility.'
+          ],
+          [
+            '📝',
+            'Report created',
+            'The images are reviewed and a report is produced.',
+            'The imaging facility may not be the place that explains the result.'
+          ],
+          [
+            '🩺',
+            'Provider reviews report',
+            'The ordering provider receives the report.',
+            'Ask how the ordering clinic communicates results.'
+          ]
+        ],
+        next: [
+          '📅',
+          'Find out who arranges the appointment',
+          'Ask whether you should book the imaging yourself or wait for the imaging facility to contact you.'
+        ],
+        checklist: [
+          ['📄', 'Imaging order', 'Keep any requisition you were given.'],
+          ['📞', 'Contact information', 'Make sure clinics can reach you.'],
+          ['📋', 'Preparation', 'Follow preparation instructions carefully.'],
+          ['🩺', 'Ordering provider', 'Know which clinic ordered the imaging.']
+        ]
+      },
+
+      referral: {
+        icon: '📨',
+        title: 'Specialist referral',
+        intro:
+          'Your healthcare provider asked a specialist or specialty service to assess you.',
+        current: 1,
+        stages: [
+          [
+            '🩺',
+            'Referral requested',
+            'Your provider decides specialist input may be helpful and prepares a referral.',
+            'Ask which specialist or clinic the referral is being sent to.'
+          ],
+          [
+            '📨',
+            'Referral sent',
+            'The referring clinic sends your information to the specialist or specialty service.',
+            'Make sure the referring clinic has your current phone number.'
+          ],
+          [
+            '📥',
+            'Referral received',
+            'The specialist office receives and reviews the information.',
+            'You may not receive an immediate confirmation when a referral arrives.'
+          ],
+          [
+            '⚖️',
+            'Referral reviewed',
+            'The specialist or service reviews the referral and determines the next step.',
+            'Wait times vary by specialty, availability and urgency.'
+          ],
+          [
+            '📞',
+            'Appointment arranged',
+            'You or the referring clinic may receive scheduling information.',
+            'Check voicemail and answer unfamiliar calls while waiting.'
+          ],
+          [
+            '👨‍⚕️',
+            'Specialist visit',
+            'You attend the appointment and may receive testing, treatment or follow-up.',
+            'Bring your medication list and questions.'
+          ]
+        ],
+        next: [
+          '📞',
+          'Know where your referral was sent',
+          'Ask the referring clinic for the specialist or clinic name and what they expect to happen next.'
+        ],
+        checklist: [
+          ['📅', 'Referral date', 'Write down approximately when the referral was sent.'],
+          ['🏥', 'Clinic name', 'Keep the specialist or clinic name if known.'],
+          ['📞', 'Phone number', 'Make sure your contact information is current.'],
+          ['📝', 'Questions', 'Write down questions for your specialist visit.']
+        ]
+      },
+
+      prescription: {
+        icon: '💊',
+        title: 'Prescription',
+        intro:
+          'A healthcare provider prescribed a medication or treatment for you.',
+        current: 1,
+        stages: [
+          [
+            '🩺',
+            'Medication prescribed',
+            'Your healthcare provider decides to prescribe a medication.',
+            'Ask why you are taking it.'
+          ],
+          [
+            '📄',
+            'Prescription provided',
+            'The prescription may be given to you or sent to a pharmacy.',
+            'Confirm which pharmacy received it.'
+          ],
+          [
+            '💊',
+            'Pharmacy prepares it',
+            'A pharmacist reviews and prepares the medication.',
+            'The pharmacy may contact the prescriber if clarification is needed.'
+          ],
+          [
+            '🗣️',
+            'Medication explained',
+            'The pharmacist can explain how to take the medication.',
+            'Ask questions if the instructions are unclear.'
+          ],
+          [
+            '🔄',
+            'Refills or follow-up',
+            'Some prescriptions include refills while others require another assessment.',
+            'Check how many refills remain before you run out.'
+          ]
+        ],
+        next: [
+          '💊',
+          'Confirm which pharmacy has the prescription',
+          'Then ask the pharmacist about instructions, cost, coverage and refills.'
+        ],
+        checklist: [
+          ['🏪', 'Pharmacy', 'Know which pharmacy has your prescription.'],
+          ['💳', 'Coverage', 'Bring drug insurance or PharmaCare information if relevant.'],
+          ['📋', 'Medication list', 'Tell the pharmacist what else you take.'],
+          ['🔄', 'Refills', 'Check whether refills are available.']
+        ]
+      },
+
+      discharge: {
+        icon: '🏥',
+        title: 'Emergency Department discharge',
+        intro:
+          'You were assessed in the Emergency Department and were able to go home with instructions or follow-up recommendations.',
+        current: 2,
+        stages: [
+          [
+            '🏥',
+            'Emergency assessment',
+            'You were assessed and received appropriate emergency care.',
+            'Emergency Departments prioritize patients according to medical urgency.'
+          ],
+          [
+            '📄',
+            'Discharge instructions',
+            'You may receive instructions about medications, tests, warning signs or follow-up.',
+            'Keep the paperwork until you understand what you need to do.'
+          ],
+          [
+            '🏠',
+            'Care at home',
+            'You continue care at home according to the instructions you were given.',
+            'Follow the medical instructions provided to you.'
+          ],
+          [
+            '🩺',
+            'Follow-up',
+            'You may need follow-up with primary care, a specialist or another service.',
+            'Not every follow-up appointment is automatically booked.'
+          ],
+          [
+            '🔁',
+            'Reassessment if needed',
+            'You may have been told when to seek healthcare again.',
+            'Follow the return precautions given by your healthcare team.'
+          ]
+        ],
+        next: [
+          '📄',
+          'Read your discharge instructions',
+          'Look for medications, tests, follow-up appointments and instructions about when to seek reassessment.'
+        ],
+        checklist: [
+          ['📄', 'Discharge papers', 'Keep the instructions from your visit.'],
+          ['💊', 'Medications', 'Check whether anything was started or changed.'],
+          ['📅', 'Follow-up', 'Look for recommended follow-up timing.'],
+          ['⚠️', 'Return precautions', 'Know when you were told to seek care again.']
+        ]
+      },
+
+      waiting: {
+        icon: '⏳',
+        title: 'Waiting for the next step',
+        intro:
+          'Something was supposed to happen next, but you are not sure whether you should keep waiting or contact someone.',
+        current: 2,
+        stages: [
+          [
+            '🩺',
+            'Request started',
+            'A healthcare provider initiated a referral, test or other next step.',
+            'Know which clinic started the process.'
+          ],
+          [
+            '📨',
+            'Request sent',
+            'The request was sent to another clinic or service.',
+            'Ask exactly where it was sent.'
+          ],
+          [
+            '⏳',
+            'Waiting',
+            'You are currently waiting for further communication.',
+            'Different services can have very different wait times.'
+          ],
+          [
+            '📞',
+            'Status clarified',
+            'You contact the relevant clinic and clarify what is happening.',
+            'The clinic that started the process is often a useful place to begin.'
+          ],
+          [
+            '🧭',
+            'Next step confirmed',
+            'You know whether to keep waiting, book something or contact another service.',
+            'Write down what you were told.'
+          ]
+        ],
+        next: [
+          '📞',
+          'Contact the clinic that started the process',
+          'Ask where the request was sent and whether you should continue waiting or take another action.'
+        ],
+        checklist: [
+          ['📅', 'Approximate date', 'Know when the request was made.'],
+          ['🏥', 'Referring clinic', 'Know which provider started the process.'],
+          ['📨', 'Destination', 'Keep the clinic or specialist name if known.'],
+          ['📞', 'Phone number', 'Make sure clinics have your current number.']
+        ]
+      }
+    };
+
+    const sos = {
+      'no-contact': [
+        'Follow up with the clinic that started the process',
+        [
+          'Contact the clinic or provider who initiated the referral, test, prescription, or follow-up.',
+          'Ask where the request was sent or what should happen next.',
+          'Confirm that your phone number and voicemail are current.'
+        ],
+        'Hi, I am following up because I have not been contacted yet. Could you tell me what should happen next?'
+      ],
+
+      who: [
+        'Start with the clinic that initiated the process',
+        [
+          'Identify which provider started the referral, test, prescription, or follow-up.',
+          'Contact that clinic first.',
+          'Ask which clinic or service is responsible for the next step.'
+        ],
+        'Could you tell me who I should contact about the next step in my care?'
+      ],
+
+      paperwork: [
+        'Ask the clinic that gave you the document to explain it',
+        [
+          'Keep the document.',
+          'Identify which clinic or provider gave it to you.',
+          'Ask what the document means and whether you need to do anything yourself.'
+        ],
+        'I received this healthcare document, but I am not sure what I am supposed to do with it. Could you explain it?'
+      ],
+
+      next: [
+        'Use the next-action card as your starting point',
+        [
+          'Follow the next-action recommendation shown in the navigator.',
+          'If the process is still unclear, contact the clinic that started it.',
+          'Write down what you are told and who you spoke with.'
+        ],
+        'I am not sure what I should do next. Could you explain the next step to me?'
+      ]
+    };
+
+    const empty = app.querySelector('[data-empty]');
+    const journeyEl = app.querySelector('[data-journey]');
+    const track = app.querySelector('[data-track]');
+    const scenarioButtons = app.querySelectorAll('[data-scenario]');
+    const checklistBox = app.querySelector('[data-checklist-box]');
+    const checklistEl = app.querySelector('[data-checklist]');
+    const modal = document.querySelector('[data-modal]');
+
+    let activeKey = null;
+    let selectedStage = 0;
+
+    function renderStage(data, index) {
+      const stage = data.stages[index];
+
+      app.querySelector('[data-stage-number]').textContent =
+        String(index + 1);
+
+      app.querySelector('[data-stage-status]').textContent =
+        index < data.current
+          ? 'Completed stage'
+          : index === data.current
+            ? 'You are here'
+            : 'What may happen next';
+
+      app.querySelector('[data-stage-title]').textContent =
+        stage[1];
+
+      app.querySelector('[data-stage-description]').textContent =
+        stage[2];
+
+      app.querySelector('[data-stage-tip]').textContent =
+        stage[3];
+    }
+
+    function renderTrack(data) {
+      track.innerHTML = '';
+
+      data.stages.forEach((stage, index) => {
+        const status =
+          index < data.current
+            ? 'complete'
+            : index === data.current
+              ? 'current'
+              : 'future';
+
+        const button =
+          document.createElement('button');
+
+        button.type = 'button';
+
+        button.className =
+          `journey-node ${status}${index === selectedStage ? ' viewing' : ''}`;
+
+        button.innerHTML = `
+          <span class="node-circle">
+            ${status === 'complete' ? '✓' : stage[0]}
+          </span>
+
+          <span class="node-label">
+            ${
+              status === 'complete'
+                ? 'Completed'
+                : status === 'current'
+                  ? 'You are here'
+                  : 'Next'
+            }
+          </span>
+
+          <strong>${stage[1]}</strong>
+        `;
+
+        button.addEventListener('click', () => {
+          selectedStage = index;
+          renderTrack(data);
+          renderStage(data, index);
+        });
+
+        track.appendChild(button);
+
+        if (index < data.stages.length - 1) {
+          const connector =
+            document.createElement('div');
+
+          connector.className =
+            index < data.current
+              ? 'connector complete'
+              : 'connector';
+
+          track.appendChild(connector);
+        }
+      });
+    }
+
+    function renderChecklist(items) {
+      checklistEl.innerHTML = '';
+
+      items.forEach(item => {
+        const card =
+          document.createElement('div');
+
+        card.className =
+          'check-item';
+
+        card.innerHTML = `
+          <span>${item[0]}</span>
+          <div>
+            <strong>${item[1]}</strong>
+            <p>${item[2]}</p>
+          </div>
+        `;
+
+        checklistEl.appendChild(card);
+      });
+    }
+
+    function showJourney(key) {
+      const data = journeys[key];
+
+      if (!data) {
+        return;
+      }
+
+      activeKey = key;
+      selectedStage = data.current;
+
+      scenarioButtons.forEach(button => {
+        button.classList.toggle(
+          'selected',
+          button.dataset.scenario === key
+        );
+      });
+
+      empty.classList.add('hidden');
+      journeyEl.classList.remove('hidden');
+
+      app.querySelector('[data-icon]').textContent =
+        data.icon;
+
+      app.querySelector('[data-title]').textContent =
+        data.title;
+
+      app.querySelector('[data-intro]').textContent =
+        data.intro;
+
+      app.querySelector('[data-next-icon]').textContent =
+        data.next[0];
+
+      app.querySelector('[data-next-title]').textContent =
+        data.next[1];
+
+      app.querySelector('[data-next-text]').textContent =
+        data.next[2];
+
+      renderTrack(data);
+      renderStage(data, selectedStage);
+      renderChecklist(data.checklist);
+
+      checklistBox.classList.add('hidden');
+    }
+
+    scenarioButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        showJourney(button.dataset.scenario);
+      });
+    });
+
+    app
+      .querySelector('[data-toggle-checklist]')
+      .addEventListener('click', () => {
+        checklistBox.classList.toggle('hidden');
+      });
+
+    app
+      .querySelector('[data-close-checklist]')
+      .addEventListener('click', () => {
+        checklistBox.classList.add('hidden');
+      });
+
+    function openModal() {
+      if (!activeKey) {
+        return;
+      }
+
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+
+      modal
+        .querySelector('[data-sos-menu]')
+        .classList.remove('hidden');
+
+      modal
+        .querySelector('[data-sos-answer]')
+        .classList.add('hidden');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function showAnswer(issue) {
+      const answer = sos[issue];
+
+      if (!answer) {
+        return;
+      }
+
+      modal
+        .querySelector('[data-sos-menu]')
+        .classList.add('hidden');
+
+      modal
+        .querySelector('[data-sos-answer]')
+        .classList.remove('hidden');
+
+      modal
+        .querySelector('[data-answer-title]')
+        .textContent = answer[0];
+
+      const steps =
+        modal.querySelector('[data-answer-steps]');
+
+      steps.innerHTML = '';
+
+      answer[1].forEach((step, index) => {
+        const row =
+          document.createElement('div');
+
+        row.className =
+          'answer-step';
+
+        row.innerHTML = `
+          <span>${index + 1}</span>
+          <p>${step}</p>
+        `;
+
+        steps.appendChild(row);
+      });
+
+      modal
+        .querySelector('[data-answer-script]')
+        .textContent = `“${answer[2]}”`;
+    }
+
+    app
+      .querySelector('[data-open-sos]')
+      .addEventListener('click', openModal);
+
+    modal
+      .querySelectorAll('[data-issue]')
+      .forEach(button => {
+        button.addEventListener('click', () => {
+          showAnswer(button.dataset.issue);
+        });
+      });
+
+    modal
+      .querySelector('[data-sos-back]')
+      .addEventListener('click', () => {
+        modal
+          .querySelector('[data-sos-answer]')
+          .classList.add('hidden');
+
+        modal
+          .querySelector('[data-sos-menu]')
+          .classList.remove('hidden');
+      });
+
+    modal
+      .querySelector('[data-got-it]')
+      .addEventListener('click', closeModal);
+
+    modal
+      .querySelectorAll('[data-close-sos], [data-close-sos-answer]')
+      .forEach(button => {
+        button.addEventListener('click', closeModal);
+      });
+
+    modal.addEventListener('click', event => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  initNavigator();
+
+  document.addEventListener(
+    'astro:page-load',
+    initNavigator
+  );
+</script>
+
+<style>
+  .hidden {
+    display: none !important;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  .app-page {
+    width: min(1320px, 94%);
+    margin: 0 auto;
+    padding: 2rem 0 5rem;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .back-link {
+    color: #14766f;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .mode {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: #839491;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mode i,
+  .ready i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22a396;
+    box-shadow: 0 0 0 4px rgba(34, 163, 150, 0.1);
+  }
+
+  .navigator {
+    overflow: hidden;
+    border: 1px solid #d6e5e2;
+    border-radius: 28px;
+    background: white;
+    box-shadow: 0 25px 65px rgba(22, 48, 47, 0.1);
+  }
+
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.2rem;
+    border-bottom: 1px solid #dce8e6;
+    background:
+      radial-gradient(
+        circle at top right,
+        rgba(34, 163, 150, 0.13),
+        transparent 35%
+      ),
+      linear-gradient(145deg, #ffffff, #f8fcfb);
+  }
+
+  .hero > div:first-child {
+    max-width: 780px;
+  }
+
+  .badge {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid #cae3df;
+    border-radius: 999px;
+    background: #eff9f7;
+    color: #14766f;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    margin: 0 0 0.8rem;
+    color: #16302f;
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    line-height: 1;
+  }
+
+  .hero p {
+    margin: 0;
+    color: #5d7370;
+    font-size: 1.04rem;
+    line-height: 1.7;
+  }
+
+  .ready {
+    align-self: flex-start;
+    padding: 0.85rem 1rem;
+    border: 1px solid #d9e6e4;
+    border-radius: 14px;
+    background: white;
+  }
+
+  .ready span {
+    display: block;
+    color: #94a19f;
+    font-size: 0.62rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .ready strong {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 0.3rem;
+    color: #14766f;
+    font-size: 0.85rem;
+  }
+
+  .app-grid {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    min-height: 700px;
+  }
+
+  .sidebar {
+    padding: 1.4rem;
+    border-right: 1px solid #dce8e6;
+    background: linear-gradient(180deg, #f3faf8, #fafcfb);
+  }
+
+  .sidebar-heading {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-heading > span {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #14766f;
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 900;
+  }
+
+  .sidebar-heading strong,
+  .sidebar-heading small {
+    display: block;
+  }
+
+  .sidebar-heading small {
+    color: #8c9b99;
+    font-size: 0.7rem;
+  }
+
+  .scenario-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .scenario {
+    --accent: #14766f;
+    --accent2: #22a396;
+    --soft: #e7f6f3;
+    --soft2: #f4fbf9;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.85rem;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #d3e5e2;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #ffffff, var(--soft2));
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(22, 48, 47, 0.04);
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .scenario:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent2);
+    box-shadow: 0 11px 23px rgba(20, 118, 111, 0.1);
+  }
+
+  .scenario.selected {
+    border-color: var(--accent);
+    background: linear-gradient(
+      135deg,
+      var(--soft),
+      var(--soft2) 55%,
+      #ffffff
+    );
+    box-shadow: 0 11px 25px rgba(20, 118, 111, 0.12);
+  }
+
+  .scenario.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    bottom: 11px;
+    width: 4px;
+    border-radius: 0 999px 999px 0;
+    background: linear-gradient(var(--accent), var(--accent2));
+  }
+
+  .scenario-icon {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--soft), var(--soft2));
+    font-size: 1.4rem;
+  }
+
+  .scenario.selected .scenario-icon {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    transform: scale(1.06);
+  }
+
+  .scenario-copy em,
+  .scenario-copy strong,
+  .scenario-copy small {
+    display: block;
+  }
+
+  .scenario-copy em {
+    color: var(--accent);
+    font-style: normal;
+    font-size: 0.58rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .scenario-copy strong {
+    color: #284e50;
+    font-size: 0.87rem;
+  }
+
+  .scenario-copy small {
+    margin-top: 0.2rem;
+    color: #708784;
+    font-size: 0.69rem;
+    line-height: 1.4;
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border: 2px solid #aac9c5;
+    border-radius: 50%;
+    background: white;
+  }
+
+  .scenario.selected .dot {
+    background: var(--accent2);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(34, 163, 150, 0.12);
+  }
+
+  .lab {
+    --accent: #14766f;
+    --accent2: #32a397;
+    --soft: #e3f5f1;
+    --soft2: #f3fbf9;
+  }
+
+  .imaging {
+    --accent: #267f94;
+    --accent2: #48a7b6;
+    --soft: #e4f3f6;
+    --soft2: #f3fafb;
+  }
+
+  .referral {
+    --accent: #6f5a91;
+    --accent2: #8c77ae;
+    --soft: #eee9f6;
+    --soft2: #faf8fc;
+  }
+
+  .prescription {
+    --accent: #38805f;
+    --accent2: #5ca77f;
+    --soft: #e8f5ed;
+    --soft2: #f6fbf8;
+  }
+
+  .discharge {
+    --accent: #a45c55;
+    --accent2: #c47b71;
+    --soft: #f8eae8;
+    --soft2: #fdf8f7;
+  }
+
+  .waiting {
+    --accent: #aa792b;
+    --accent2: #d4a84d;
+    --soft: #fff2d7;
+    --soft2: #fffbf2;
+  }
+
+  .workspace {
+    padding: 2rem;
+    background: white;
+  }
+
+  .empty {
+    display: flex;
+    min-height: 610px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .empty small,
+  .journey-title small,
+  .panel-heading small,
+  .stage-detail small,
+  .next-heading small,
+  .sos-modal small {
+    color: #14766f;
+    font-size: 0.67rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .empty h2 {
+    margin: 0.4rem 0 0.6rem;
+    color: #29494b;
+  }
+
+  .empty p {
+    max-width: 520px;
+    color: #788a87;
+  }
+
+  .radar {
+    position: relative;
+    width: 145px;
+    height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .radar > span {
+    position: absolute;
+    border: 1px solid #cce5e1;
+    border-radius: 50%;
+  }
+
+  .radar > span:first-child {
+    width: 100px;
+    height: 100px;
+  }
+
+  .radar > span:nth-child(2) {
+    width: 140px;
+    height: 140px;
+  }
+
+  .radar b {
+    display: flex;
+    width: 72px;
+    height: 72px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #14766f, #22a396);
+    font-size: 2rem;
+  }
+
+  .journey-title {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .journey-icon {
+    display: flex;
+    width: 3.8rem;
+    height: 3.8rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 17px;
+    background: linear-gradient(135deg, #14766f, #22a396);
+    font-size: 1.7rem;
+  }
+
+  .journey-title h2 {
+    margin: 0.2rem 0;
+    color: #294a4c;
+  }
+
+  .journey-title p {
+    margin: 0;
+    color: #728582;
+  }
+
+  .panel {
+    padding: 1.35rem;
+    border: 1px solid #dae8e5;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 6px 18px rgba(22, 48, 47, 0.045);
+  }
+
+  .panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .panel-heading h3 {
+    margin: 0.2rem 0 0;
+    color: #385658;
+  }
+
+  .panel-heading > span {
+    color: #94a29f;
+    font-size: 0.68rem;
+  }
+
+  /* POLISHED JOURNEY STAGES */
+
+  .journey-track {
+    display: flex;
+    align-items: stretch;
+    gap: 0.55rem;
+    overflow-x: auto;
+    padding: 0.6rem 0.2rem 1rem;
+  }
+
+  button.journey-node {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-width: 125px;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.75rem 0.9rem;
+    border: 1px solid #d5e7e4 !important;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #ffffff, #f7fbfa) !important;
+    color: #496462 !important;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(22, 48, 47, 0.04);
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  button.journey-node:hover {
+    transform: translateY(-3px);
+    border-color: #8fc8c1 !important;
+    box-shadow: 0 10px 22px rgba(20, 118, 111, 0.1);
+  }
+
+  .node-circle {
+    display: flex;
+    width: 2.9rem;
+    height: 2.9rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.65rem;
+    border: 2px solid #cfe1de;
+    border-radius: 50%;
+    background: #f5faf9;
+    color: #55706d;
+    font-size: 1.15rem;
+    font-weight: 900;
+  }
+
+  .node-label {
+    display: inline-flex;
+    margin-bottom: 0.35rem;
+    padding: 0.2rem 0.45rem;
+    border-radius: 999px;
+    background: #f1f6f5;
+    color: #829391;
+    font-size: 0.54rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .journey-node strong {
+    max-width: 115px;
+    color: #47615f !important;
+    font-size: 0.72rem;
+  }
+
+  button.journey-node.complete {
+    border-color: #b6ddd7 !important;
+    background: linear-gradient(145deg, #eaf7f4, #f8fcfb) !important;
+  }
+
+  .journey-node.complete .node-circle {
+    border-color: #14766f;
+    background: linear-gradient(135deg, #14766f, #20988d);
+    color: white;
+  }
+
+  .journey-node.complete .node-label {
+    background: #dff2ee;
+    color: #14766f;
+  }
+
+  button.journey-node.current {
+    transform: translateY(-3px);
+    border-color: #14766f !important;
+    background:
+      linear-gradient(
+        145deg,
+        #daf2ee,
+        #eef9f7 48%,
+        #ffffff
+      ) !important;
+    box-shadow: 0 12px 28px rgba(20, 118, 111, 0.16);
+  }
+
+  button.journey-node.current::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 15px;
+    height: 4px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(90deg, #14766f, #22a396);
+  }
+
+  .journey-node.current .node-circle {
+    border-color: #14766f;
+    background: linear-gradient(135deg, #14766f, #22a396);
+    color: white;
+    box-shadow: 0 0 0 6px rgba(34, 163, 150, 0.1);
+  }
+
+  .journey-node.current .node-label {
+    background: linear-gradient(135deg, #14766f, #22a396);
+    color: white;
+  }
+
+  .journey-node.future .node-circle {
+    border-color: #bedbd6;
+    background: #f2f9f7;
+    color: #527873;
+  }
+
+  .journey-node.viewing {
+    outline: 3px solid rgba(111, 90, 145, 0.1);
+    outline-offset: 2px;
+  }
+
+  .connector {
+    flex-shrink: 0;
+    width: 26px;
+    height: 3px;
+    align-self: flex-start;
+    margin-top: 2.45rem;
+    border-radius: 999px;
+    background: #dce9e7;
+  }
+
+  .connector.complete {
+    background: linear-gradient(90deg, #14766f, #5bb5aa);
+  }
+
+  .stage-detail {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1.2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 16px;
+    background: white;
+  }
+
+  .stage-number {
+    display: flex;
+    width: 2.7rem;
+    height: 2.7rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #eff8f6;
+    color: #14766f;
+    font-weight: 900;
+  }
+
+  .stage-detail h3 {
+    margin: 0.2rem 0 0.35rem;
+    color: #355456;
+  }
+
+  .stage-detail p {
+    margin: 0;
+    color: #738582;
+    line-height: 1.55;
+  }
+
+  .tip {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 10px;
+    background: #f6faf9;
+    color: #6d817e;
+    font-size: 0.78rem;
+  }
+
+  .next-card {
+    margin-top: 1rem;
+    padding: 1.4rem;
+    border: 1px solid #c7e1dd;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #edf8f6, #ffffff);
+  }
+
+  .next-heading {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .next-heading > span {
+    display: flex;
+    width: 2.7rem;
+    height: 2.7rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #14766f;
+  }
+
+  .next-heading h3 {
+    margin: 0.15rem 0 0;
+    color: #294d4f;
+  }
+
+  .next-main {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #d7e7e4;
+    border-radius: 14px;
+    background: white;
+  }
+
+  .next-main > span {
+    display: flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #f0f8f7;
+  }
+
+  .next-main p {
+    margin: 0.2rem 0 0;
+    color: #718380;
+    font-size: 0.85rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+
+  .primary,
+  .secondary {
+    padding: 0.85rem 1.1rem;
+    border-radius: 12px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .primary {
+    border: 0;
+    background: linear-gradient(135deg, #14766f, #22a396);
+    color: white;
+  }
+
+  .secondary {
+    border: 1px solid #cadad8;
+    background: white;
+    color: #14766f;
+  }
+
+  .checklist {
+    margin-top: 1rem;
+  }
+
+  .mini-close {
+    border: 0;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    background: #f0f4f3;
+    cursor: pointer;
+  }
+
+  .check-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+  }
+
+  .check-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.9rem;
+    border: 1px solid #e1e9e7;
+    border-radius: 12px;
+    background: #fbfdfc;
+  }
+
+  .check-item p {
+    margin: 0.15rem 0 0;
+    color: #7d8d8a;
+    font-size: 0.7rem;
+  }
+
+  .app-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #dce8e6;
+    background: #f8fbfa;
+  }
+
+  .app-footer p {
+    margin: 0;
+    color: #748481;
+    font-size: 0.72rem;
+  }
+
+  .app-footer a {
+    color: #14766f;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(18, 40, 39, 0.48);
+    backdrop-filter: blur(7px);
+  }
+
+  .modal-overlay.open {
+    display: flex;
+  }
+
+  .sos-modal {
+    width: min(560px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    padding: 1.6rem;
+    border: 1px solid #d9e4e2;
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 35px 90px rgba(16, 37, 36, 0.28);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e1e8e7;
+  }
+
+  .modal-header h2 {
+    margin: 0.25rem 0;
+    color: #3e3b4b;
+  }
+
+  .modal-header button {
+    border: 1px solid #dbe5e3;
+    border-radius: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    background: white;
+    cursor: pointer;
+  }
+
+  .sos-grid {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+
+  .sos-grid button {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.8rem;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #dce7e5;
+    border-radius: 14px;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .sos-grid button > span {
+    display: flex;
+    width: 2.7rem;
+    height: 2.7rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #f4f0fa;
+  }
+
+  .sos-grid strong,
+  .sos-grid small {
+    display: block;
+  }
+
+  .sos-grid small {
+    color: #899795;
+    font-size: 0.72rem;
+  }
+
+  .answer-icon {
+    display: flex;
+    width: 3.6rem;
+    height: 3.6rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1.4rem 0 1rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #14766f, #22a396);
+    font-size: 1.6rem;
+  }
+
+  .answer-step {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    padding: 0.85rem;
+    border: 1px solid #dce7e5;
+    border-radius: 12px;
+    background: #fbfdfc;
+    margin-bottom: 0.7rem;
+  }
+
+  .answer-step > span {
+    display: flex;
+    width: 1.9rem;
+    height: 1.9rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #14766f;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
+  }
+
+  .answer-step p {
+    margin: 0;
+    color: #647774;
+    font-size: 0.84rem;
+  }
+
+  .say-this {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 4px solid #7554a5;
+    border-radius: 10px;
+    background: #f8f5fb;
+  }
+
+  .say-this p {
+    margin: 0.3rem 0 0;
+    color: #514a5d;
+    font-weight: 700;
+  }
+
+  .back {
+    width: auto !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #14766f;
+    font-weight: 900;
+  }
+
+  @media (max-width: 900px) {
+    .app-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      border-right: 0;
+      border-bottom: 1px solid #dce8e6;
+    }
+
+    .scenario-list {
+      display: flex;
+      overflow-x: auto;
+    }
+
+    .scenario {
+      min-width: 245px;
+    }
+
+    .empty {
+      min-height: 430px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .app-page {
+      width: 96%;
+    }
+
+    .mode {
+      display: none;
+    }
+
+    .hero {
+      flex-direction: column;
+      padding: 1.4rem;
+    }
+
+    .workspace {
+      padding: 1.1rem;
+    }
+
+    .stage-detail {
+      flex-direction: column;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .primary,
+    .secondary {
+      width: 100%;
+    }
+
+    .check-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .app-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    button.journey-node {
+      min-width: 118px;
+    }
+
+    .connector {
+      width: 20px;
+    }
+
+    .modal-overlay {
+      align-items: flex-end;
+      padding: 0.7rem;
+    }
+
+    .sos-modal {
+      width: 100%;
+      border-radius: 22px;
+    }
+  }
+</style>

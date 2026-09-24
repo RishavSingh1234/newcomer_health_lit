@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="What Happens Next? | Newcomer Health Literacy Initiative"
+  description="Choose what happened in your healthcare journey to learn where you are, what usually happens next, and what action may help."
+>
+  <main class="journey-page">
+    <a class="back-link" href="/tools">← Back to tools</a>
+
+    <section class="hero">
+      <span class="icon" aria-hidden="true">🧭</span>
+      <p class="eyebrow">Healthcare journey guide</p>
+      <h1>What happens next?</h1>
+      <p class="intro">
+        Choose what happened in your healthcare journey. We’ll show you where
+        you are, what usually happens next, and what action may help.
+      </p>
+    </section>
+
+    <section class="journey-grid" aria-label="Healthcare journey stages">
+      <a class="journey-card" href="/resources/finding-healthcare">
+        <span class="card-icon" aria-hidden="true">🩺</span>
+        <h2>I need to find care</h2>
+        <p>Learn where to start for routine, urgent, or emergency concerns.</p>
+        <span class="card-link">See care options →</span>
+      </a>
+
+      <a class="journey-card" href="/resources/finding-healthcare">
+        <span class="card-icon" aria-hidden="true">📅</span>
+        <h2>I have an appointment</h2>
+        <p>Prepare your questions, documents, medications, and language needs.</p>
+        <span class="card-link">Prepare for your visit →</span>
+      </a>
+
+      <a class="journey-card" href="/resources/medications">
+        <span class="card-icon" aria-hidden="true">💊</span>
+        <h2>I received a prescription</h2>
+        <p>Understand pharmacies, refills, medication costs, and coverage.</p>
+        <span class="card-link">Learn about medications →</span>
+      </a>
+
+      <a class="journey-card" href="/resources/finding-healthcare">
+        <span class="card-icon" aria-hidden="true">📝</span>
+        <h2>I had a visit or test</h2>
+        <p>Find out how follow-up, results, referrals, and next appointments work.</p>
+        <span class="card-link">Understand follow-up →</span>
+      </a>
+    </section>
+
+    <aside class="notice">
+      <strong>Need urgent help?</strong>
+      <p>
+        Call 911 for a life-threatening emergency. For health advice in British
+        Columbia, call 8-1-1 to speak with a health professional or navigator.
+      </p>
+    </aside>
+  </main>
+</Layout>
+
+<style>
+  .journey-page {
+    width: min(1050px, 90%);
+    margin: 0 auto;
+    padding: 4rem 0 7rem;
+  }
+
+  .back-link {
+    color: #087f8c;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .back-link:hover { text-decoration: underline; }
+
+  .hero {
+    max-width: 760px;
+    margin: 3rem auto 3.5rem;
+    text-align: center;
+  }
+
+  .icon { display: block; margin-bottom: 1rem; font-size: 3rem; }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    color: #14766f;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 { margin: 0 0 1rem; color: #16302f; font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.05; }
+  .intro { margin: 0; color: #586b68; font-size: 1.2rem; line-height: 1.75; }
+
+  .journey-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+  .journey-card {
+    display: block;
+    padding: 2rem;
+    border: 1px solid #dce8e6;
+    border-radius: 18px;
+    background: white;
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(22, 48, 47, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .journey-card:hover { border-color: #8dc5c8; box-shadow: 0 16px 38px rgba(22, 48, 47, 0.1); transform: translateY(-4px); }
+  .card-icon { display: block; margin-bottom: 1rem; font-size: 2.25rem; }
+  .journey-card h2 { margin: 0 0 0.7rem; color: #16302f; font-size: 1.35rem; }
+  .journey-card p { margin: 0 0 1rem; color: #60716f; line-height: 1.65; }
+  .card-link { color: #14766f; font-weight: 750; }
+
+  .notice { margin-top: 2rem; padding: 1.5rem; border-left: 5px solid #087f8c; border-radius: 10px; background: #eaf7f6; }
+  .notice strong { display: block; margin-bottom: 0.4rem; color: #16302f; }
+  .notice p { margin: 0; color: #405653; line-height: 1.7; }
+
+  @media (max-width: 700px) { .journey-grid { grid-template-columns: 1fr; } }
+</style>

@@ -33,7 +33,7 @@
           <input
             id="systolic"
             type="number"
-            min="60"
+            min="20"
             max="260"
             step="1"
             inputmode="numeric"
@@ -50,7 +50,7 @@
           <input
             id="diastolic"
             type="number"
-            min="30"
+            min="10"
             max="160"
             step="1"
             inputmode="numeric"
@@ -185,7 +185,7 @@
     category: string;
     explanation: string;
     action: string;
-    level: 'usual' | 'above-optimal' | 'high' | 'very-high';
+    level: 'low' | 'usual' | 'above-optimal' | 'high' | 'very-high';
   }
 
   function interpretBloodPressure(
@@ -203,6 +203,17 @@
           'Do not delay care to repeat the reading if you have symptoms. ' +
           'Call 911 for chest pain, severe difficulty breathing, fainting, confusion, or signs of stroke.',
         level: 'very-high',
+      };
+    }
+
+    if (systolic < 90 || diastolic < 60) {
+      return {
+        category: 'Low blood pressure range',
+        explanation:
+          'A reading below 90 mm Hg systolic or below 60 mm Hg diastolic is commonly considered low. Some people naturally have lower readings without problems, and one reading alone does not diagnose hypotension.',
+        action:
+          'If you feel well, repeat the reading after resting and discuss repeated low readings with a healthcare professional, especially if this is unusual for you or you take blood-pressure medicines. If you have dizziness, weakness, blurred vision, or feel faint, sit or lie down and seek medical advice. Call 911 for fainting with severe symptoms, confusion, cold or clammy skin, or another medical emergency.',
+        level: 'low',
       };
     }
 
@@ -244,6 +255,7 @@
     level: BloodPressureResult['level']
   ): void {
     result?.classList.remove(
+      'result-low',
       'result-usual',
       'result-above-optimal',
       'result-high',
@@ -264,9 +276,9 @@
     if (
       !systolic ||
       !diastolic ||
-      systolic < 60 ||
+      systolic < 20 ||
       systolic > 260 ||
-      diastolic < 30 ||
+      diastolic < 10 ||
       diastolic > 160
     ) {
       errorElement!.textContent =
@@ -460,6 +472,11 @@
   .result-usual {
     border-color: #9bcab8;
     background: #eef8f2;
+  }
+
+  .result-low {
+    border-color: #82a9c6;
+    background: #eef6fb;
   }
 
   .result-above-optimal {

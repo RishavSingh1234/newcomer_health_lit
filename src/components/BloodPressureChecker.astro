@@ -8,7 +8,8 @@
 
     <p>
       Enter one blood pressure reading to learn what the numbers may mean.
-      This tool does not diagnose high blood pressure.
+      This tool uses the current Canadian adult threshold for screening
+      guidance. One reading cannot diagnose high blood pressure.
     </p>
   </div>
 
@@ -100,14 +101,37 @@
     <h3>How to get a more accurate reading</h3>
 
     <ul>
-      <li>Sit quietly for five minutes before measuring.</li>
-      <li>Keep your back supported and both feet flat on the floor.</li>
-      <li>Place the cuff on your bare upper arm at heart level.</li>
+      <li>
+        Rest quietly for five minutes first; avoid caffeine and smoking for 30
+        minutes beforehand.
+      </li>
+      <li>Sit with your back supported and feet flat on the floor.</li>
+      <li>
+        Use a properly sized cuff on your bare upper arm, with your arm
+        supported at heart level.
+      </li>
       <li>Avoid talking while the measurement is being taken.</li>
       <li>
-        Take two readings, about one minute apart, and record both.
+        Take three readings at least one minute apart and record them. For home
+        monitoring, measure twice daily for one week and discuss the average
+        with a healthcare professional.
       </li>
     </ul>
+
+    <p class="guidance-source">
+      Guidance:
+      <a
+        href="https://www.canada.ca/en/public-health/services/diseases/heart-health/high-blood-pressure.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Public Health Agency of Canada</a>
+      and
+      <a
+        href="https://hypertension.ca/guidelines/recommendations"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Hypertension Canada</a>.
+    </p>
   </section>
 
   <aside class="checker-disclaimer">
@@ -168,22 +192,26 @@
     systolic: number,
     diastolic: number
   ): BloodPressureResult {
-    if (systolic >= 180 || diastolic >= 120) {
+    if (systolic >= 180 || diastolic >= 110) {
       return {
-        category: 'Very high blood pressure reading',
+        category: 'Very high reading — prompt medical advice is needed',
         explanation:
-          'This reading is much higher than the usual range and should not be ignored.',
+          'A systolic reading of 180 mm Hg or higher, or a diastolic reading of 110 mm Hg or higher, needs prompt clinical assessment. ' +
+          'This reading alone does not diagnose hypertension.',
         action:
-          'Sit quietly and repeat the measurement after a few minutes. If it remains this high, seek immediate medical advice. Call 911 if you have concerning symptoms such as chest pain, trouble breathing, weakness, confusion, or vision changes.',
+          'If you feel well, sit quietly for five minutes and repeat the measurement once, then contact a healthcare professional promptly for advice. ' +
+          'Do not delay care to repeat the reading if you have symptoms. ' +
+          'Call 911 for chest pain, severe difficulty breathing, fainting, confusion, or signs of stroke.',
         level: 'very-high',
       };
     }
 
     if (systolic >= 130 || diastolic >= 80) {
       return {
-        category: 'High blood pressure range',
+        category: 'At or above the Canadian hypertension threshold',
         explanation:
-          'This reading is at or above the current Canadian threshold used to define hypertension when readings remain elevated over time.',
+          'Hypertension Canada defines hypertension in adults as blood pressure at or above 130/80 mm Hg when measured with a validated device under optimal conditions. ' +
+          'Diagnosis is based on properly repeated measurements, often including out-of-office readings.',
         action:
           'Record several properly measured readings and discuss the results with a healthcare professional. One reading does not establish a diagnosis.',
         level: 'high',
@@ -194,7 +222,8 @@
       return {
         category: 'Higher than the optimal range',
         explanation:
-          'This reading is below the hypertension threshold but the systolic number is above the optimal range.',
+          'This reading is below the Canadian hypertension threshold, but the systolic number is above 120 mm Hg. ' +
+          'A single reading does not determine your usual blood pressure.',
         action:
           'Continue monitoring your blood pressure and discuss your individual target with a healthcare professional.',
         level: 'above-optimal',
@@ -204,7 +233,7 @@
     return {
       category: 'Below the hypertension threshold',
       explanation:
-        'This reading is below 120/80 mm Hg.',
+        'This reading is below 120/80 mm Hg and below the Canadian hypertension threshold.',
       action:
         'Continue regular health checkups. Your personal target may differ depending on your health conditions and medications.',
       level: 'usual',
@@ -506,6 +535,17 @@
     padding-left: 1.25rem;
     color: #586b68;
     line-height: 1.75;
+  }
+
+  .guidance-source {
+    margin: 1rem 0 0;
+    color: #586b68;
+    font-size: 0.9rem;
+  }
+
+  .guidance-source a {
+    color: #14766f;
+    font-weight: 700;
   }
 
   .checker-disclaimer {

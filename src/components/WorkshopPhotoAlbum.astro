@@ -1,0 +1,126 @@
+---
+const photos = Object.entries(import.meta.glob('../assets/workshop-photos/*.{jpg,jpeg,png,webp,avif}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}))
+  .map(([path, src]) => ({
+    src: src as string,
+    name: path.split('/').at(-1)?.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ') ?? 'Workshop photo',
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<section class="album" aria-labelledby="album-title">
+  <div class="album-heading">
+    <div>
+      <p class="eyebrow">A look back</p>
+      <h2 id="album-title">Workshop photo album</h2>
+      <p>Moments of learning, connection, and community.</p>
+    </div>
+    {photos.length > 0 && <span class="photo-count">{photos.length} {photos.length === 1 ? 'photo' : 'photos'}</span>}
+  </div>
+
+  {photos.length ? (
+    <div class="photo-grid">
+      {photos.map((photo, index) => (
+        <button
+          class="photo-tile"
+          type="button"
+          data-photo-index={index}
+          data-photo-src={photo.src}
+          data-photo-name={photo.name}
+          aria-label={`Open photo: ${photo.name}`}
+        >
+          <img src={photo.src} alt={photo.name} loading="lazy" />
+          <span class="photo-caption">{photo.name}</span>
+          <span class="zoom-icon" aria-hidden="true">↗</span>
+        </button>
+      ))}
+    </div>
+  ) : (
+    <div class="empty-album">
+      <span class="empty-icon" aria-hidden="true">▧</span>
+      <div><h3>Photos from our workshops will appear here.</h3><p>We’ll add community moments as photos become available.</p></div>
+    </div>
+  )}
+
+  {photos.length > 0 && (
+    <dialog class="lightbox" aria-label="Workshop photo viewer">
+      <button class="close-button" type="button" aria-label="Close photo viewer">×</button>
+      <button class="step-button previous" type="button" aria-label="Previous photo">‹</button>
+      <figure>
+        <img class="lightbox-image" src={photos[0].src} alt={photos[0].name} />
+        <figcaption><span class="lightbox-caption">{photos[0].name}</span><span class="lightbox-count">1 / {photos.length}</span></figcaption>
+      </figure>
+      <button class="step-button next" type="button" aria-label="Next photo">›</button>
+    </dialog>
+  )}
+</section>
+
+{photos.length > 0 && <script>
+  const album = document.querySelector('.album');
+  const dialog = album?.querySelector('dialog');
+  const image = dialog?.querySelector('.lightbox-image');
+  const caption = dialog?.querySelector('.lightbox-caption');
+  const count = dialog?.querySelector('.lightbox-count');
+  const tiles = [...(album?.querySelectorAll('.photo-tile') ?? [])];
+  let current = 0;
+
+  function showPhoto(index) {
+    current = (index + tiles.length) % tiles.length;
+    const tile = tiles[current];
+    image.src = tile.dataset.photoSrc;
+    image.alt = tile.dataset.photoName;
+    caption.textContent = tile.dataset.photoName;
+    count.textContent = `${current + 1} / ${tiles.length}`;
+  }
+
+  tiles.forEach((tile, index) => tile.addEventListener('click', () => {
+    showPhoto(index);
+    dialog.showModal();
+  }));
+  dialog?.querySelector('.close-button').addEventListener('click', () => dialog.close());
+  dialog?.querySelector('.previous').addEventListener('click', () => showPhoto(current - 1));
+  dialog?.querySelector('.next').addEventListener('click', () => showPhoto(current + 1));
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog?.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') showPhoto(current + 1);
+    if (event.key === 'ArrowLeft') showPhoto(current - 1);
+  });
+</script>}
+
+<style>
+  .album { margin: 3.5rem 0; }
+  .album-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.3rem; }
+  .eyebrow { margin: 0 0 .5rem; color: #b64840; font-size: .76rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+  .album-heading h2 { margin: 0; color: #163b39; font-family: Georgia, serif; font-size: clamp(1.7rem, 4vw, 2.35rem); letter-spacing: -.03em; }
+  .album-heading p:last-child { margin: .35rem 0 0; color: #617774; }
+  .photo-count { flex: 0 0 auto; padding: .45rem .75rem; border-radius: 999px; background: #fff0ed; color: #a54c43; font-size: .82rem; font-weight: 800; }
+  .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9rem; }
+  .photo-tile { position: relative; display: block; min-height: 210px; padding: 0; overflow: hidden; border: 0; border-radius: 18px; background: #f2e8e3; cursor: zoom-in; text-align: left; }
+  .photo-tile img { width: 100%; height: 240px; object-fit: cover; transition: transform .25s ease; }
+  .photo-tile:hover img, .photo-tile:focus-visible img { transform: scale(1.035); }
+  .photo-caption { position: absolute; right: 0; bottom: 0; left: 0; padding: 2.2rem 1rem .8rem; overflow: hidden; background: linear-gradient(transparent, rgba(24, 36, 34, .75)); color: white; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+  .zoom-icon { position: absolute; top: .7rem; right: .7rem; display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: rgba(255,255,255,.92); color: #9f433b; font-size: 1.15rem; }
+  .empty-album { display: flex; align-items: center; gap: 1rem; padding: 1.5rem; border: 1px dashed #dfb8b0; border-radius: 20px; background: #fff8f5; }
+  .empty-icon { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; border-radius: 15px; background: #ffe9e3; color: #a94b40; font-size: 1.6rem; }
+  .empty-album h3 { margin: 0; color: #643d37; font-size: 1.05rem; }
+  .empty-album p { margin: .25rem 0 0; color: #7d655f; }
+  .lightbox { position: relative; width: min(1000px, 94vw); max-width: none; max-height: 92vh; padding: 3.5rem 4.5rem 1rem; overflow: visible; border: 1px solid rgba(255,255,255,.2); border-radius: 22px; background: #192422; color: white; }
+  .lightbox::backdrop { background: rgba(12, 25, 23, .82); backdrop-filter: blur(5px); }
+  .lightbox figure { margin: 0; }
+  .lightbox-image { display: block; width: 100%; max-height: 74vh; object-fit: contain; }
+  .lightbox figcaption { display: flex; justify-content: space-between; gap: 1rem; padding-top: .85rem; color: #e9f0ee; }
+  .close-button, .step-button { position: absolute; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(255,255,255,.12); color: white; cursor: pointer; }
+  .close-button { top: .75rem; right: .75rem; width: 42px; height: 42px; font-size: 1.6rem; }
+  .step-button { top: 50%; width: 46px; height: 46px; transform: translateY(-50%); font-size: 2rem; }
+  .previous { left: .8rem; }
+  .next { right: .8rem; }
+  .photo-tile:focus-visible, .lightbox button:focus-visible { outline: 3px solid #f1bc70; outline-offset: 3px; }
+  @media (max-width: 720px) { .photo-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .photo-tile img { height: 190px; } .lightbox { padding: 3.5rem 3rem 1rem; } }
+  @media (max-width: 480px) { .photo-grid { grid-template-columns: 1fr; } .photo-tile img { height: 240px; } .album-heading { align-items: start; flex-direction: column; } }
+  @media (prefers-reduced-motion: reduce) { .photo-tile img { transition: none; } }
+</style>

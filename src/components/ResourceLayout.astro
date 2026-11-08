@@ -6,16 +6,17 @@ interface Props {
   eyebrow: string;
   title: string;
   introduction: string;
+  variant?: string;
 }
 
-const { icon, eyebrow, title, introduction } = Astro.props;
+const { icon, eyebrow, title, introduction, variant = '' } = Astro.props;
 ---
 
 <Layout
   title={`${title} | Newcomer Health Literacy Initiative`}
   description={introduction}
 >
-  <section class="resource-page">
+  <section class:list={['resource-page', variant]}>
     <a class="back-link" href="/resources">← Back to resources</a>
 
     <header class="resource-header">
@@ -36,6 +37,58 @@ const { icon, eyebrow, title, introduction } = Astro.props;
     max-width: 900px;
     margin: auto;
     padding: 64px 24px 100px;
+  }
+
+  .resource-page.heart-resource {
+    max-width: 1020px;
+    padding-top: 28px;
+  }
+
+  .resource-page.heart-resource .back-link {
+    margin-bottom: 18px;
+  }
+
+  .resource-page.heart-resource .resource-header {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 22px 28px 24px;
+    overflow: hidden;
+    border: 1px solid #f2d4ce;
+    border-radius: 24px;
+    background: linear-gradient(115deg, #fff4f1 0%, #fffaf6 58%, #fff 100%);
+  }
+
+  .resource-page.heart-resource .resource-header::after {
+    position: absolute;
+    top: -90px;
+    right: -35px;
+    width: 230px;
+    height: 230px;
+    border: 26px solid rgba(190, 65, 58, .08);
+    border-radius: 50%;
+    content: '';
+    pointer-events: none;
+  }
+
+  .resource-page.heart-resource .icon {
+    margin-bottom: 2px;
+    font-size: 2.2rem;
+  }
+
+  .resource-page.heart-resource .eyebrow {
+    margin-bottom: 5px;
+    color: #b64840;
+  }
+
+  .resource-page.heart-resource h1 {
+    margin-bottom: 10px;
+    font-size: clamp(2.3rem, 5vw, 3.8rem);
+  }
+
+  .resource-page.heart-resource .introduction {
+    max-width: 700px;
+    font-size: 1.08rem;
+    line-height: 1.6;
   }
 
   .back-link {
@@ -90,6 +143,10 @@ const { icon, eyebrow, title, introduction } = Astro.props;
     gap: 38px;
   }
 
+  .resource-page.heart-resource .content {
+    gap: 26px;
+  }
+
   :global(.content section) {
     padding-bottom: 34px;
     border-bottom: 1px solid #dce7ea;
@@ -118,5 +175,10 @@ const { icon, eyebrow, title, introduction } = Astro.props;
     display: block;
     margin-bottom: 8px;
     color: #123b4a;
+  }
+
+  @media (max-width: 600px) {
+    .resource-page.heart-resource { padding: 20px 18px 70px; }
+    .resource-page.heart-resource .resource-header { padding: 18px; border-radius: 20px; }
   }
 </style>

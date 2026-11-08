@@ -21,7 +21,7 @@ export interface HeartTopic {
 
 export const heartTopics: HeartTopic[] = [
   {
-    slug: 'high-blood-pressure', title: 'High blood pressure', shortTitle: 'Blood pressure', icon: '🩺', color: 'teal',
+    slug: 'high-blood-pressure', title: 'High blood pressure', shortTitle: 'Blood pressure', icon: '🩺', color: 'coral',
     eyebrow: 'Know your numbers', introduction: 'High blood pressure often has no warning signs. Learn how it is checked, what your results mean, and how to plan your next step in B.C.',
     takeaway: 'A single reading cannot always tell the whole story. Your care provider may ask for repeat readings at home or at another visit.',
     sections: [

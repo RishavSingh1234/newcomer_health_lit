@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import WorkshopPhotoAlbum from '../components/WorkshopPhotoAlbum.astro';
+import WorkshopPhotoBanner from '../components/WorkshopPhotoBanner.astro';
 
 const resources = [
   {
@@ -83,13 +83,8 @@ const resources = [
         </p>
       </div>
 
-      <div class="hero-card" aria-hidden="true">
-        <div class="illustration">🏥</div>
-        <h2>Healthcare made clearer</h2>
-        <p>
-          Understand where to go, what to expect, and how to ask informed
-          questions about your care.
-        </p>
+      <div class="hero-gallery">
+        <WorkshopPhotoBanner variant="hero" />
       </div>
     </section>
 
@@ -135,10 +130,6 @@ const resources = [
 
       <a class="button light" href="/workshops">See upcoming workshops</a>
     </section>
-
-    <div class="home-album">
-      <WorkshopPhotoAlbum />
-    </div>
 
     <section class="section about-section" id="about">
       <div>
@@ -380,30 +371,6 @@ const resources = [
     line-height: 1.5;
   }
 
-  .hero-card {
-    padding: 44px 38px;
-    border: 1px solid #b9dcdd;
-    border-radius: 28px;
-    background: linear-gradient(145deg, #e6f6f4, #ffffff);
-    box-shadow: 0 24px 70px rgba(22, 75, 82, 0.12);
-  }
-
-  .illustration {
-    margin-bottom: 22px;
-    font-size: 5rem;
-  }
-
-  .hero-card h2 {
-    margin-bottom: 14px;
-    font-size: 1.7rem;
-  }
-
-  .hero-card p {
-    margin-bottom: 0;
-    color: #55727b;
-    line-height: 1.7;
-  }
-
   .section {
     max-width: 1180px;
     margin: auto;
@@ -498,14 +465,8 @@ const resources = [
     color: white;
   }
 
-  .home-album {
-    width: min(1132px, calc(100% - 48px));
-    margin: 74px auto 36px;
-    padding: 0 10px;
-  }
-
-  .home-album :global(.album) {
-    margin: 0;
+  .hero-gallery {
+    width: 100%;
   }
 
   .workshop-section h2,

@@ -1,0 +1,126 @@
+---
+import ResourceLayout from '../../../components/ResourceLayout.astro';
+import { heartTopics } from '../../../data/heartTopics';
+
+export function getStaticPaths() {
+  return heartTopics.map((topic) => ({ params: { topic: topic.slug }, props: { topic } }));
+}
+
+const { topic } = Astro.props;
+const relatedTopics = heartTopics.filter((item) => item.slug !== topic.slug).slice(0, 3);
+---
+
+<ResourceLayout
+  icon={topic.icon}
+  eyebrow={topic.eyebrow}
+  title={topic.title}
+  introduction={topic.introduction}
+>
+  <div class={`topic-page ${topic.color}`}>
+    <a class="collection-link" href="/resources/heart-health">← All heart health topics</a>
+
+    <aside class="key-message" aria-label="Key message">
+      <span class="key-icon" aria-hidden="true">✳</span>
+      <div><p class="label">The key idea</p><p>{topic.takeaway}</p></div>
+    </aside>
+
+    <div class="article-sections">
+      {topic.sections.map((section, index) => (
+        <section class="article-section">
+          <span class="section-number">{String(index + 1).padStart(2, '0')}</span>
+          <div class="section-copy">
+            <h2>{section.title}</h2>
+            <p>{section.text}</p>
+            {section.bullets && (
+              <ul>{section.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <section class="local-card">
+      <div class="local-card-icon" aria-hidden="true">📍</div>
+      <div><p class="label">In British Columbia</p><h2>Support closer to home</h2><p>{topic.localTip}</p></div>
+    </section>
+
+    <section class="question-card">
+      <p class="label">Take this to an appointment</p>
+      <h2>Questions you can ask</h2>
+      <p class="question-intro">You can bring these questions on your phone or write them down. It is okay to ask the provider to explain something in a different way.</p>
+      <ul>{topic.ask.map((question) => <li><span aria-hidden="true">?</span>{question}</li>)}</ul>
+    </section>
+
+    <section class="more-info">
+      <p class="label">Keep learning</p>
+      <h2>Trusted information and support</h2>
+      <div class="source-grid">
+        {topic.links.map((link) => (
+          <a class="source-link" href={link.href} target="_blank" rel="noopener noreferrer">
+            <span class="source-name">{link.source}</span><span class="source-title">{link.label}</span><span class="source-arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+      <p class="disclaimer">This guide is general information. It does not replace advice from your own healthcare provider.</p>
+    </section>
+
+    <nav class="related" aria-label="More heart health guides">
+      <p class="label">Explore another guide</p>
+      <div class="related-grid">
+        {relatedTopics.map((item) => (
+          <a class={`related-link ${item.color}`} href={`/resources/heart-health/${item.slug}`}>
+            <span class="related-icon" aria-hidden="true">{item.icon}</span><span>{item.shortTitle}</span><span class="related-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </nav>
+  </div>
+</ResourceLayout>
+
+<style>
+  .topic-page { --accent: #087e78; --soft: #eaf6f2; --line: #c8e3dc; --ink: #153f3b; --muted: #59736e; }
+  .topic-page.coral { --accent:#a24c36; --soft:#fff0e9; --line:#f2d0c4; }
+  .topic-page.gold { --accent:#886416; --soft:#fff7df; --line:#ecdda9; }
+  .topic-page.red { --accent:#a9443a; --soft:#fff0ee; --line:#f0c8c3; }
+  .topic-page.blue { --accent:#365f96; --soft:#edf4ff; --line:#d0def3; }
+  .topic-page.green { --accent:#47723a; --soft:#edf6e9; --line:#d2e5c7; }
+  .topic-page.purple { --accent:#685190; --soft:#f3effb; --line:#ddd3ef; }
+  .topic-page.mint { --accent:#397655; --soft:#e9f6ef; --line:#cee6d6; }
+  .topic-page.indigo { --accent:#53648e; --soft:#eef1fb; --line:#d5dbf0; }
+  .collection-link { display: inline-flex; margin: -1.3rem 0 1.4rem; color: #087e78; font-size: .92rem; font-weight: 800; text-decoration: none; }
+  .collection-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .key-message { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; padding: 1.35rem 1.5rem; border: 1px solid var(--line); border-radius: 20px; background: var(--soft); }
+  .key-icon { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 13px; background: white; color: var(--accent); font-size: 1.25rem; }
+  .key-message .label, .label { margin: 0 0 .45rem; color: var(--accent); font-size: .73rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+  .key-message p:last-child { margin: 0; color: var(--ink); font-size: 1.04rem; font-weight: 650; line-height: 1.6; }
+  .article-sections { display: grid; }
+  .topic-page :global(.article-section) { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 1rem; padding: 1.55rem 0; border-bottom: 1px solid #e3ebe7; }
+  .section-number { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 13px; color: var(--accent); font-size: .74rem; font-weight: 850; }
+  .topic-page :global(.section-copy h2) { margin: 0 0 .55rem; color: #153f3b; font-family: Georgia, serif; font-size: 1.55rem; letter-spacing: -.02em; }
+  .topic-page :global(.section-copy p) { margin: 0; color: #536e68; line-height: 1.75; }
+  .topic-page :global(.section-copy ul) { display: grid; gap: .55rem; margin: 1rem 0 0; padding-left: 1.2rem; color: #536e68; line-height: 1.65; }
+  .local-card { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 1rem; padding: 1.5rem; border: 1px solid #cce2dc; border-radius: 22px; background: #f0f8f5; }
+  .local-card-icon { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 15px; background: #dcefe9; font-size: 1.25rem; }
+  .topic-page :global(.local-card h2), .topic-page :global(.question-card h2), .topic-page :global(.more-info h2) { margin: 0 0 .55rem; color: #153f3b; font-family: Georgia, serif; font-size: 1.55rem; letter-spacing: -.025em; }
+  .topic-page :global(.local-card p:last-child) { margin: 0; color: #536e68; line-height: 1.7; }
+  .question-card { padding: 1.55rem; border: 1px solid #e1eae6; border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(29, 73, 65, .045); }
+  .topic-page :global(.question-intro) { margin: 0 0 1.05rem; color: #627873; line-height: 1.65; }
+  .topic-page :global(.question-card ul) { display: grid; gap: .7rem; margin: 0; padding: 0; list-style: none; }
+  .topic-page :global(.question-card li) { display: flex; align-items: start; gap: .75rem; color: #355750; line-height: 1.55; }
+  .topic-page :global(.question-card li span) { display: grid; flex: 0 0 23px; height: 23px; place-items: center; border-radius: 50%; background: var(--soft); color: var(--accent); font-size: .8rem; font-weight: 850; }
+  .source-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .75rem; margin-top: 1rem; }
+  .source-link { position: relative; display: grid; gap: .28rem; min-height: 105px; padding: 1rem 2.8rem 1rem 1rem; border: 1px solid #dfe9e5; border-radius: 16px; background: #f9fbfa; text-decoration: none; transition: border-color .18s ease, background .18s ease; }
+  .source-link:hover { border-color: var(--line); background: var(--soft); }
+  .source-name { color: #71827e; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .source-title { color: #204d45; font-weight: 750; line-height: 1.4; }
+  .source-arrow { position: absolute; top: 1rem; right: 1rem; color: var(--accent); font-weight: 800; }
+  .topic-page :global(.disclaimer) { margin: 1rem 0 0; color: #788985; font-size: .85rem; }
+  .related { padding-top: .2rem; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; }
+  .related-link { display: flex; align-items: center; gap: .65rem; min-width: 0; padding: .9rem; border: 1px solid #e1eae6; border-radius: 15px; color: #21483f; font-size: .9rem; font-weight: 750; text-decoration: none; background: var(--wash, #f8fbfa); }
+  .related-icon { font-size: 1.2rem; }
+  .related-arrow { margin-left: auto; color: var(--accent, #087e78); }
+  .related-link:hover { border-color: var(--edge, #b8d8ce); }
+  @media (max-width: 650px) { .topic-page :global(.article-section) { grid-template-columns: 34px minmax(0,1fr); gap: .7rem; } .topic-page :global(.section-copy h2), .topic-page :global(.local-card h2), .topic-page :global(.question-card h2), .topic-page :global(.more-info h2) { font-size: 1.35rem; } .topic-page :global(.local-card) { padding: 1.1rem; } .related-grid { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .source-link { transition: none; } }
+</style>

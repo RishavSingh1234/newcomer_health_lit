@@ -2,111 +2,116 @@
 import ResourceLayout from '../../components/ResourceLayout.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import InfographicViewer from '../../components/InfographicViewer.astro';
-import ExternalResource from '../../components/ExternalResource.astro';
+import { heartTopics } from '../../data/heartTopics';
 ---
 
 <ResourceLayout
   icon="❤️"
-  eyebrow="Heart health and prevention"
-  title="Heart Health"
-  introduction="Learn about blood pressure, cholesterol, heart disease prevention, warning signs, and when to seek urgent medical care."
+  eyebrow="Your heart, your health"
+  title="Heart health"
+  introduction="Clear, practical guides to caring for your heart, understanding your health numbers, and finding support in British Columbia."
 >
-  <VideoEmbed
-    title="Heart Health for Newcomers"
-    videoId="HGUxsClKZ00"
-    description="Watch this short video to learn about heart health, cardiovascular risk factors, common warning signs, and ways to protect your heart."
-  />
+  <div class="heart-hub">
+    <section class="welcome-panel" aria-labelledby="start-heading">
+      <div class="welcome-copy">
+        <p class="section-kicker">A good place to start</p>
+        <h2 id="start-heading">Small steps can make a real difference.</h2>
+        <p>Heart health is shaped by many things: blood pressure, cholesterol, diabetes, food, movement, sleep, stress, and access to care. Explore the topic that matters most to you today.</p>
+      </div>
+      <a class="hub-action" href="/resources/heart-health/high-blood-pressure">Start with blood pressure <span aria-hidden="true">→</span></a>
+    </section>
 
-  <InfographicViewer
-    title="The ABCDEs of Diabetes and Heart Care"
-    description="Learn practical steps for reducing cardiovascular risk, including blood sugar control, blood pressure, cholesterol, healthy habits, and medication use."
-    previewSrc="/infographics/mental-health/ABCDEs-of-Diabetes-Heart-Care-en.png"
-    previewAlt="Preview of the ABCDEs of diabetes and heart care infographic"
-  languages={[
-  {
-    label: 'English',
-    href: '/infographics/mental-health/heart-health-en.png',
-    lang: 'en',
-  },
-  {
-    label: 'ਪੰਜਾਬੀ',
-    href: '/infographics/mental-health/heart-health-pa.png',
-    lang: 'pa',
-  },
-]}
-  />
+    <section class="topic-library" aria-labelledby="topics-heading">
+      <div class="section-heading">
+        <div><p class="section-kicker">Explore the guides</p><h2 id="topics-heading">Choose a topic</h2></div>
+        <p>Each guide uses plain language, explains useful questions to ask, and points to trusted B.C. support.</p>
+      </div>
+      <div class="topic-grid">
+        {heartTopics.map((topic, index) => (
+          <a class={`topic-card ${topic.color}`} href={`/resources/heart-health/${topic.slug}`}>
+            <span class="topic-number">{String(index + 1).padStart(2, '0')}</span>
+            <span class="topic-icon" aria-hidden="true">{topic.icon}</span>
+            <h3>{topic.shortTitle}</h3>
+            <span class="card-link">Read the guide <span aria-hidden="true">↗</span></span>
+          </a>
+        ))}
+      </div>
+    </section>
 
-  <ExternalResource
-    icon="🇨🇦"
-    source="HealthLink BC"
-    title="Heart Health"
-    description="Explore trusted information about heart disease, blood pressure, cholesterol, healthy living, and when to seek medical attention."
-    href="https://www.healthlinkbc.ca/health-topics/heart-and-circulation"
-  />
+    <section class="emergency-strip" aria-label="Emergency information">
+      <span class="emergency-icon" aria-hidden="true">!</span>
+      <div><p class="section-kicker">Get emergency help</p><h2>Possible heart attack or stroke? Call 9-1-1.</h2><p>Do not wait to see if symptoms pass. Call even if you are unsure. Do not drive yourself.</p></div>
+      <a href="https://www.heartandstroke.ca/heart-disease/emergency-signs/heart-attack-and-stroke" target="_blank" rel="noopener noreferrer">Learn the warning signs <span aria-hidden="true">↗</span></a>
+    </section>
 
-  <section>
-    <h2>Why is heart health important?</h2>
-    <p>
-      Your heart and blood vessels carry oxygen and nutrients throughout your
-      body. High blood pressure, high cholesterol, diabetes, smoking, and other
-      risk factors can damage blood vessels over time and increase the risk of
-      heart attack and stroke.
-    </p>
-  </section>
+    <section class="local-help">
+      <div class="local-icon" aria-hidden="true">☎</div>
+      <div><p class="section-kicker">New to B.C.?</p><h2>Health advice is one call away.</h2><p>Call <strong>8-1-1</strong> to speak with a health service navigator, nurse, dietitian, exercise professional, or pharmacist. Ask for an interpreter in your language; translation is available in over 130 languages.</p></div>
+      <a href="https://www.healthlinkbc.ca/find-care/healthlink-bc-8-1-1-services" target="_blank" rel="noopener noreferrer">How 8-1-1 can help <span aria-hidden="true">↗</span></a>
+    </section>
 
-  <section>
-    <h2>Blood pressure</h2>
-    <p>
-      Blood pressure measures the force of blood against the walls of your
-      arteries. High blood pressure often causes no symptoms, so regular checks
-      are important. A healthcare provider can explain your results and whether
-      lifestyle changes or medication may be needed.
-    </p>
-  </section>
+    <VideoEmbed
+      title="Heart Health for Newcomers"
+      videoId="HGUxsClKZ00"
+      description="An introduction to heart health, cardiovascular risk factors, warning signs, and ways to protect your heart."
+    />
 
-  <section>
-    <h2>Cholesterol</h2>
-    <p>
-      Cholesterol is a type of fat carried in the blood. Some cholesterol is
-      needed by the body, but high levels of LDL cholesterol can contribute to
-      plaque buildup in the arteries. Blood tests can help assess your risk.
-    </p>
-  </section>
-
-  <section>
-    <h2>How can I reduce my risk?</h2>
-    <p>
-      Regular physical activity, balanced nutrition, avoiding tobacco, limiting
-      alcohol, getting enough sleep, managing stress, and taking prescribed
-      medications can all help reduce cardiovascular risk.
-    </p>
-  </section>
-
-  <section>
-    <h2>What tests might I have?</h2>
-    <p>
-      Common heart-related tests include blood pressure measurements,
-      cholesterol and blood sugar tests, an electrocardiogram or ECG, and other
-      tests depending on your symptoms and medical history.
-    </p>
-  </section>
-
-  <section>
-    <h2>Preparing for a heart health appointment</h2>
-    <p>
-      Bring a list of your medications, write down your symptoms and questions,
-      and tell your healthcare provider about any family history of heart
-      disease, stroke, high blood pressure, diabetes, or high cholesterol.
-    </p>
-  </section>
-
-  <aside class="notice">
-    <strong>Know the warning signs.</strong>
-    <p>
-      Call 911 immediately for severe chest pressure, trouble breathing,
-      sudden weakness or numbness on one side, facial drooping, sudden trouble
-      speaking, fainting, or other symptoms that may indicate a heart attack or
-      stroke.
-    </p>
-  </aside>
+    <InfographicViewer
+      title="The ABCDEs of Diabetes and Heart Care"
+      description="A visual overview of blood sugar, blood pressure, cholesterol, daily habits, and medication conversations."
+      previewSrc="/infographics/mental-health/heart-health-en.png"
+      previewAlt="Preview of the ABCDEs of diabetes and heart care infographic"
+      languages={[
+        { label: 'English', href: '/infographics/mental-health/heart-health-en.png', lang: 'en' },
+        { label: 'ਪੰਜਾਬੀ', href: '/infographics/mental-health/heart-health-pa.png', lang: 'pa' },
+      ]}
+    />
+    <p class="information-note">These pages share general health information and cannot diagnose a condition. For personal advice, speak with a healthcare professional. For an emergency, call 9-1-1.</p>
+  </div>
 </ResourceLayout>
+
+<style>
+  .heart-hub { --ink: #143d3b; --muted: #58716d; --teal: #087e78; display: grid; gap: 3.4rem; }
+  .welcome-panel { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 28px; color: white; background: radial-gradient(circle at 88% 0%, rgba(147, 217, 198, .24), transparent 32%), linear-gradient(130deg, #123f3c, #176f67); box-shadow: 0 22px 54px rgba(18, 63, 60, .16); }
+  .welcome-copy { max-width: 650px; }
+  .section-kicker { margin: 0 0 .6rem; color: #58a69d; font-size: .76rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+  .welcome-panel .section-kicker { color: #a1ded2; }
+  .welcome-panel h2 { margin: 0 0 .8rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -.035em; }
+  .welcome-panel p:not(.section-kicker) { max-width: 600px; margin: 0; color: #d8ede8; line-height: 1.75; }
+  .hub-action { display: inline-flex; align-items: center; gap: .8rem; justify-content: center; min-height: 52px; padding: .8rem 1.15rem; border-radius: 999px; background: #f0c979; color: #253d34; font-weight: 800; text-decoration: none; white-space: nowrap; transition: transform .18s ease, background .18s ease; }
+  .hub-action:hover { transform: translateY(-2px); background: #ffdb8a; }
+  .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 1.35rem; }
+  .section-heading h2, .local-help h2, .emergency-strip h2 { margin: 0; color: #143d3b; font-family: Georgia, serif; font-size: clamp(1.65rem, 3vw, 2.2rem); letter-spacing: -.025em; line-height: 1.2; }
+  .section-heading > p { max-width: 410px; margin: 0; color: #647b77; line-height: 1.65; }
+  .topic-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .topic-card { position: relative; display: flex; min-height: 205px; flex-direction: column; align-items: flex-start; padding: 1.4rem; overflow: hidden; border: 1px solid #e0e9e4; border-radius: 22px; color: #193e3b; text-decoration: none; background: linear-gradient(145deg, var(--wash), #fff 75%); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .topic-card:hover { transform: translateY(-4px); border-color: var(--edge); box-shadow: 0 16px 32px rgba(21, 57, 51, .1); }
+  .topic-number { position: absolute; top: 1rem; right: 1.15rem; color: var(--edge); font-size: .72rem; font-weight: 850; letter-spacing: .1em; }
+  .topic-icon { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 16px; background: var(--icon-bg); font-size: 1.4rem; }
+  .topic-card h3 { margin: 1.25rem 0 .75rem; font-family: Georgia, serif; font-size: 1.25rem; line-height: 1.2; }
+  .card-link { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-top: auto; color: var(--accent); font-size: .88rem; font-weight: 800; }
+  .teal { --wash:#e5f3f0; --edge:#8ac8bd; --icon-bg:#d4eeea; --accent:#08756e; }
+  .coral { --wash:#fff0e9; --edge:#f1ad91; --icon-bg:#ffe1d4; --accent:#a24c36; }
+  .gold { --wash:#fff7df; --edge:#e9c86f; --icon-bg:#ffedb9; --accent:#886416; }
+  .red { --wash:#fff0ee; --edge:#edaaa2; --icon-bg:#ffe0dc; --accent:#a9443a; }
+  .blue { --wash:#edf4ff; --edge:#a8c4ea; --icon-bg:#dfebff; --accent:#365f96; }
+  .green { --wash:#edf6e9; --edge:#b4d2a1; --icon-bg:#dff0d6; --accent:#47723a; }
+  .purple { --wash:#f3effb; --edge:#c5b3e8; --icon-bg:#e7ddf6; --accent:#685190; }
+  .mint { --wash:#e9f6ef; --edge:#a7d4b9; --icon-bg:#d7eddf; --accent:#397655; }
+  .indigo { --wash:#eef1fb; --edge:#b5bee4; --icon-bg:#dfe4f6; --accent:#53648e; }
+  .emergency-strip { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.3rem; padding: 1.45rem 1.6rem; border: 1px solid #f2c7bd; border-radius: 22px; background: #fff4f0; }
+  .emergency-icon { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 50%; background: #bd493d; color: white; font-size: 1.7rem; font-weight: 900; }
+  .emergency-strip .section-kicker { color: #b54c40; }
+  .emergency-strip h2 { font-family: inherit; font-size: 1.25rem; }
+  .emergency-strip p:not(.section-kicker) { margin: .3rem 0 0; color: #745e59; }
+  .emergency-strip > a, .local-help > a { color: #a7473c; font-weight: 800; text-decoration-thickness: 1px; text-underline-offset: 4px; white-space: nowrap; }
+  .local-help { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.3rem; padding: 1.65rem; border: 1px solid #cce3dd; border-radius: 22px; background: #eef8f5; }
+  .local-icon { display: grid; width: 50px; height: 50px; place-items: center; border-radius: 16px; background: #d8eee8; color: #146c61; font-size: 1.5rem; font-weight: 800; }
+  .local-help h2 { font-size: 1.45rem; }
+  .local-help p:not(.section-kicker) { max-width: 680px; margin: .45rem 0 0; color: #536f69; line-height: 1.65; }
+  .local-help > a { color: #116c62; }
+  .information-note { margin: -1.8rem 0 0; color: #71827f; font-size: .9rem; line-height: 1.65; }
+  @media (max-width: 780px) { .welcome-panel { grid-template-columns: 1fr; align-items: start; } .hub-action { justify-self: start; } .topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .section-heading { align-items: start; flex-direction: column; gap: .7rem; } .emergency-strip, .local-help { grid-template-columns: auto 1fr; } .emergency-strip > a, .local-help > a { grid-column: 2; white-space: normal; } }
+  @media (max-width: 520px) { .topic-grid { grid-template-columns: 1fr; } .topic-card { min-height: 170px; } .emergency-strip, .local-help { align-items: start; gap: .9rem; padding: 1.15rem; } }
+  @media (prefers-reduced-motion: reduce) { .topic-card, .hub-action { transition: none; } .topic-card:hover, .hub-action:hover { transform: none; } }
+</style>
